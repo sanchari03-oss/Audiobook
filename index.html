@@ -1,0 +1,2854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>ssk • Audiobooks</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#0A0A0C" />
+  
+  <style>
+    :root {
+      --bg-base: #0A0A0C;
+      --bg-surface: #141418;
+      --bg-card: #18181E;
+      --bg-elevated: #202028;
+      --accent: #FF9F0A;
+      --accent-glow: rgba(255, 159, 10, 0.25);
+      --accent-dim: rgba(255, 159, 10, 0.12);
+      --text-main: #FFFFFF;
+      --text-secondary: #9898A0;
+      --text-tertiary: #63636E;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-light: rgba(255, 255, 255, 0.14);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      background: var(--bg-base);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      padding-top: var(--safe-top);
+      padding-bottom: calc(var(--safe-bottom) + 90px);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.18); border-radius: 999px; }
+
+    /* Top Navigation Bar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(10, 10, 12, 0.85);
+      backdrop-filter: saturate(180%) blur(24px);
+      -webkit-backdrop-filter: saturate(180%) blur(24px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+    }
+
+    .brand-logo {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--text-main);
+    }
+
+    .brand-dot {
+      color: var(--accent);
+      font-weight: 800;
+      margin: 0 1px;
+    }
+
+    .brand-sub {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-secondary);
+    }
+
+    .header-status {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #30D158;
+      background: rgba(48, 209, 88, 0.1);
+      padding: 0.3rem 0.65rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(48, 209, 88, 0.25);
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #30D158;
+      box-shadow: 0 0 8px #30D158;
+    }
+
+    /* Shelf Segmented Tabs */
+    .tabs-section {
+      padding: 1rem 1.25rem 0.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .segmented-control {
+      display: flex;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 4px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border);
+      width: fit-content;
+      max-width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .segmented-control::-webkit-scrollbar { display: none; }
+
+    .seg-pill {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.45rem 1.1rem;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .seg-pill.active {
+      background: #FFFFFF;
+      color: #000000;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .seg-badge {
+      font-size: 0.68rem;
+      background: rgba(0, 0, 0, 0.12);
+      color: #000000;
+      padding: 1px 6px;
+      border-radius: var(--radius-full);
+    }
+
+    .seg-pill:not(.active) .seg-badge {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-secondary);
+    }
+
+    /* Main Grid (Homepage scrolls when books exceed screen) */
+    main {
+      padding: 1rem 1.25rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+    }
+
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.5rem 1.25rem;
+    }
+
+    @media (max-width: 600px) {
+      .books-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem 0.85rem;
+      }
+    }
+
+    /* Add Card */
+    /* Add Card - Exactly matches Book Card dimensions */
+    .add-book-card .add-cover-box {
+      border: 2px dashed rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.02);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1rem;
+      box-shadow: none;
+    }
+
+    .add-book-card .add-cover-box::before {
+      display: none;
+    }
+
+    .add-book-card:hover .add-cover-box {
+      border-color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .add-cover-label {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-top: 0.4rem;
+    }
+
+    .add-info-spacer {
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .plus-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFF;
+      transition: all 0.2s;
+    }
+
+    .add-book-card:hover .plus-circle {
+      background: var(--accent);
+      color: #000;
+    }
+
+    /* Book Card */
+    .book-card {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      position: relative;
+      perspective: 900px;
+    }
+
+    .book-card:active {
+      transform: scale(0.97);
+    }
+
+    .cover-box {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1.48;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: #19191D;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
+      border: 1px solid var(--border);
+      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+      transform-style: preserve-3d;
+    }
+
+    .cover-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 14px;
+      background: linear-gradient(90deg, rgba(0,0,0,0.55), rgba(0,0,0,0.15) 60%, transparent);
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .cover-box::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -160%;
+      width: 100%;
+      height: 200%;
+      background: linear-gradient(
+        110deg,
+        transparent 35%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 65%
+      );
+      transform: rotate(25deg);
+      transition: left 0.75s ease;
+      pointer-events: none;
+      z-index: 6;
+    }
+
+    @media (hover: hover) {
+      .book-card:hover .cover-box {
+        transform: translateY(-8px) rotateY(-8deg) rotateZ(-1deg);
+        box-shadow: -10px 22px 36px rgba(0, 0, 0, 0.85), 0 0 24px rgba(255, 159, 10, 0.2);
+      }
+      .book-card:hover .cover-box::after {
+        left: 170%;
+      }
+    }
+
+    .cover-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: filter 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.5s ease;
+    }
+
+    .cover-box.is-downloading img {
+      filter: blur(10px) brightness(0.55);
+      transform: scale(1.05);
+    }
+
+    .cover-box.is-paused img {
+      filter: blur(6px) brightness(0.65);
+    }
+
+    .cover-dl-badge {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      z-index: 10;
+      pointer-events: auto;
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.25);
+      animation: fadeInDl 0.3s ease;
+    }
+
+    .cover-dl-spinner {
+      width: 26px;
+      height: 26px;
+      border: 2.5px solid rgba(255, 255, 255, 0.25);
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: coverDlSpin 0.75s linear infinite;
+    }
+
+    .cover-dl-pause-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .cover-dl-pct {
+      font-size: 11px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .cover-dl-btn {
+      font-size: 10px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.2);
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+      backdrop-filter: blur(4px);
+      letter-spacing: 0.3px;
+    }
+
+    @keyframes coverDlSpin {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes fadeInDl {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .cover-fallback {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #24242A, #121215);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .cover-fallback h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .cover-fallback p {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+    }
+
+    .offline-badge {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      background: rgba(48, 209, 88, 0.9);
+      color: #000;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: var(--radius-full);
+      backdrop-filter: blur(8px);
+      z-index: 8;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .card-info {
+      padding-top: 0.65rem;
+    }
+
+    .card-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow: hidden;
+    }
+
+    .card-title-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+    }
+
+    .card-title-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--accent);
+      flex-shrink: 0;
+      animation: fadeInDl 0.25s ease;
+    }
+
+    .card-title-spinner {
+      width: 10px;
+      height: 10px;
+      border: 2px solid rgba(255, 159, 10, 0.25);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: coverDlSpin 0.7s linear infinite;
+      display: inline-block;
+    }
+
+    .card-author {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 4px;
+    }
+
+    .card-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.72rem;
+    }
+
+    .card-duration-badge {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .card-more-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 4px 6px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+    }
+
+    .card-more-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+    }
+
+    /* MINI PLAYER BAR (FLOATING AT BOTTOM) */
+    .mini-player-bar {
+      position: fixed;
+      bottom: calc(var(--safe-bottom) + 12px);
+      left: 12px;
+      right: 12px;
+      max-width: 650px;
+      margin: 0 auto;
+      height: 64px;
+      background: rgba(24, 24, 28, 0.94);
+      backdrop-filter: saturate(180%) blur(24px);
+      -webkit-backdrop-filter: saturate(180%) blur(24px);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      padding: 0 0.75rem;
+      gap: 0.75rem;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85);
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s;
+    }
+
+    .mini-player-bar.hidden {
+      transform: translateY(120%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .mini-progress-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 2.5px;
+      width: 0%;
+      background: var(--accent);
+      transition: width 0.2s linear;
+    }
+
+    .mini-thumb {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      background: #202024;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+    }
+
+    .mini-text-wrap {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .mini-chapter-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mini-sub-line {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .mini-time-badge {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .mini-controls-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      flex-shrink: 0;
+    }
+
+    .mini-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .mini-btn:active {
+      transform: scale(0.92);
+    }
+
+    .mini-btn.play-hero {
+      background: #FFFFFF;
+      color: #000000;
+      width: 42px;
+      height: 42px;
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.25);
+    }
+
+    /* FULL SCREEN NOW PLAYING VIEW (STRICTLY ZERO SCROLL - FITS SCREEN 100%) */
+    .full-player-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: #0A0A0E;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+      padding-top: var(--safe-top);
+      padding-bottom: var(--safe-bottom);
+      height: 100vh;
+      height: 100dvh;
+      max-height: 100dvh;
+      overflow: hidden !important; /* STRICTLY NO SCROLLING */
+      overscroll-behavior: none;
+      touch-action: manipulation;
+    }
+
+    .full-player-modal.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .full-player-ambient-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 45%;
+      background: radial-gradient(circle at 50% 20%, rgba(255, 159, 10, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .full-player-header {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 1rem;
+      height: 48px;
+      flex-shrink: 0;
+    }
+
+    .btn-minimize {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-minimize:active {
+      transform: scale(0.92);
+    }
+
+    .full-header-info {
+      text-align: center;
+      flex: 1;
+      padding: 0 0.5rem;
+      min-width: 0;
+    }
+
+    .full-header-tag {
+      font-size: 0.62rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-tertiary);
+    }
+
+    .full-header-book {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .btn-header-action {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+      font-size: 0.74rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* Content Area: Strictly fits screen proportionally without scrolling */
+    .full-player-content {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.25rem 1.25rem 0.75rem;
+      max-width: 440px;
+      margin: 0 auto;
+      width: 100%;
+      overflow: hidden !important;
+    }
+
+    /* Cover dynamically scales to fill available height */
+    .full-cover-wrapper {
+      flex: 1;
+      min-height: 120px;
+      max-height: 35vh;
+      aspect-ratio: 1 / 1.48;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.9), 0 0 25px var(--accent-glow);
+      border: 1px solid var(--border-light);
+      position: relative;
+      margin: 0 auto 0.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .full-cover-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .full-titles-area {
+      text-align: center;
+      width: 100%;
+      flex-shrink: 0;
+      margin-bottom: 0.25rem;
+    }
+
+    .full-chap-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .full-author-sub {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .full-remaining-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--accent-dim);
+      border: 1px solid rgba(255, 159, 10, 0.3);
+      color: var(--accent);
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 0.22rem 0.75rem;
+      border-radius: var(--radius-full);
+      margin-top: 0.3rem;
+    }
+
+    .full-scrubber-section {
+      width: 100%;
+      flex-shrink: 0;
+      margin: 0.3rem 0 0.45rem;
+    }
+
+    .full-scrubber-track {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-full);
+      position: relative;
+      cursor: pointer;
+      padding: 8px 0;
+      background-clip: content-box;
+    }
+
+    .full-scrubber-fill {
+      height: 6px;
+      background: var(--accent);
+      border-radius: var(--radius-full);
+      width: 0%;
+      position: relative;
+      pointer-events: none;
+    }
+
+    .full-scrubber-thumb {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+      position: absolute;
+      right: -7px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .full-times-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.3rem;
+      font-size: 0.74rem;
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .full-controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      width: 100%;
+      flex-shrink: 0;
+      margin-bottom: 0.45rem;
+    }
+
+    .full-ctrl-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      position: relative;
+      transition: transform 0.15s ease;
+    }
+
+    .full-ctrl-btn:active {
+      transform: scale(0.9);
+    }
+
+    .full-ctrl-skip {
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+    }
+
+    .full-skip-num {
+      position: absolute;
+      font-size: 0.66rem;
+      font-weight: 800;
+      color: var(--accent);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -44%);
+    }
+
+    .full-play-hero {
+      width: 66px;
+      height: 66px;
+      background: #FFFFFF;
+      color: #000000;
+      box-shadow: 0 6px 18px rgba(255, 255, 255, 0.28);
+    }
+
+    .full-secondary-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      flex-shrink: 0;
+      padding: 0 0.25rem;
+    }
+
+    .full-sub-btn {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.4rem 0.75rem;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s;
+    }
+
+    .full-sub-btn:hover {
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    /* CHAPTERS DRAWER (BOTTOM SHEET / SIDE PANEL) */
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: flex;
+      justify-content: flex-end;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+    }
+
+    .drawer-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .drawer-panel {
+      width: 100%;
+      max-width: 440px;
+      height: 100%;
+      background: #141418;
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @media (max-width: 600px) {
+      .drawer-backdrop {
+        align-items: flex-end;
+      }
+      .drawer-panel {
+        max-width: 100%;
+        height: 80vh;
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        border-left: none;
+        border-top: 1px solid var(--border-light);
+        transform: translateY(100%);
+      }
+      .drawer-backdrop.open .drawer-panel {
+        transform: translateY(0);
+      }
+    }
+
+    .drawer-backdrop.open .drawer-panel {
+      transform: translateX(0);
+    }
+
+    .drawer-head {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .drawer-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
+
+    .drawer-count {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .drawer-list {
+      flex: 1;
+      overflow-y: auto;
+      list-style: none;
+      padding: 0.5rem 0;
+    }
+
+    .drawer-item {
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .drawer-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .drawer-item.active {
+      background: var(--accent-dim);
+      border-left: 3px solid var(--accent);
+    }
+
+    .drawer-item.active .drawer-item-title {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .drawer-item-index {
+      font-size: 0.68rem;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .drawer-item-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 1px;
+    }
+
+    .drawer-item-time {
+      font-size: 0.76rem;
+      font-variant-numeric: tabular-nums;
+      color: var(--text-secondary);
+      font-weight: 600;
+      margin-left: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    /* ACTION SHEET (MORE MENU) */
+    .sheet-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 150;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+      padding-bottom: var(--safe-bottom);
+    }
+
+    .sheet-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .sheet-card {
+      background: #18181E;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      max-width: 500px;
+      width: 100%;
+      padding: 1.25rem 1rem 1.5rem;
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @media (min-width: 601px) {
+      .sheet-backdrop {
+        align-items: center;
+        padding-bottom: 0;
+      }
+      .sheet-card {
+        border-radius: var(--radius-lg);
+        transform: scale(0.95);
+      }
+      .sheet-backdrop.open .sheet-card {
+        transform: scale(1);
+      }
+    }
+
+    .sheet-backdrop.open .sheet-card {
+      transform: translateY(0);
+    }
+
+    .sheet-header {
+      padding: 0 0.5rem 1rem;
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .sheet-book-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .sheet-book-author {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .sheet-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding-top: 0.75rem;
+    }
+
+    .sheet-action-row {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-main);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+
+    .sheet-action-row:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .sheet-action-row.danger {
+      color: #FF453A;
+      background: rgba(255, 69, 58, 0.08);
+      border-color: rgba(255, 69, 58, 0.2);
+    }
+
+    .sheet-action-row.danger:hover {
+      background: rgba(255, 69, 58, 0.16);
+    }
+
+    .sheet-cancel-btn {
+      margin-top: 0.75rem;
+      width: 100%;
+      padding: 0.85rem;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    /* ADD BOOK MODAL */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 130;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: #18181E;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      max-width: 480px;
+      width: 100%;
+      padding: 1.5rem;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 0.85rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .form-input {
+      width: 100%;
+      background: #24242C;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: #FFF;
+      padding: 0.75rem;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus {
+      border-color: var(--accent);
+    }
+
+    /* TOAST NOTIFICATION */
+    .toast-pill {
+      position: fixed;
+      top: calc(var(--safe-top) + 20px);
+      left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      background: rgba(24, 24, 28, 0.96);
+      border: 1px solid var(--accent);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      color: #FFFFFF;
+      padding: 0.6rem 1.25rem;
+      border-radius: var(--radius-full);
+      font-size: 0.84rem;
+      font-weight: 700;
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .toast-pill.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header>
+    <div class="brand-wrap">
+      <span class="brand-logo">ssk</span>
+      <span class="brand-dot">•</span>
+      <span class="brand-sub">Audiobooks</span>
+    </div>
+    <div class="header-status">
+      <div class="status-dot"></div>
+      <span>Connected</span>
+    </div>
+  </header>
+
+  <!-- Segmented Shelf Tabs -->
+  <section class="tabs-section">
+    <div class="segmented-control">
+      <button class="seg-pill active" data-tab="listening">
+        Reading <span class="seg-badge" id="countListening">0</span>
+      </button>
+      <button class="seg-pill" data-tab="wishlist">
+        Wishlist <span class="seg-badge" id="countWishlist">0</span>
+      </button>
+      <button class="seg-pill" data-tab="finished">
+        Finished <span class="seg-badge" id="countFinished">0</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Books Grid -->
+  <main>
+    <div class="books-grid" id="booksGrid">
+      <!-- Cards rendered here -->
+    </div>
+  </main>
+
+  <!-- MINI PLAYER BAR (DOCKED AT BOTTOM WHEN BROWSING SHELF) -->
+  <div class="mini-player-bar hidden" id="miniPlayerBar">
+    <div class="mini-progress-line" id="miniProgressLine"></div>
+    <img src="" alt="" class="mini-thumb" id="miniThumbImg" />
+    <div class="mini-text-wrap" id="miniTextWrap">
+      <div class="mini-chapter-title" id="miniChapterTitle">Chapter Name</div>
+      <div class="mini-sub-line">
+        <span id="miniBookTitle">Book Title</span>
+        <span>•</span>
+        <span class="mini-time-badge" id="miniTimeBadge">24h left</span>
+      </div>
+    </div>
+    <div class="mini-controls-wrap">
+      <button class="mini-btn" id="miniBtnSkipBack" title="Rewind 30s">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+      </button>
+      <button class="mini-btn play-hero" id="miniBtnPlayPause" title="Play/Pause">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" id="miniIconPlay"><path d="M8 5v14l11-7z"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" id="miniIconPause" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- FULL SCREEN NOW PLAYING VIEW (STRICTLY ZERO SCROLL - FITS SCREEN 100%) -->
+  <div class="full-player-modal" id="fullPlayerModal">
+    <div class="full-player-ambient-bg"></div>
+
+    <!-- Header -->
+    <div class="full-player-header">
+      <button class="btn-minimize" id="btnMinimizePlayer" title="Minimize to Shelf">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="full-header-info">
+        <div class="full-header-tag">Now Playing</div>
+        <div class="full-header-book" id="fullHeaderBook">Book Title</div>
+      </div>
+      <button class="btn-header-action" id="btnOpenChaptersTop">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        <span id="topChaptersBadge">Chapters</span>
+      </button>
+    </div>
+
+    <!-- Content Area: Strictly fits screen proportionally without scrolling -->
+    <div class="full-player-content">
+      <!-- Cover Artwork -->
+      <div class="full-cover-wrapper" id="fullCoverWrapper">
+        <img src="" alt="" id="fullCoverImg" />
+      </div>
+
+      <!-- Titles & Dynamic Total Remaining Pill -->
+      <div class="full-titles-area">
+        <h2 class="full-chap-title" id="fullChapTitle">Chapter Title</h2>
+        <div class="full-author-sub" id="fullAuthorSub">Author Name</div>
+        <div class="full-remaining-pill" id="fullRemainingPill">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span id="fullRemainingText">24h 35m left in book</span>
+        </div>
+      </div>
+
+      <!-- Scrubber -->
+      <div class="full-scrubber-section">
+        <div class="full-scrubber-track" id="fullScrubberTrack">
+          <div class="full-scrubber-fill" id="fullScrubberFill">
+            <div class="full-scrubber-thumb"></div>
+          </div>
+        </div>
+        <div class="full-times-row">
+          <span id="fullTimeElapsed">00:00</span>
+          <span id="fullTimeTotal">00:00</span>
+        </div>
+      </div>
+
+      <!-- Primary Playback Controls -->
+      <div class="full-controls-row">
+        <!-- Rewind 30s -->
+        <button class="full-ctrl-btn full-ctrl-skip" id="fullBtnSkipBack" title="Rewind 30s">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          <span class="full-skip-num">30</span>
+        </button>
+
+        <!-- Play / Pause Hero Button -->
+        <button class="full-ctrl-btn full-play-hero" id="fullBtnPlayPause" title="Play / Pause">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" id="fullIconPlay"><path d="M8 5v14l11-7z"/></svg>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" id="fullIconPause" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+
+        <!-- Forward 30s -->
+        <button class="full-ctrl-btn full-ctrl-skip" id="fullBtnSkipForward" title="Forward 30s">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12a9 9 0 1 1-9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+          <span class="full-skip-num">30</span>
+        </button>
+      </div>
+
+      <!-- Bottom Secondary Bar -->
+      <div class="full-secondary-row">
+        <button class="full-sub-btn" id="fullBtnSpeed">
+          <span id="fullSpeedLabel">1.0×</span>
+        </button>
+        <button class="full-sub-btn" id="fullBtnPrevChap" title="Previous Chapter">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5" stroke="currentColor" stroke-width="2"/></svg>
+          <span>Prev</span>
+        </button>
+        <button class="full-sub-btn" id="fullBtnNextChap" title="Next Chapter">
+          <span>Next</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2"/></svg>
+        </button>
+        <button class="full-sub-btn" id="fullBtnOptions">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+          <span>Options</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTERS DRAWER (BOTTOM SHEET / SIDE PANEL) -->
+  <div class="drawer-backdrop" id="drawerBackdrop">
+    <div class="drawer-panel">
+      <div class="drawer-head">
+        <div>
+          <div class="drawer-title" id="drawerBookTitle">Chapters</div>
+          <div class="drawer-count" id="drawerSubtitle">27 tracks</div>
+        </div>
+        <button class="btn-minimize" id="btnCloseDrawer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <ul class="drawer-list" id="drawerList">
+        <!-- Injected here -->
+      </ul>
+    </div>
+  </div>
+
+  <!-- ACTION SHEET (MORE OPTIONS MODAL) -->
+  <div class="sheet-backdrop" id="sheetBackdrop">
+    <div class="sheet-card">
+      <div class="sheet-header">
+        <div class="sheet-book-title" id="sheetBookTitle">Book Title</div>
+        <div class="sheet-book-author" id="sheetBookAuthor">Author</div>
+      </div>
+      <div class="sheet-actions">
+        <div class="sheet-action-row" id="actionChangeCover">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          <span>Change Cover Photo</span>
+        </div>
+        <div class="sheet-action-row" id="actionDownloadOffline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span id="sheetDownloadLabel">Download for Offline Listening</span>
+        </div>
+        <div class="sheet-action-row danger" id="actionDeleteBook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          <span>Delete from Library</span>
+        </div>
+      </div>
+      <button class="sheet-cancel-btn" id="btnCloseSheet">Cancel</button>
+    </div>
+  </div>
+
+  <!-- ADD BOOK MODAL -->
+  <div class="modal-backdrop" id="addBookModal">
+    <div class="modal-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+        <h3 style="font-size:1.2rem; font-weight:800;">Add Audiobook</h3>
+        <button class="btn-minimize" id="btnCloseAddModal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <form id="addBookForm">
+        <label class="form-label">Book Title</label>
+        <input type="text" id="addTitleInput" class="form-input" placeholder="e.g. Atomic Habits" required />
+
+        <label class="form-label">Author</label>
+        <input type="text" id="addAuthorInput" class="form-input" placeholder="e.g. James Clear" required />
+
+        <label class="form-label">Cover Image</label>
+        <input type="file" id="coverFileInput" accept="image/*" class="form-input" />
+
+        <label class="form-label">Audio Files (Select all chapters)</label>
+        <input type="file" id="audioFilesInput" accept="audio/*" multiple class="form-input" />
+        <small style="display:block; font-size:0.72rem; color:var(--text-tertiary); margin-top:0.4rem; margin-bottom:1.2rem;">
+          Leave audio empty if adding as a Wishlist item.
+        </small>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.75rem;">
+          <button type="button" class="seg-pill" id="btnCancelAdd">Cancel</button>
+          <button type="submit" class="seg-pill active" style="background:var(--accent); color:#000;">Save Audiobook</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Hidden File Input for Card Cover Upload -->
+  <input type="file" id="cardCoverPicker" accept="image/*" style="display:none;" />
+
+  <!-- Toast Pill -->
+  <div class="toast-pill" id="toastPill">
+    <span id="toastMsg">Notification</span>
+  </div>
+
+  <!-- Audio Element with explicit inline playback flags for iOS -->
+  <audio id="coreAudio" preload="auto" playsinline webkit-playsinline></audio>
+
+  <script>
+    /* State */
+    const DB_NAME = "SSK_Player_DB";
+    let db;
+    let books = [];
+    let activeBook = null;
+    let activeChapIdx = 0;
+    let currentSpeed = 1.0;
+    const SPEEDS = [0.75, 1.0, 1.25, 1.5, 1.75, 2.0];
+    let currentTab = "listening";
+    let activeUrl = null;
+    let sheetTargetBook = null;
+
+    /* DOM Elements */
+    const audio = document.getElementById("coreAudio");
+    const booksGrid = document.getElementById("booksGrid");
+    const toastPill = document.getElementById("toastPill");
+    const toastMsg = document.getElementById("toastMsg");
+
+    // Mini Player
+    const miniPlayerBar = document.getElementById("miniPlayerBar");
+    const miniProgressLine = document.getElementById("miniProgressLine");
+    const miniThumbImg = document.getElementById("miniThumbImg");
+    const miniTextWrap = document.getElementById("miniTextWrap");
+    const miniChapterTitle = document.getElementById("miniChapterTitle");
+    const miniBookTitle = document.getElementById("miniBookTitle");
+    const miniTimeBadge = document.getElementById("miniTimeBadge");
+    const miniBtnPlayPause = document.getElementById("miniBtnPlayPause");
+    const miniIconPlay = document.getElementById("miniIconPlay");
+    const miniIconPause = document.getElementById("miniIconPause");
+    const miniBtnSkipBack = document.getElementById("miniBtnSkipBack");
+
+    // Full Player
+    const fullPlayerModal = document.getElementById("fullPlayerModal");
+    const btnMinimizePlayer = document.getElementById("btnMinimizePlayer");
+    const fullHeaderBook = document.getElementById("fullHeaderBook");
+    const btnOpenChaptersTop = document.getElementById("btnOpenChaptersTop");
+    const fullCoverImg = document.getElementById("fullCoverImg");
+    const fullChapTitle = document.getElementById("fullChapTitle");
+    const fullAuthorSub = document.getElementById("fullAuthorSub");
+    const fullRemainingText = document.getElementById("fullRemainingText");
+    const fullScrubberTrack = document.getElementById("fullScrubberTrack");
+    const fullScrubberFill = document.getElementById("fullScrubberFill");
+    const fullTimeElapsed = document.getElementById("fullTimeElapsed");
+    const fullTimeTotal = document.getElementById("fullTimeTotal");
+    const fullBtnPlayPause = document.getElementById("fullBtnPlayPause");
+    const fullIconPlay = document.getElementById("fullIconPlay");
+    const fullIconPause = document.getElementById("fullIconPause");
+    const fullBtnSkipBack = document.getElementById("fullBtnSkipBack");
+    const fullBtnSkipForward = document.getElementById("fullBtnSkipForward");
+    const fullBtnSpeed = document.getElementById("fullBtnSpeed");
+    const fullSpeedLabel = document.getElementById("fullSpeedLabel");
+    const fullBtnPrevChap = document.getElementById("fullBtnPrevChap");
+    const fullBtnNextChap = document.getElementById("fullBtnNextChap");
+    const fullBtnOptions = document.getElementById("fullBtnOptions");
+
+    // Chapters Drawer
+    const drawerBackdrop = document.getElementById("drawerBackdrop");
+    const btnCloseDrawer = document.getElementById("btnCloseDrawer");
+    const drawerBookTitle = document.getElementById("drawerBookTitle");
+    const drawerSubtitle = document.getElementById("drawerSubtitle");
+    const drawerList = document.getElementById("drawerList");
+    const topChaptersBadge = document.getElementById("topChaptersBadge");
+
+    // Action Sheet
+    const sheetBackdrop = document.getElementById("sheetBackdrop");
+    const btnCloseSheet = document.getElementById("btnCloseSheet");
+    const sheetBookTitle = document.getElementById("sheetBookTitle");
+    const sheetBookAuthor = document.getElementById("sheetBookAuthor");
+    const actionChangeCover = document.getElementById("actionChangeCover");
+    const actionDownloadOffline = document.getElementById("actionDownloadOffline");
+    const sheetDownloadLabel = document.getElementById("sheetDownloadLabel");
+    const actionDeleteBook = document.getElementById("actionDeleteBook");
+
+    // Add Book Modal
+    const addBookModal = document.getElementById("addBookModal");
+    const btnCloseAddModal = document.getElementById("btnCloseAddModal");
+    const btnCancelAdd = document.getElementById("btnCancelAdd");
+    const addBookForm = document.getElementById("addBookForm");
+    const addTitleInput = document.getElementById("addTitleInput");
+    const addAuthorInput = document.getElementById("addAuthorInput");
+    const coverFileInput = document.getElementById("coverFileInput");
+    const audioFilesInput = document.getElementById("audioFilesInput");
+    const cardCoverPicker = document.getElementById("cardCoverPicker");
+
+    // Tabs & Counters
+    const countListening = document.getElementById("countListening");
+    const countWishlist = document.getElementById("countWishlist");
+    const countFinished = document.getElementById("countFinished");
+
+    /* IndexedDB Helper */
+    function openDB() {
+      return new Promise((resolve, reject) => {
+        const req = indexedDB.open(DB_NAME, 2);
+        req.onupgradeneeded = (e) => {
+          const d = e.target.result;
+          if (!d.objectStoreNames.contains("books")) d.createObjectStore("books", { keyPath: "id" });
+          if (!d.objectStoreNames.contains("audioblobs")) d.createObjectStore("audioblobs");
+        };
+        req.onsuccess = () => { db = req.result; resolve(); };
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    function dbGetAll() {
+      return new Promise(res => {
+        const tx = db.transaction("books", "readonly");
+        const r = tx.objectStore("books").getAll();
+        r.onsuccess = () => res(r.result || []);
+        r.onerror = () => res([]);
+      });
+    }
+
+    function dbSave(b) {
+      return new Promise(res => {
+        const tx = db.transaction("books", "readwrite");
+        tx.objectStore("books").put(b);
+        tx.oncomplete = () => res();
+        tx.onerror = () => res();
+      });
+    }
+
+    function dbDelete(id) {
+      return new Promise(res => {
+        const tx = db.transaction(["books", "audioblobs"], "readwrite");
+        tx.objectStore("books").delete(id);
+        tx.oncomplete = () => res();
+      });
+    }
+
+    let downloadedBlobKeys = new Set();
+
+    function dbSaveBlob(key, blob) {
+      return new Promise((res, rej) => {
+        try {
+          const tx = db.transaction("audioblobs", "readwrite");
+          tx.objectStore("audioblobs").put(blob, key);
+          tx.oncomplete = () => {
+            downloadedBlobKeys.add(key);
+            res();
+          };
+          tx.onerror = () => rej(tx.error);
+        } catch(e) { rej(e); }
+      });
+    }
+
+    function dbGetBlob(key) {
+      return new Promise(res => {
+        try {
+          const tx = db.transaction("audioblobs", "readonly");
+          const r = tx.objectStore("audioblobs").get(key);
+          r.onsuccess = () => res(r.result || null);
+          r.onerror = () => res(null);
+        } catch(e) { res(null); }
+      });
+    }
+
+    function dbGetAllBlobKeys() {
+      return new Promise(res => {
+        try {
+          const tx = db.transaction("audioblobs", "readonly");
+          const r = tx.objectStore("audioblobs").getAllKeys();
+          r.onsuccess = () => res(new Set(r.result || []));
+          r.onerror = () => res(new Set());
+        } catch(e) {
+          res(new Set());
+        }
+      });
+    }
+
+    /* Helper: Format Clock MM:SS or H:MM:SS */
+    function formatClock(sec) {
+      if (isNaN(sec) || sec < 0) return "00:00";
+      const s = Math.floor(sec);
+      const m = Math.floor(s / 60);
+      const remS = s % 60;
+      const h = Math.floor(m / 60);
+      const remM = m % 60;
+      if (h > 0) return `${h}:${String(remM).padStart(2, '0')}:${String(remS).padStart(2, '0')}`;
+      return `${String(m).padStart(2, '0')}:${String(remS).padStart(2, '0')}`;
+    }
+
+    /* Helper: Format Speed-Adjusted Remaining Time */
+    function formatRemainingTime(rawSecs, speed) {
+      if (rawSecs <= 0) return "0m left";
+      const adjusted = rawSecs / speed;
+      const totalMins = Math.round(adjusted / 60);
+      const hrs = Math.floor(totalMins / 60);
+      const mins = totalMins % 60;
+      const spdTag = speed !== 1.0 ? ` (${speed}×)` : "";
+      if (hrs > 0) return `${hrs}h ${mins}m left${spdTag}`;
+      return `${mins}m left${spdTag}`;
+    }
+
+    /* Compute Total Remaining Seconds in Book */
+    function computeBookRemainingRawSec() {
+      if (!activeBook || !activeBook.chapters || activeBook.chapters.length === 0) return 0;
+      const curChap = activeBook.chapters[activeChapIdx];
+      const curDur = (curChap && curChap.duration) ? curChap.duration : (audio.duration || 0);
+      const remInCurChap = Math.max(0, curDur - (audio.currentTime || 0));
+
+      let remInLaterChapters = 0;
+      for (let i = activeChapIdx + 1; i < activeBook.chapters.length; i++) {
+        remInLaterChapters += (activeBook.chapters[i].duration || 0);
+      }
+      return remInCurChap + remInLaterChapters;
+    }
+
+    /* Update All Time Indicators */
+    function updateTimes() {
+      if (!activeBook) return;
+
+      const cur = audio.currentTime || 0;
+      const curChap = activeBook.chapters ? activeBook.chapters[activeChapIdx] : null;
+      const dur = (curChap && curChap.duration) ? curChap.duration : (audio.duration || 0);
+
+      // Scrubber fill percentages
+      const pct = dur > 0 ? (cur / dur) * 100 : 0;
+      miniProgressLine.style.width = `${pct}%`;
+      fullScrubberFill.style.width = `${pct}%`;
+
+      // Full Player Scrubber Times
+      fullTimeElapsed.textContent = formatClock(cur);
+      fullTimeTotal.textContent = formatClock(dur);
+
+      // Speed-adjusted Book Remaining
+      const rawBookRemaining = computeBookRemainingRawSec();
+      const leftStr = formatRemainingTime(rawBookRemaining, currentSpeed);
+
+      fullRemainingText.textContent = `${leftStr} in book`;
+      miniTimeBadge.textContent = leftStr;
+
+      updateMediaPositionState();
+    }
+
+    /* Toast */
+    let toastTimer = null;
+    function showToast(msg, duration = 2800) {
+      toastMsg.textContent = msg;
+      toastPill.classList.add("show");
+      if (toastTimer) clearTimeout(toastTimer);
+      if (duration > 0) {
+        toastTimer = setTimeout(() => toastPill.classList.remove("show"), duration);
+      }
+    }
+
+    /* Tab Counters */
+    function updateCounts() {
+      countListening.textContent = books.filter(b => b.status === "listening" || (!b.status && b.chapters?.length > 0)).length;
+      countWishlist.textContent = books.filter(b => b.status === "wishlist" || (!b.chapters || b.chapters.length === 0)).length;
+      countFinished.textContent = books.filter(b => b.status === "finished").length;
+    }
+
+    /* Render Books Grid */
+    function renderBooks() {
+      booksGrid.innerHTML = "";
+
+      // Add Book Card (Strictly identical in structure & dimensions to Book Cards)
+      const addEl = document.createElement("div");
+      addEl.className = "book-card add-book-card";
+      addEl.innerHTML = `
+        <div class="cover-box add-cover-box">
+          <div class="plus-circle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <span class="add-cover-label">Add Book</span>
+        </div>
+        <div class="card-info add-info-spacer">
+          <div class="card-title">&nbsp;</div>
+          <div class="card-author">&nbsp;</div>
+          <div class="card-meta-row">&nbsp;</div>
+        </div>
+      `;
+      addEl.onclick = () => {
+        addBookForm.reset();
+        addBookModal.classList.add("open");
+      };
+      booksGrid.appendChild(addEl);
+
+      // Filtered Books
+      const filtered = books.filter(b => {
+        if (currentTab === "wishlist") return b.status === "wishlist" || (!b.chapters || b.chapters.length === 0);
+        if (currentTab === "finished") return b.status === "finished";
+        return b.status === "listening" || (!b.status && b.chapters?.length > 0);
+      });
+
+      filtered.forEach(book => {
+        const isDownloadingThis = (activeDownloadingBookId === book.id);
+        const card = document.createElement("div");
+        card.className = "book-card";
+
+        let totalSecs = 0;
+        if (book.chapters) book.chapters.forEach(c => totalSecs += (c.duration || 0));
+        const totalDurationStr = totalSecs > 0 ? formatRemainingTime(totalSecs, currentSpeed) : `${book.chapters?.length || 0} chaps`;
+
+        card.innerHTML = `
+          <div class="cover-box ${isDownloadingThis ? 'is-downloading' : ''}" id="coverBox_${book.id}">
+            ${book.isDownloaded && !isDownloadingThis ? `<div class="offline-badge"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Offline</div>` : ''}
+            ${book.cover 
+              ? `<img src="${book.cover}" alt="" loading="lazy" />`
+              : `<div class="cover-fallback">
+                   <h4>${escapeHtml(book.title)}</h4>
+                   <p>${escapeHtml(book.author)}</p>
+                 </div>`
+            }
+            ${isDownloadingThis ? `
+              <div class="cover-dl-badge ${isDownloadPaused ? 'is-paused' : ''}" onclick="handleDownloadToggle(event, '${book.id}')">
+                ${isDownloadPaused ? `
+                  <div class="cover-dl-pause-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+                  <div class="cover-dl-pct">${activeDownloadingProgress}% Paused</div>
+                  <div class="cover-dl-btn">Tap to Resume</div>
+                ` : `
+                  <div class="cover-dl-spinner"></div>
+                  <div class="cover-dl-pct">${activeDownloadingProgress}%</div>
+                  <div class="cover-dl-btn">Tap to Pause</div>
+                `}
+              </div>` : ''}
+          </div>
+          <div class="card-info">
+            <div class="card-title" id="cardTitle_${book.id}">
+              <span class="card-title-text">${escapeHtml(book.title)}</span>
+              ${isDownloadingThis ? `
+                <span class="card-title-indicator" onclick="handleDownloadToggle(event, '${book.id}')">
+                  ${isDownloadPaused ? `<span class="card-title-pct" style="color:#ff9f0a;">${activeDownloadingProgress}% (Paused)</span>` : `<span class="card-title-spinner"></span><span class="card-title-pct">${activeDownloadingProgress}%</span>`}
+                </span>` : ''}
+            </div>
+            <div class="card-author">${escapeHtml(book.author)}</div>
+            <div class="card-meta-row">
+              <span class="card-duration-badge">${book.status === 'wishlist' ? 'Wishlist' : totalDurationStr}</span>
+              <button class="card-more-btn" title="Options">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+              </button>
+            </div>
+          </div>
+        `;
+
+        // More Options Button
+        card.querySelector(".card-more-btn").onclick = (e) => {
+          e.stopPropagation();
+          openActionSheet(book);
+        };
+
+        // Tap Card to Open Full Player & Play
+        card.onclick = () => {
+          if (book.status === "wishlist" || !book.chapters || book.chapters.length === 0) {
+            showToast("Wishlist book: attach audio files to listen.");
+          } else {
+            loadBook(book, book.lastChapIdx || 0, book.lastTime || 0, true);
+            openFullPlayer();
+          }
+        };
+
+        booksGrid.appendChild(card);
+      });
+    }
+
+    function escapeHtml(s) {
+      if (!s) return "";
+      return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
+    /* Action Sheet (Options Menu) */
+    function openActionSheet(book) {
+      sheetTargetBook = book;
+      sheetBookTitle.textContent = book.title;
+      sheetBookAuthor.textContent = book.author || "Audiobook";
+
+      let dlCount = 0;
+      const total = book.chapters?.length || 0;
+      if (total > 0) {
+        for (let i = 0; i < total; i++) {
+          if (downloadedBlobKeys.has(`${book.id}_${i}`)) dlCount++;
+        }
+      }
+      if (isDownloading && activeDownloadingBookId === book.id) {
+        sheetDownloadLabel.textContent = `Pause Download (${activeDownloadingProgress}%)`;
+      } else if (dlCount === total && total > 0) {
+        sheetDownloadLabel.textContent = `Downloaded Offline (${total}/${total})`;
+      } else if (dlCount > 0) {
+        sheetDownloadLabel.textContent = `Resume Offline Download (${dlCount}/${total})`;
+      } else {
+        sheetDownloadLabel.textContent = `Download for Offline Listening`;
+      }
+
+      sheetBackdrop.classList.add("open");
+    }
+
+    function closeActionSheet() {
+      sheetBackdrop.classList.remove("open");
+      sheetTargetBook = null;
+    }
+
+    /* Open / Close Full Player */
+    function openFullPlayer() {
+      fullPlayerModal.classList.add("open");
+    }
+
+    function closeFullPlayer() {
+      fullPlayerModal.classList.remove("open");
+    }
+
+    /* iOS / Android MediaSession Integration */
+    function updateMediaSession() {
+      if (!('mediaSession' in navigator) || !activeBook) return;
+
+      try {
+        const chap = activeBook.chapters ? activeBook.chapters[activeChapIdx] : null;
+        const chapName = chap ? chap.name : `Chapter ${activeChapIdx + 1}`;
+        const bookTitle = activeBook.title || "Audiobook";
+        const author = activeBook.author || "Audiobook";
+
+        document.title = `${chapName} • ${bookTitle}`;
+
+        const artworkList = [];
+        const coverSrc = activeBook.cover || activeBook.cover_url;
+        if (coverSrc) {
+          try {
+            const fullUrl = coverSrc.startsWith('data:') ? coverSrc : new URL(coverSrc, window.location.href).href;
+            artworkList.push(
+              { src: fullUrl, sizes: "96x96" },
+              { src: fullUrl, sizes: "128x128" },
+              { src: fullUrl, sizes: "256x256" },
+              { src: fullUrl, sizes: "512x512" }
+            );
+          } catch(e) {}
+        }
+
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: chapName,
+          artist: bookTitle,
+          album: author,
+          artwork: artworkList
+        });
+
+        updateMediaPositionState();
+      } catch (err) {
+        console.warn("MediaSession error:", err);
+      }
+    }
+
+    function updateMediaPositionState() {
+      if (!('mediaSession' in navigator) || !audio.duration || isNaN(audio.duration)) return;
+      try {
+        navigator.mediaSession.setPositionState({
+          duration: Math.max(0, audio.duration),
+          playbackRate: audio.playbackRate || 1.0,
+          position: Math.max(0, Math.min(audio.duration, audio.currentTime || 0))
+        });
+      } catch (e) {}
+    }
+
+    /* Load & Play Audiobook (Supports 100% offline playback from IndexedDB) */
+    async function loadBook(book, chapIdx = 0, startTime = 0, autoPlay = true) {
+      if (!book) return;
+      activeBook = book;
+      activeChapIdx = Math.max(0, Math.min(chapIdx, (book.chapters?.length || 1) - 1));
+
+      // Synchronously unlock audio element during user gesture for iOS Safari
+      if (autoPlay) {
+        try { audio.play().catch(() => {}); } catch(e) {}
+      }
+
+      // Show Mini Player
+      miniPlayerBar.classList.remove("hidden");
+
+      const chap = book.chapters ? book.chapters[activeChapIdx] : null;
+      const chapName = chap ? chap.name : `Chapter ${activeChapIdx + 1}`;
+
+      // Update Mini Player UI
+      miniChapterTitle.textContent = chapName;
+      miniBookTitle.textContent = book.title;
+
+      // Update Full Player UI
+      fullHeaderBook.textContent = book.title;
+      fullChapTitle.textContent = chapName;
+      fullAuthorSub.textContent = book.author || "Audiobook";
+      drawerBookTitle.textContent = book.title;
+      drawerSubtitle.textContent = `${book.chapters?.length || 0} chapters`;
+      topChaptersBadge.textContent = `${activeChapIdx + 1}/${book.chapters?.length || 0}`;
+
+      const coverSrc = book.cover || "";
+      if (coverSrc) {
+        miniThumbImg.src = coverSrc;
+        miniThumbImg.style.display = "block";
+        fullCoverImg.src = coverSrc;
+        fullCoverImg.style.display = "block";
+      } else {
+        miniThumbImg.style.display = "none";
+        fullCoverImg.style.display = "none";
+      }
+
+      renderDrawer();
+      updateMediaSession();
+
+      // Check for offline downloaded blob FIRST
+      const blobKey = `${book.id}_${activeChapIdx}`;
+      let playSource = null;
+
+      if (downloadedBlobKeys.has(blobKey)) {
+        try {
+          const blob = await dbGetBlob(blobKey);
+          if (blob) {
+            if (activeUrl) URL.revokeObjectURL(activeUrl);
+            activeUrl = URL.createObjectURL(blob);
+            playSource = activeUrl;
+          }
+        } catch(e) {}
+      }
+
+      if (!playSource) {
+        if (chap && chap.stream_url) {
+          playSource = chap.stream_url;
+        } else {
+          showToast("Chapter not downloaded. Connect to laptop to stream.");
+          return;
+        }
+      }
+
+      const fullTargetUrl = playSource.startsWith('blob:') ? playSource : new URL(playSource, window.location.href).href;
+      if (audio.src !== fullTargetUrl) {
+        audio.src = playSource;
+        audio.load();
+      }
+
+      audio.playbackRate = currentSpeed;
+      let pendingStartTime = startTime || 0;
+
+      audio.onloadedmetadata = () => {
+        if (chap && (!chap.duration || chap.duration === 0)) {
+          chap.duration = audio.duration || 0;
+          dbSave(activeBook);
+        }
+        if (pendingStartTime > 0 && pendingStartTime < audio.duration) {
+          try {
+            audio.currentTime = pendingStartTime;
+          } catch(e) {}
+          pendingStartTime = 0;
+        }
+        updateTimes();
+        updateMediaSession();
+      };
+
+      if (autoPlay) {
+        const p = audio.play();
+        if (p !== undefined) {
+          p.then(() => {
+            setPlayIcon(true);
+            updateMediaSession();
+          }).catch(err => {
+            console.warn("Autoplay notice:", err);
+            setPlayIcon(false);
+          });
+        }
+      }
+
+      saveSession();
+    }
+
+    async function togglePlay() {
+      if (!activeBook) {
+        showToast("Select an audiobook from library.");
+        return;
+      }
+
+      if (!audio.src || audio.src === "" || audio.src === window.location.href) {
+        const blobKey = `${activeBook.id}_${activeChapIdx}`;
+        let playSource = null;
+
+        if (downloadedBlobKeys.has(blobKey)) {
+          try {
+            const blob = await dbGetBlob(blobKey);
+            if (blob) {
+              if (activeUrl) URL.revokeObjectURL(activeUrl);
+              activeUrl = URL.createObjectURL(blob);
+              playSource = activeUrl;
+            }
+          } catch(e) {}
+        }
+
+        if (!playSource) {
+          const chap = activeBook.chapters ? activeBook.chapters[activeChapIdx] : null;
+          if (chap && chap.stream_url) {
+            playSource = chap.stream_url;
+          }
+        }
+
+        if (playSource) {
+          audio.src = playSource;
+          audio.load();
+        } else {
+          showToast("Chapter not available offline. Connect to laptop.");
+          return;
+        }
+      }
+
+      if (audio.paused) {
+        audio.playbackRate = currentSpeed;
+        const p = audio.play();
+        if (p !== undefined) {
+          p.then(() => {
+            setPlayIcon(true);
+            updateMediaSession();
+          }).catch(e => {
+            console.warn("Play error:", e);
+            showToast("Playback error: tap to retry");
+          });
+        }
+      } else {
+        audio.pause();
+        setPlayIcon(false);
+      }
+      saveSession();
+      updateMediaPositionState();
+    }
+
+    function setPlayIcon(isPlaying) {
+      miniIconPlay.style.display = isPlaying ? "none" : "block";
+      miniIconPause.style.display = isPlaying ? "block" : "none";
+      fullIconPlay.style.display = isPlaying ? "none" : "block";
+      fullIconPause.style.display = isPlaying ? "block" : "none";
+    }
+
+    function skipSec(s) {
+      if (!audio.src) return;
+      audio.currentTime = Math.max(0, Math.min(audio.duration || 0, audio.currentTime + s));
+      updateTimes();
+      saveSession();
+      updateMediaPositionState();
+    }
+
+    function jumpChap(delta) {
+      if (!activeBook || !activeBook.chapters) return;
+      const target = activeChapIdx + delta;
+      if (target >= 0 && target < activeBook.chapters.length) {
+        loadBook(activeBook, target, 0, true);
+      } else {
+        showToast(delta > 0 ? "You are at the last chapter." : "You are at the first chapter.");
+      }
+    }
+
+    function applySpeed(speed) {
+      currentSpeed = speed;
+      audio.playbackRate = speed;
+      fullSpeedLabel.textContent = `${speed}×`;
+      localStorage.setItem("ssk_speed", speed);
+      updateTimes();
+      renderBooks();
+      updateMediaPositionState();
+    }
+
+    function cycleSpeed() {
+      const idx = SPEEDS.indexOf(currentSpeed);
+      const nextIdx = (idx + 1) % SPEEDS.length;
+      applySpeed(SPEEDS[nextIdx]);
+      showToast(`Playback speed: ${SPEEDS[nextIdx]}×`);
+    }
+
+    function saveSession() {
+      if (!activeBook) return;
+      const sess = {
+        bookId: activeBook.id,
+        chapIdx: activeChapIdx,
+        time: audio.currentTime || 0
+      };
+      localStorage.setItem("ssk_session", JSON.stringify(sess));
+      activeBook.lastChapIdx = activeChapIdx;
+      activeBook.lastTime = audio.currentTime || 0;
+      dbSave(activeBook);
+    }
+
+    /* Offline Download with Screen Wake Lock, Retries, Cover Blur & Instant Pause/Resume */
+    let isDownloading = false;
+    let isDownloadPaused = false;
+    let activeDownloadingBookId = null;
+    let activeDownloadingProgress = 0;
+    let downloadAbortController = null;
+
+    function updateDownloadProgressUI(bookId, percent, isDone = false, isPaused = false) {
+      if (isDone) {
+        activeDownloadingBookId = null;
+      } else {
+        activeDownloadingBookId = bookId;
+      }
+      activeDownloadingProgress = percent;
+
+      const coverBox = document.getElementById(`coverBox_${bookId}`);
+      const titleBox = document.getElementById(`cardTitle_${bookId}`);
+
+      if (coverBox) {
+        if (isDone) {
+          coverBox.classList.remove('is-downloading', 'is-paused');
+          const badge = coverBox.querySelector('.cover-dl-badge');
+          if (badge) badge.remove();
+        } else {
+          coverBox.classList.add('is-downloading');
+          if (isPaused) {
+            coverBox.classList.add('is-paused');
+          } else {
+            coverBox.classList.remove('is-paused');
+          }
+
+          let badge = coverBox.querySelector('.cover-dl-badge');
+          if (!badge) {
+            badge = document.createElement('div');
+            badge.className = 'cover-dl-badge';
+            coverBox.appendChild(badge);
+          }
+          badge.onclick = (e) => handleDownloadToggle(e, bookId);
+
+          if (isPaused) {
+            badge.innerHTML = `
+              <div class="cover-dl-pause-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <div class="cover-dl-pct">${percent}% Paused</div>
+              <div class="cover-dl-btn">Tap to Resume</div>
+            `;
+          } else {
+            badge.innerHTML = `
+              <div class="cover-dl-spinner"></div>
+              <div class="cover-dl-pct">${percent}%</div>
+              <div class="cover-dl-btn">Tap to Pause</div>
+            `;
+          }
+        }
+      }
+
+      if (titleBox) {
+        let indicator = titleBox.querySelector('.card-title-indicator');
+        if (isDone) {
+          if (indicator) indicator.remove();
+        } else {
+          if (!indicator) {
+            indicator = document.createElement('span');
+            indicator.className = 'card-title-indicator';
+            titleBox.appendChild(indicator);
+          }
+          indicator.onclick = (e) => handleDownloadToggle(e, bookId);
+
+          if (isPaused) {
+            indicator.innerHTML = `<span class="card-title-pct" style="color:#ff9f0a;">${percent}% (Paused)</span>`;
+          } else {
+            indicator.innerHTML = `<span class="card-title-spinner"></span><span class="card-title-pct">${percent}%</span>`;
+          }
+        }
+      }
+    }
+
+    function pauseDownload() {
+      if (downloadAbortController) {
+        downloadAbortController.abort();
+        downloadAbortController = null;
+      }
+      isDownloading = false;
+      isDownloadPaused = true;
+      const currentId = activeDownloadingBookId;
+      if (currentId) {
+        updateDownloadProgressUI(currentId, activeDownloadingProgress, false, true);
+      }
+      showToast("Download paused.");
+    }
+
+    function handleDownloadToggle(e, bookId) {
+      if (e) e.stopPropagation();
+      const book = books.find(b => b.id === bookId);
+      if (!book) return;
+      if (isDownloading && activeDownloadingBookId === bookId) {
+        pauseDownload();
+      } else {
+        downloadOffline(book);
+      }
+    }
+
+    async function downloadOffline(book) {
+      if (isDownloading) {
+        if (activeDownloadingBookId === book.id) {
+          pauseDownload();
+          return;
+        }
+        showToast("Another download is running.");
+        return;
+      }
+
+      if (!book || !book.chapters || book.chapters.length === 0) return;
+
+      isDownloading = true;
+      isDownloadPaused = false;
+      activeDownloadingBookId = book.id;
+      downloadAbortController = new AbortController();
+
+      // Keep phone screen awake during download
+      let wakeLock = null;
+      try {
+        if ('wakeLock' in navigator) {
+          wakeLock = await navigator.wakeLock.request('screen');
+        }
+      } catch(e) {}
+
+      const total = book.chapters.length;
+      let alreadySaved = 0;
+      for (let i = 0; i < total; i++) {
+        if (downloadedBlobKeys.has(`${book.id}_${i}`)) alreadySaved++;
+      }
+
+      if (alreadySaved === total) {
+        book.isDownloaded = true;
+        isDownloading = false;
+        activeDownloadingBookId = null;
+        updateDownloadProgressUI(book.id, 100, true);
+        renderBooks();
+        if (wakeLock) try { await wakeLock.release(); } catch(e) {}
+        showToast("All chapters already saved offline.");
+        return;
+      }
+
+      let savedCount = alreadySaved;
+      let currentPct = Math.round((savedCount / total) * 100);
+      updateDownloadProgressUI(book.id, currentPct, false, false);
+
+      // Sequential download: 1 chapter at a time for 100% stability over Cloudflare tunnel
+      for (let i = 0; i < total; i++) {
+        if (!isDownloading) break;
+
+        const blobKey = `${book.id}_${i}`;
+        if (downloadedBlobKeys.has(blobKey)) continue;
+
+        const ch = book.chapters[i];
+        if (!ch || !ch.stream_url) continue;
+
+        for (let attempt = 1; attempt <= 3; attempt++) {
+          if (!isDownloading) break;
+          try {
+            const controller = new AbortController();
+            const onAbort = () => controller.abort();
+            if (downloadAbortController) downloadAbortController.signal.addEventListener('abort', onAbort);
+
+            const timer = setTimeout(() => controller.abort(), 90000);
+            const res = await fetch(ch.stream_url, { signal: controller.signal });
+            clearTimeout(timer);
+
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const blob = await res.blob();
+            if (!blob || blob.size < 1000) throw new Error("Empty audio file");
+
+            await dbSaveBlob(blobKey, blob);
+            downloadedBlobKeys.add(blobKey);
+            savedCount++;
+
+            currentPct = Math.round((savedCount / total) * 100);
+            updateDownloadProgressUI(book.id, currentPct, false, false);
+            break;
+          } catch(err) {
+            if (!isDownloading || (downloadAbortController && downloadAbortController.signal.aborted)) {
+              break;
+            }
+            if (attempt < 3) {
+              await new Promise(r => setTimeout(r, 1200));
+            }
+          }
+        }
+
+        if (!isDownloading) break;
+      }
+
+      // If user paused
+      if (!isDownloading) {
+        if (wakeLock) try { await wakeLock.release(); } catch(e) {}
+        updateDownloadProgressUI(book.id, currentPct, false, true);
+        return;
+      }
+
+      // Download cover image if needed
+      if (book.cover_url && (!book.cover || book.cover.startsWith('/'))) {
+        try {
+          const cr = await fetch(book.cover_url);
+          if (cr.ok) {
+            const cb = await cr.blob();
+            book.cover = await readDataUrl(cb);
+          }
+        } catch(e) {}
+      }
+
+      book.isDownloaded = (savedCount === total);
+      await dbSave(book);
+
+      isDownloading = false;
+      isDownloadPaused = false;
+      activeDownloadingBookId = null;
+      if (wakeLock) try { await wakeLock.release(); } catch(e) {}
+
+      updateDownloadProgressUI(book.id, 100, true);
+      renderBooks();
+      renderDrawer();
+      showToast(book.isDownloaded ? "Download complete! All chapters saved." : `Saved ${savedCount}/${total} chapters.`);
+    }
+
+    /* Auto-Prefetch while listening (Runs in background even when iPhone screen is locked) */
+    let isPrefetching = false;
+    async function checkAutoPrefetch() {
+      if (isPrefetching || isDownloading || !activeBook || !activeBook.chapters) return;
+      for (let i = activeChapIdx; i < Math.min(activeChapIdx + 3, activeBook.chapters.length); i++) {
+        const blobKey = `${activeBook.id}_${i}`;
+        if (!downloadedBlobKeys.has(blobKey)) {
+          const ch = activeBook.chapters[i];
+          if (!ch || !ch.stream_url) continue;
+          isPrefetching = true;
+          try {
+            const res = await fetch(ch.stream_url);
+            if (res.ok) {
+              const blob = await res.blob();
+              if (blob && blob.size > 1000) {
+                await dbSaveBlob(blobKey, blob);
+                downloadedBlobKeys.add(blobKey);
+                renderDrawer();
+              }
+            }
+          } catch(e) {}
+          isPrefetching = false;
+          break;
+        }
+      }
+    }
+
+    /* Delete Book */
+    async function deleteBook(id) {
+      if (!confirm("Delete this audiobook from library?")) return;
+      if (activeBook && activeBook.id === id) {
+        audio.pause();
+        audio.src = "";
+        miniPlayerBar.classList.add("hidden");
+        closeFullPlayer();
+        activeBook = null;
+        localStorage.removeItem("ssk_session");
+      }
+      await dbDelete(id);
+      books = await dbGetAll();
+      updateCounts();
+      renderBooks();
+      showToast("Audiobook removed.");
+    }
+
+    /* Render Chapters in Drawer */
+    function renderDrawer() {
+      drawerList.innerHTML = "";
+      if (!activeBook || !activeBook.chapters) return;
+
+      activeBook.chapters.forEach((ch, idx) => {
+        const li = document.createElement("li");
+        const isActive = idx === activeChapIdx;
+        const isSaved = downloadedBlobKeys.has(`${activeBook.id}_${idx}`);
+        li.className = `drawer-item ${isActive ? "active" : ""}`;
+        li.innerHTML = `
+          <div style="min-width:0; flex:1;">
+            <div class="drawer-item-index">Track ${idx + 1}${isSaved ? ' • Saved Offline' : ''}</div>
+            <div class="drawer-item-title">${escapeHtml(ch.name)}</div>
+          </div>
+          <div class="drawer-item-time">${ch.duration ? formatClock(ch.duration) : '--:--'}</div>
+        `;
+        li.onclick = () => {
+          loadBook(activeBook, idx, 0, true);
+          drawerBackdrop.classList.remove("open");
+        };
+        drawerList.appendChild(li);
+      });
+    }
+
+    /* Server Book & Cover Synchronization */
+    async function syncServerBooks() {
+      try {
+        let resp = await fetch('/api/books').catch(() => null);
+        if (!resp || !resp.ok) {
+          resp = await fetch('books.json').catch(() => null);
+        }
+        if (!resp || !resp.ok) return;
+        const data = await resp.json();
+        if (!data.books || data.books.length === 0) return;
+
+        let changed = false;
+        for (const sBook of data.books) {
+          const existing = books.find(b => b.id === sBook.id);
+          if (!existing) {
+            sBook.status = 'listening';
+            sBook.cover = sBook.cover_url || null;
+            sBook.cover_version = sBook.cover_version || null;
+            books.push(sBook);
+            await dbSave(sBook);
+            changed = true;
+          } else {
+            // Ensure all chapter metadata & total_duration are synced cleanly
+            existing.chapters = sBook.chapters.map((sc, i) => {
+              const loc = existing.chapters?.[i] || {};
+              return { ...sc, ...loc, duration: sc.duration, name: sc.name, stream_url: sc.stream_url };
+            });
+            existing.total_duration = sBook.total_duration;
+
+            // Sync cover from server whenever server has a cover and it differs or version updated
+            if (sBook.cover_url) {
+              if (existing.cover !== sBook.cover_url || existing.cover_version !== sBook.cover_version) {
+                existing.cover = sBook.cover_url;
+                existing.cover_url = sBook.cover_url;
+                existing.cover_version = sBook.cover_version;
+                changed = true;
+
+                if (activeBook && activeBook.id === existing.id) {
+                  activeBook.cover = sBook.cover_url;
+                  activeBook.cover_url = sBook.cover_url;
+                  miniThumbImg.src = sBook.cover_url;
+                  fullCoverImg.src = sBook.cover_url;
+                  updateMediaSession();
+                }
+              }
+            }
+            await dbSave(existing);
+          }
+        }
+        if (changed) {
+          updateCounts();
+          renderBooks();
+        }
+      } catch (e) {}
+    }
+
+    /* App Initialization */
+    async function init() {
+      await openDB();
+      downloadedBlobKeys = await dbGetAllBlobKeys();
+      books = await dbGetAll();
+
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      }
+
+      await syncServerBooks();
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") syncServerBooks();
+      });
+
+      updateCounts();
+      renderBooks();
+
+      // Restore session
+      const saved = localStorage.getItem("ssk_session");
+      if (saved) {
+        try {
+          const sess = JSON.parse(saved);
+          const b = books.find(x => x.id === sess.bookId);
+          if (b && b.chapters && b.chapters.length > 0) {
+            loadBook(b, sess.chapIdx || 0, sess.time || 0, false);
+          }
+        } catch(e) {}
+      }
+
+      const spd = localStorage.getItem("ssk_speed");
+      if (spd) applySpeed(parseFloat(spd));
+
+      setupEvents();
+    }
+
+    /* Event Listeners */
+    function setupEvents() {
+      audio.addEventListener("timeupdate", updateTimes);
+      audio.addEventListener("playing", () => {
+        setPlayIcon(true);
+        updateMediaSession();
+        checkAutoPrefetch();
+      });
+      audio.addEventListener("play", () => {
+        setPlayIcon(true);
+        updateMediaSession();
+      });
+      audio.addEventListener("pause", () => { setPlayIcon(false); updateMediaPositionState(); });
+      audio.addEventListener("ended", () => {
+        if (activeBook && activeChapIdx < activeBook.chapters.length - 1) {
+          jumpChap(1);
+        } else {
+          setPlayIcon(false);
+          showToast("Finished audiobook.");
+        }
+        checkAutoPrefetch();
+      });
+      audio.addEventListener("error", (e) => {
+        const err = audio.error;
+        console.error("Audio error event:", err);
+        let msg = "Audio loading error";
+        if (err) {
+          if (err.code === 1) msg = "Playback aborted";
+          else if (err.code === 2) msg = "Network error";
+          else if (err.code === 3) msg = "Audio decode error";
+          else if (err.code === 4) msg = "Audio format not supported";
+        }
+        showToast(msg);
+        setPlayIcon(false);
+      });
+
+      setInterval(() => {
+        if (!audio.paused) {
+          saveSession();
+          checkAutoPrefetch();
+        }
+      }, 30000);
+
+      window.addEventListener("beforeunload", saveSession);
+
+      // MediaSession Handlers for iPhone Lock Screen & Control Center
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.setActionHandler('play', () => togglePlay());
+        navigator.mediaSession.setActionHandler('pause', () => togglePlay());
+        navigator.mediaSession.setActionHandler('seekbackward', (details) => {
+          skipSec(-(details.seekOffset || 30));
+        });
+        navigator.mediaSession.setActionHandler('seekforward', (details) => {
+          skipSec(details.seekOffset || 30);
+        });
+        navigator.mediaSession.setActionHandler('previoustrack', () => jumpChap(-1));
+        navigator.mediaSession.setActionHandler('nexttrack', () => jumpChap(1));
+        navigator.mediaSession.setActionHandler('seekto', (details) => {
+          if (details.seekTime !== undefined && audio.duration) {
+            audio.currentTime = details.seekTime;
+            updateTimes();
+            updateMediaPositionState();
+          }
+        });
+      }
+
+      // Keyboard shortcuts
+      window.addEventListener("keydown", (e) => {
+        if (e.target.tagName === "INPUT") return;
+        if (e.code === "Space") { e.preventDefault(); togglePlay(); }
+        else if (e.code === "ArrowRight") skipSec(30);
+        else if (e.code === "ArrowLeft") skipSec(-30);
+      });
+
+      // Mini Player Interactions
+      miniTextWrap.onclick = openFullPlayer;
+      miniThumbImg.onclick = openFullPlayer;
+      miniBtnPlayPause.onclick = (e) => { e.stopPropagation(); togglePlay(); };
+      miniBtnSkipBack.onclick = (e) => { e.stopPropagation(); skipSec(-30); };
+
+      // Full Player Interactions
+      btnMinimizePlayer.onclick = closeFullPlayer;
+      fullBtnPlayPause.onclick = togglePlay;
+      fullBtnSkipBack.onclick = () => skipSec(-30);
+      fullBtnSkipForward.onclick = () => skipSec(30);
+      fullBtnSpeed.onclick = cycleSpeed;
+      fullBtnPrevChap.onclick = () => jumpChap(-1);
+      fullBtnNextChap.onclick = () => jumpChap(1);
+      fullBtnOptions.onclick = () => {
+        if (activeBook) openActionSheet(activeBook);
+      };
+
+      // Full Player Scrubber Seek
+      fullScrubberTrack.onclick = (e) => {
+        if (!audio.duration) return;
+        const rect = fullScrubberTrack.getBoundingClientRect();
+        const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        audio.currentTime = pct * audio.duration;
+        updateTimes();
+        updateMediaPositionState();
+      };
+
+      // Drawer Open/Close
+      btnOpenChaptersTop.onclick = () => drawerBackdrop.classList.add("open");
+      btnCloseDrawer.onclick = () => drawerBackdrop.classList.remove("open");
+      drawerBackdrop.onclick = (e) => {
+        if (e.target === drawerBackdrop) drawerBackdrop.classList.remove("open");
+      };
+
+      // Action Sheet Interactions
+      btnCloseSheet.onclick = closeActionSheet;
+      sheetBackdrop.onclick = (e) => {
+        if (e.target === sheetBackdrop) closeActionSheet();
+      };
+
+      actionChangeCover.onclick = () => {
+        if (!sheetTargetBook) return;
+        const bookToChange = sheetTargetBook;
+        closeActionSheet();
+        cardCoverPicker.onchange = async (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+
+          showToast("Updating cover photo...");
+          const dataUrl = await readDataUrl(file);
+
+          let finalCover = dataUrl;
+          let newVersion = null;
+
+          try {
+            const formData = new FormData();
+            formData.append("cover", file);
+            const res = await fetch(`/api/books/${bookToChange.id}/cover`, { method: "POST", body: formData });
+            if (res.ok) {
+              const data = await res.json();
+              if (data.cover_url) {
+                finalCover = data.cover_url;
+                newVersion = data.cover_version;
+              }
+            }
+          } catch(err) {
+            console.warn("Cover upload error:", err);
+          }
+
+          bookToChange.cover = finalCover;
+          bookToChange.cover_url = finalCover;
+          if (newVersion) bookToChange.cover_version = newVersion;
+          await dbSave(bookToChange);
+
+          if (activeBook && activeBook.id === bookToChange.id) {
+            activeBook.cover = finalCover;
+            activeBook.cover_url = finalCover;
+            if (newVersion) activeBook.cover_version = newVersion;
+            miniThumbImg.src = finalCover;
+            fullCoverImg.src = finalCover;
+            updateMediaSession();
+          }
+
+          renderBooks();
+          showToast("Cover photo updated.");
+          cardCoverPicker.value = "";
+        };
+        cardCoverPicker.click();
+      };
+
+      actionDownloadOffline.onclick = () => {
+        if (!sheetTargetBook) return;
+        const bookToDl = sheetTargetBook;
+        closeActionSheet();
+        if (isDownloading && activeDownloadingBookId === bookToDl.id) {
+          pauseDownload();
+        } else {
+          downloadOffline(bookToDl);
+        }
+      };
+
+      actionDeleteBook.onclick = () => {
+        if (!sheetTargetBook) return;
+        const idToDelete = sheetTargetBook.id;
+        closeActionSheet();
+        deleteBook(idToDelete);
+      };
+
+      // Tabs
+      document.querySelectorAll(".seg-pill").forEach(p => {
+        p.onclick = () => {
+          document.querySelectorAll(".seg-pill").forEach(x => x.classList.remove("active"));
+          p.classList.add("active");
+          currentTab = p.dataset.tab;
+          renderBooks();
+        };
+      });
+
+      // Add Book Modal
+      const closeAdd = () => addBookModal.classList.remove("open");
+      btnCloseAddModal.onclick = closeAdd;
+      btnCancelAdd.onclick = closeAdd;
+
+      addBookForm.onsubmit = async (e) => {
+        e.preventDefault();
+        const title = addTitleInput.value.trim();
+        const author = addAuthorInput.value.trim();
+        const coverFile = coverFileInput.files[0];
+        const audioFiles = Array.from(audioFilesInput.files);
+
+        if (!title) return;
+
+        showToast("Importing audiobook...");
+        const bookId = "book_" + Date.now();
+        let coverData = null;
+        if (coverFile) coverData = await readDataUrl(coverFile);
+
+        audioFiles.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
+
+        const chaps = [];
+        const isWishlist = audioFiles.length === 0;
+
+        for (let i = 0; i < audioFiles.length; i++) {
+          const f = audioFiles[i];
+          chaps.push({ name: f.name.replace(/\.[^/.]+$/, ""), duration: 0 });
+          await dbSaveBlob(`${bookId}_${i}`, f);
+        }
+
+        const newBook = {
+          id: bookId,
+          title,
+          author,
+          cover: coverData,
+          chapters: chaps,
+          status: isWishlist ? "wishlist" : "listening",
+          lastChapIdx: 0,
+          lastTime: 0
+        };
+
+        await dbSave(newBook);
+        books = await dbGetAll();
+        updateCounts();
+        renderBooks();
+        closeAdd();
+        showToast(`Saved "${title}"`);
+
+        if (!isWishlist && chaps.length > 0) {
+          loadBook(newBook, 0, 0, true);
+          openFullPlayer();
+        }
+      };
+    }
+
+    function readDataUrl(f) {
+      return new Promise((resolve) => {
+        const r = new FileReader();
+        r.onload = (e) => resolve(e.target.result);
+        r.readAsDataURL(f);
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", init);
+  </script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+{
+  "books": [
+    {
+      "id": "meinkampf---audiobook",
+      "title": "Meinkampf - Audiobook",
+      "author": "Audiobook",
+      "cover_url": "Meinkampf%20-%20Audiobook/cover.jpg",
+      "cover_version": "1",
+      "chapters": [
+        {
+          "index": 0,
+          "name": "Chapter 1: In The Home Of My Parents",
+          "file_size": 12887348,
+          "duration": 2135.4,
+          "stream_url": "Meinkampf%20-%20Audiobook/01%20-%20Chapter%201%20-%20%20-%20In%20The%20Home%20Of%20My%20Parents.mp3"
+        },
+        {
+          "index": 1,
+          "name": "Chapter 2: Years Of Study And Suffering In Vienna",
+          "file_size": 36575999,
+          "duration": 6079.6,
+          "stream_url": "Meinkampf%20-%20Audiobook/02%20-%20Chapter%202%20-%20%20-%20Years%20Of%20Study%20And%20Suffering%20In%20Vienna.mp3"
+        },
+        {
+          "index": 2,
+          "name": "Chapter 3: Political Reflections Arising Out Of My Sojou",
+          "file_size": 48743641,
+          "duration": 8105.5,
+          "stream_url": "Meinkampf%20-%20Audiobook/03%20-%20Chapter%203%20-%20%20-%20Political%20Reflections%20Arising%20Out%20Of%20My%20Sojou.mp3"
+        },
+        {
+          "index": 3,
+          "name": "Chapter 4: Munich",
+          "file_size": 24385677,
+          "duration": 4049.9,
+          "stream_url": "Meinkampf%20-%20Audiobook/04%20-%20Chapter%204%20-%20%20-%20Munich.mp3"
+        },
+        {
+          "index": 4,
+          "name": "Chapter 5: The World War",
+          "file_size": 13712549,
+          "duration": 2272.8,
+          "stream_url": "Meinkampf%20-%20Audiobook/05%20-%20Chapter%205%20-%20%20-%20The%20World%20War.mp3"
+        },
+        {
+          "index": 5,
+          "name": "Chapter 6: War Propaganda",
+          "file_size": 7856989,
+          "duration": 1297.9,
+          "stream_url": "Meinkampf%20-%20Audiobook/06%20-%20Chapter%206%20-%20%20-%20War%20Propaganda.mp3"
+        },
+        {
+          "index": 6,
+          "name": "Chapter 7: The Revolution",
+          "file_size": 14437451,
+          "duration": 2393.5,
+          "stream_url": "Meinkampf%20-%20Audiobook/07%20-%20Chapter%207%20-%20%20-%20The%20Revolution.mp3"
+        },
+        {
+          "index": 7,
+          "name": "Chapter 8: The Beginning Of My Political Activities",
+          "file_size": 6790664,
+          "duration": 1120.3,
+          "stream_url": "Meinkampf%20-%20Audiobook/08%20-%20Chapter%208%20-%20%20-%20The%20Beginning%20Of%20My%20Political%20Activities.mp3"
+        },
+        {
+          "index": 8,
+          "name": "Chapter 9: The German Labour Party",
+          "file_size": 6123099,
+          "duration": 1009.2,
+          "stream_url": "Meinkampf%20-%20Audiobook/09%20-%20Chapter%209%20-%20%20-%20The%20German%20Labour%20Party.mp3"
+        },
+        {
+          "index": 9,
+          "name": "Chapter 10: Why The Second Reich Collapsed",
+          "file_size": 45309816,
+          "duration": 7533.8,
+          "stream_url": "Meinkampf%20-%20Audiobook/10%20-%20Chapter%2010%20-%20%20-%20Why%20The%20Second%20Reich%20Collapsed.mp3"
+        },
+        {
+          "index": 10,
+          "name": "Chapter 11: Race And People",
+          "file_size": 39765287,
+          "duration": 6610.6,
+          "stream_url": "Meinkampf%20-%20Audiobook/11%20-%20Chapter%2011%20-%20%20-%20Race%20And%20People.mp3"
+        },
+        {
+          "index": 11,
+          "name": "Chapter 12: The First Stage In The Development Of The Ge",
+          "file_size": 31875623,
+          "duration": 5297.0,
+          "stream_url": "Meinkampf%20-%20Audiobook/12%20-%20Chapter%2012%20-%20%20-%20The%20First%20Stage%20In%20The%20Development%20Of%20The%20Ge.mp3"
+        },
+        {
+          "index": 12,
+          "name": "Chapter 1: Weltanschauung And Party",
+          "file_size": 10813404,
+          "duration": 1790.1,
+          "stream_url": "Meinkampf%20-%20Audiobook/13%20-%20Chapter%201%20-%20%20-%20Weltanschauung%20And%20Party.mp3"
+        },
+        {
+          "index": 13,
+          "name": "Chapter 2: The State",
+          "file_size": 42295145,
+          "duration": 7031.9,
+          "stream_url": "Meinkampf%20-%20Audiobook/14%20-%20Chapter%202%20-%20%20-%20The%20State.mp3"
+        },
+        {
+          "index": 14,
+          "name": "Chapter 3: Citizens And Subjects Of The State",
+          "file_size": 2967378,
+          "duration": 483.8,
+          "stream_url": "Meinkampf%20-%20Audiobook/15%20-%20Chapter%203%20-%20%20-%20Citizens%20And%20Subjects%20Of%20The%20State.mp3"
+        },
+        {
+          "index": 15,
+          "name": "Chapter 4: Personality And The Ideal Of The People's Sta",
+          "file_size": 7599179,
+          "duration": 1255.0,
+          "stream_url": "Meinkampf%20-%20Audiobook/16%20-%20Chapter%204%20-%20%20-%20Personality%20And%20The%20Ideal%20Of%20The%20People%27s%20Sta.mp3"
+        },
+        {
+          "index": 16,
+          "name": "Chapter 5: Weltanschauung And Organization",
+          "file_size": 8888663,
+          "duration": 1469.7,
+          "stream_url": "Meinkampf%20-%20Audiobook/17%20-%20Chapter%205%20-%20%20-%20Weltanschauung%20And%20Organization.mp3"
+        },
+        {
+          "index": 17,
+          "name": "Chapter 6: The First Period Of Our Struggle",
+          "file_size": 12931184,
+          "duration": 2142.7,
+          "stream_url": "Meinkampf%20-%20Audiobook/18%20-%20Chapter%206%20-%20%20-%20The%20First%20Period%20Of%20Our%20Struggle.mp3"
+        },
+        {
+          "index": 18,
+          "name": "Chapter 7: The Conflict With The Red Forces",
+          "file_size": 19412042,
+          "duration": 3221.8,
+          "stream_url": "Meinkampf%20-%20Audiobook/19%20-%20Chapter%207%20-%20%20-%20The%20Conflict%20With%20The%20Red%20Forces.mp3"
+        },
+        {
+          "index": 19,
+          "name": "Chapter 8: The Strong Is Strongest When Alone",
+          "file_size": 7256815,
+          "duration": 1198.0,
+          "stream_url": "Meinkampf%20-%20Audiobook/20%20-%20Chapter%208%20-%20%20-%20The%20Strong%20Is%20Strongest%20When%20Alone.mp3"
+        },
+        {
+          "index": 20,
+          "name": "Chapter 9: Fundamental Ideas Regarding The Nature And Or",
+          "file_size": 28036636,
+          "duration": 4657.8,
+          "stream_url": "Meinkampf%20-%20Audiobook/21%20-%20Chapter%209%20-%20%20-%20Fundamental%20Ideas%20Regarding%20The%20Nature%20And%20Or.mp3"
+        },
+        {
+          "index": 21,
+          "name": "Chapter 10: The Mask Of Federalism",
+          "file_size": 18533034,
+          "duration": 3075.5,
+          "stream_url": "Meinkampf%20-%20Audiobook/22%20-%20Chapter%2010%20-%20%20-%20The%20Mask%20Of%20Federalism.mp3"
+        },
+        {
+          "index": 22,
+          "name": "Chapter 11: Propaganda And Organization",
+          "file_size": 12927572,
+          "duration": 2142.1,
+          "stream_url": "Meinkampf%20-%20Audiobook/23%20-%20Chapter%2011%20-%20%20-%20Propaganda%20And%20Organization.mp3"
+        },
+        {
+          "index": 23,
+          "name": "Chapter 12: The Problem Of The Trade Unions",
+          "file_size": 8801314,
+          "duration": 1455.1,
+          "stream_url": "Meinkampf%20-%20Audiobook/24%20-%20Chapter%2012%20-%20%20-%20The%20Problem%20Of%20The%20Trade%20Unions.mp3"
+        },
+        {
+          "index": 24,
+          "name": "Chapter 13: The German Post: War Policy Of Alliances",
+          "file_size": 26516772,
+          "duration": 4404.7,
+          "stream_url": "Meinkampf%20-%20Audiobook/25%20-%20Chapter%2013%20-%20%20-%20The%20German%20Post-War%20Policy%20Of%20Alliances.mp3"
+        },
+        {
+          "index": 25,
+          "name": "Chapter 14: Germany's Policy In Eastern Europe",
+          "file_size": 21289812,
+          "duration": 3534.5,
+          "stream_url": "Meinkampf%20-%20Audiobook/26%20-%20Chapter%2014%20-%20%20-%20Germany%27s%20Policy%20In%20Eastern%20Europe.mp3"
+        },
+        {
+          "index": 26,
+          "name": "Chapter 15: The Right To Self: Defence",
+          "file_size": 16470340,
+          "duration": 2732.0,
+          "stream_url": "Meinkampf%20-%20Audiobook/27%20-%20Chapter%2015%20-%20%20-%20The%20Right%20To%20Self-Defence.mp3"
+        }
+      ],
+      "total_tracks": 27,
+      "total_duration": 88500.20000000001
+    }
+  ]
+}
