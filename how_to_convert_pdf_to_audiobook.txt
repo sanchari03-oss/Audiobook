@@ -1,0 +1,115 @@
+================================================================================
+AUDIOBOOK GENERATOR & WEBSITE PUBLISHING GUIDE
+================================================================================
+
+WEBSITE URL:  https://sanchari03-oss.github.io/Audiobook/
+GITHUB REPO:  https://github.com/sanchari03-oss/Audiobook
+LOCAL FOLDER: ~/Desktop/audiobook-website/
+
+
+--------------------------------------------------------------------------------
+PART 1: HOW TO CONVERT A PDF TO AN AUDIOBOOK
+--------------------------------------------------------------------------------
+
+1. BASIC COMMAND
+----------------
+python3 /home/ssk/audiobook_maker.py "/path/to/your_book.pdf"
+
+Example (if PDF is on Desktop):
+python3 /home/ssk/audiobook_maker.py ~/Desktop/my_book.pdf
+
+
+2. DRAG & DROP TRICK (Avoid typing file paths)
+----------------------------------------------
+1. Open your terminal.
+2. Type:
+   python3 /home/ssk/audiobook_maker.py 
+   (make sure to leave a space at the end)
+3. Drag and drop your PDF file from your file manager directly into the terminal.
+4. Press Enter.
+
+
+3. DIRECT OUTPUT INTO WEBSITE (Saves moving files later)
+-------------------------------------------------------
+You can have the generator put the audiobook folder directly into your website folder:
+python3 /home/ssk/audiobook_maker.py ~/Desktop/my_book.pdf -o ~/Desktop/audiobook-website/"My Book Name"
+
+
+4. PREVIEW CHAPTERS FIRST (Instant check, no audio generated yet)
+-----------------------------------------------------------------
+To check chapter names, word counts, and estimated duration before converting:
+python3 /home/ssk/audiobook_maker.py ~/Desktop/my_book.pdf --preview
+
+
+5. NARRATOR VOICES
+------------------
+Add "--voice <VoiceName>" at the end:
+
+- Default Deep Engaging Narrator (Male US):
+  python3 /home/ssk/audiobook_maker.py ~/Desktop/my_book.pdf --voice en-US-ChristopherNeural
+
+- British Narrator (Male UK):
+  python3 /home/ssk/audiobook_maker.py ~/Desktop/my_book.pdf --voice en-GB-RyanNeural
+
+- Casual / Natural Narrator (Male US):
+  python3 /home/ssk/audiobook_maker.py ~/Desktop/my_book.pdf --voice en-US-GuyNeural
+
+- Expressive Storyteller (Female US):
+  python3 /home/ssk/audiobook_maker.py ~/Desktop/my_book.pdf --voice en-US-JennyNeural
+
+- Indian English Narrator (Male IN):
+  python3 /home/ssk/audiobook_maker.py ~/Desktop/my_book.pdf --voice en-IN-PrabhatNeural
+
+
+6. PAUSING AND RESUMING
+-----------------------
+- Stop anytime: Press Ctrl + C
+- Resume: Run the exact same command again. It automatically skips completed chapters and continues where it left off.
+
+
+--------------------------------------------------------------------------------
+PART 2: HOW TO ADD A NEW BOOK TO YOUR WEBSITE
+--------------------------------------------------------------------------------
+
+Whenever you convert a new book and want it on your website:
+
+STEP 1: Put the audiobook folder inside ~/Desktop/audiobook-website/
+-------------------------------------------------------------------
+Make sure the folder containing your new MP3 files (and optional cover.jpg)
+is inside:
+~/Desktop/audiobook-website/
+
+Example folder layout:
+~/Desktop/audiobook-website/
+   ├── Meinkampf - Audiobook/
+   │     ├── 01 - Chapter 1.mp3
+   │     └── cover.jpg
+   └── Atomic Habits/
+         ├── 01 - Chapter 1.mp3
+         └── cover.jpg
+
+
+STEP 2: Run these 3 commands in terminal
+----------------------------------------
+cd ~/Desktop/audiobook-website
+git add .
+git commit -m "Add new book"
+git push
+
+That is all!
+
+
+STEP 3: WHAT HAPPENS AUTOMATICALLY
+-----------------------------------
+When you run "git commit", a built-in pre-commit hook automatically:
+1. Scans every book folder in the directory.
+2. Calculates exact audio durations for all new chapters.
+3. Automatically updates books.json.
+4. Pushes everything to GitHub.
+
+Within 30 to 60 seconds, open your phone:
+https://sanchari03-oss.github.io/Audiobook/
+
+Your new book will appear automatically on your phone with full player controls,
+sleep timer, chapter selection, and offline caching.
+================================================================================
