@@ -199,6 +199,381 @@
       ],
       "total_tracks": 27,
       "total_duration": 88500.20000000001
+    },
+    {
+      "id": "the-48-laws-of-power",
+      "title": "The 48 Laws of Power",
+      "author": "Audiobook",
+      "cover_url": "The%2048%20Laws%20of%20Power/cover.jpg",
+      "cover_version": "1",
+      "chapters": [
+        {
+          "index": 0,
+          "name": "The 48 Laws of Power",
+          "file_size": 3916638,
+          "duration": 608.3,
+          "stream_url": "The%2048%20Laws%20of%20Power/01%20-%20The%2048%20Laws%20of%20Power.mp3"
+        },
+        {
+          "index": 1,
+          "name": "Contents",
+          "file_size": 8250448,
+          "duration": 1329.8,
+          "stream_url": "The%2048%20Laws%20of%20Power/02%20-%20Contents.mp3"
+        },
+        {
+          "index": 2,
+          "name": "Preface",
+          "file_size": 8526625,
+          "duration": 1375.8,
+          "stream_url": "The%2048%20Laws%20of%20Power/03%20-%20Preface.mp3"
+        },
+        {
+          "index": 3,
+          "name": "Law 1",
+          "file_size": 6356678,
+          "duration": 1014.5,
+          "stream_url": "The%2048%20Laws%20of%20Power/04%20-%20Law%201.mp3"
+        },
+        {
+          "index": 4,
+          "name": "Law 2",
+          "file_size": 9625864,
+          "duration": 1558.8,
+          "stream_url": "The%2048%20Laws%20of%20Power/05%20-%20Law%202.mp3"
+        },
+        {
+          "index": 5,
+          "name": "Law 3",
+          "file_size": 16816055,
+          "duration": 2756.0,
+          "stream_url": "The%2048%20Laws%20of%20Power/06%20-%20Law%203.mp3"
+        },
+        {
+          "index": 6,
+          "name": "Law 4",
+          "file_size": 6635452,
+          "duration": 1060.9,
+          "stream_url": "The%2048%20Laws%20of%20Power/07%20-%20Law%204.mp3"
+        },
+        {
+          "index": 7,
+          "name": "Law 5",
+          "file_size": 8333180,
+          "duration": 1343.6,
+          "stream_url": "The%2048%20Laws%20of%20Power/08%20-%20Law%205.mp3"
+        },
+        {
+          "index": 8,
+          "name": "Law 6",
+          "file_size": 12882365,
+          "duration": 2101.1,
+          "stream_url": "The%2048%20Laws%20of%20Power/09%20-%20Law%206.mp3"
+        },
+        {
+          "index": 9,
+          "name": "Law 7",
+          "file_size": 6571887,
+          "duration": 1050.4,
+          "stream_url": "The%2048%20Laws%20of%20Power/10%20-%20Law%207.mp3"
+        },
+        {
+          "index": 10,
+          "name": "Law 8",
+          "file_size": 6260103,
+          "duration": 998.4,
+          "stream_url": "The%2048%20Laws%20of%20Power/11%20-%20Law%208.mp3"
+        },
+        {
+          "index": 11,
+          "name": "Law 9",
+          "file_size": 8842011,
+          "duration": 1428.3,
+          "stream_url": "The%2048%20Laws%20of%20Power/12%20-%20Law%209.mp3"
+        },
+        {
+          "index": 12,
+          "name": "Law 10",
+          "file_size": 7707455,
+          "duration": 1239.4,
+          "stream_url": "The%2048%20Laws%20of%20Power/13%20-%20Law%2010.mp3"
+        },
+        {
+          "index": 13,
+          "name": "Law 11",
+          "file_size": 8205328,
+          "duration": 1322.3,
+          "stream_url": "The%2048%20Laws%20of%20Power/14%20-%20Law%2011.mp3"
+        },
+        {
+          "index": 14,
+          "name": "Law 12",
+          "file_size": 7037185,
+          "duration": 1127.8,
+          "stream_url": "The%2048%20Laws%20of%20Power/15%20-%20Law%2012.mp3"
+        },
+        {
+          "index": 15,
+          "name": "Law 13",
+          "file_size": 6260538,
+          "duration": 998.5,
+          "stream_url": "The%2048%20Laws%20of%20Power/16%20-%20Law%2013.mp3"
+        },
+        {
+          "index": 16,
+          "name": "Law 14",
+          "file_size": 5341187,
+          "duration": 845.4,
+          "stream_url": "The%2048%20Laws%20of%20Power/17%20-%20Law%2014.mp3"
+        },
+        {
+          "index": 17,
+          "name": "Law 15",
+          "file_size": 8734193,
+          "duration": 1410.4,
+          "stream_url": "The%2048%20Laws%20of%20Power/18%20-%20Law%2015.mp3"
+        },
+        {
+          "index": 18,
+          "name": "Law 16",
+          "file_size": 8239779,
+          "duration": 1328.1,
+          "stream_url": "The%2048%20Laws%20of%20Power/19%20-%20Law%2016.mp3"
+        },
+        {
+          "index": 19,
+          "name": "Law 17",
+          "file_size": 6819528,
+          "duration": 1091.6,
+          "stream_url": "The%2048%20Laws%20of%20Power/20%20-%20Law%2017.mp3"
+        },
+        {
+          "index": 20,
+          "name": "Law 18",
+          "file_size": 8500391,
+          "duration": 1371.5,
+          "stream_url": "The%2048%20Laws%20of%20Power/21%20-%20Law%2018.mp3"
+        },
+        {
+          "index": 21,
+          "name": "Law 19",
+          "file_size": 8725688,
+          "duration": 1409.0,
+          "stream_url": "The%2048%20Laws%20of%20Power/22%20-%20Law%2019.mp3"
+        },
+        {
+          "index": 22,
+          "name": "Law 20",
+          "file_size": 13006044,
+          "duration": 2121.6,
+          "stream_url": "The%2048%20Laws%20of%20Power/23%20-%20Law%2020.mp3"
+        },
+        {
+          "index": 23,
+          "name": "Law 21",
+          "file_size": 7180897,
+          "duration": 1151.8,
+          "stream_url": "The%2048%20Laws%20of%20Power/24%20-%20Law%2021.mp3"
+        },
+        {
+          "index": 24,
+          "name": "Law 22",
+          "file_size": 7709617,
+          "duration": 1239.8,
+          "stream_url": "The%2048%20Laws%20of%20Power/25%20-%20Law%2022.mp3"
+        },
+        {
+          "index": 25,
+          "name": "Law 23",
+          "file_size": 7011240,
+          "duration": 1123.5,
+          "stream_url": "The%2048%20Laws%20of%20Power/26%20-%20Law%2023.mp3"
+        },
+        {
+          "index": 26,
+          "name": "Law 24",
+          "file_size": 14155160,
+          "duration": 2313.0,
+          "stream_url": "The%2048%20Laws%20of%20Power/27%20-%20Law%2024.mp3"
+        },
+        {
+          "index": 27,
+          "name": "Law 25",
+          "file_size": 8910625,
+          "duration": 1439.8,
+          "stream_url": "The%2048%20Laws%20of%20Power/28%20-%20Law%2025.mp3"
+        },
+        {
+          "index": 28,
+          "name": "Law 26",
+          "file_size": 18314580,
+          "duration": 3005.5,
+          "stream_url": "The%2048%20Laws%20of%20Power/29%20-%20Law%2026.mp3"
+        },
+        {
+          "index": 29,
+          "name": "Law 27",
+          "file_size": 16085537,
+          "duration": 2634.4,
+          "stream_url": "The%2048%20Laws%20of%20Power/30%20-%20Law%2027.mp3"
+        },
+        {
+          "index": 30,
+          "name": "Law 28",
+          "file_size": 11535920,
+          "duration": 1876.9,
+          "stream_url": "The%2048%20Laws%20of%20Power/31%20-%20Law%2028.mp3"
+        },
+        {
+          "index": 31,
+          "name": "Law 29",
+          "file_size": 9394949,
+          "duration": 1520.4,
+          "stream_url": "The%2048%20Laws%20of%20Power/32%20-%20Law%2029.mp3"
+        },
+        {
+          "index": 32,
+          "name": "Law 30",
+          "file_size": 9737291,
+          "duration": 1577.4,
+          "stream_url": "The%2048%20Laws%20of%20Power/33%20-%20Law%2030.mp3"
+        },
+        {
+          "index": 33,
+          "name": "Law 31",
+          "file_size": 9586660,
+          "duration": 1552.3,
+          "stream_url": "The%2048%20Laws%20of%20Power/34%20-%20Law%2031.mp3"
+        },
+        {
+          "index": 34,
+          "name": "Law 32",
+          "file_size": 8728571,
+          "duration": 1409.4,
+          "stream_url": "The%2048%20Laws%20of%20Power/35%20-%20Law%2032.mp3"
+        },
+        {
+          "index": 35,
+          "name": "Law 33",
+          "file_size": 14973610,
+          "duration": 2449.2,
+          "stream_url": "The%2048%20Laws%20of%20Power/36%20-%20Law%2033.mp3"
+        },
+        {
+          "index": 36,
+          "name": "Law 34",
+          "file_size": 9999777,
+          "duration": 1621.1,
+          "stream_url": "The%2048%20Laws%20of%20Power/37%20-%20Law%2034.mp3"
+        },
+        {
+          "index": 37,
+          "name": "Law 35",
+          "file_size": 11224425,
+          "duration": 1825.0,
+          "stream_url": "The%2048%20Laws%20of%20Power/38%20-%20Law%2035.mp3"
+        },
+        {
+          "index": 38,
+          "name": "Law 36",
+          "file_size": 11193001,
+          "duration": 1819.8,
+          "stream_url": "The%2048%20Laws%20of%20Power/39%20-%20Law%2036.mp3"
+        },
+        {
+          "index": 39,
+          "name": "Law 37",
+          "file_size": 9290300,
+          "duration": 1503.0,
+          "stream_url": "The%2048%20Laws%20of%20Power/40%20-%20Law%2037.mp3"
+        },
+        {
+          "index": 40,
+          "name": "Law 38",
+          "file_size": 9759345,
+          "duration": 1581.1,
+          "stream_url": "The%2048%20Laws%20of%20Power/41%20-%20Law%2038.mp3"
+        },
+        {
+          "index": 41,
+          "name": "Law 39",
+          "file_size": 8674085,
+          "duration": 1400.4,
+          "stream_url": "The%2048%20Laws%20of%20Power/42%20-%20Law%2039.mp3"
+        },
+        {
+          "index": 42,
+          "name": "Law 40",
+          "file_size": 19574542,
+          "duration": 3215.3,
+          "stream_url": "The%2048%20Laws%20of%20Power/43%20-%20Law%2040.mp3"
+        },
+        {
+          "index": 43,
+          "name": "Law 41",
+          "file_size": 13601936,
+          "duration": 2220.9,
+          "stream_url": "The%2048%20Laws%20of%20Power/44%20-%20Law%2041.mp3"
+        },
+        {
+          "index": 44,
+          "name": "Law 42",
+          "file_size": 9732102,
+          "duration": 1576.5,
+          "stream_url": "The%2048%20Laws%20of%20Power/45%20-%20Law%2042.mp3"
+        },
+        {
+          "index": 45,
+          "name": "Law 43",
+          "file_size": 10274948,
+          "duration": 1666.9,
+          "stream_url": "The%2048%20Laws%20of%20Power/46%20-%20Law%2043.mp3"
+        },
+        {
+          "index": 46,
+          "name": "Law 44",
+          "file_size": 19313353,
+          "duration": 3171.8,
+          "stream_url": "The%2048%20Laws%20of%20Power/47%20-%20Law%2044.mp3"
+        },
+        {
+          "index": 47,
+          "name": "Law 45",
+          "file_size": 9163454,
+          "duration": 1481.9,
+          "stream_url": "The%2048%20Laws%20of%20Power/48%20-%20Law%2045.mp3"
+        },
+        {
+          "index": 48,
+          "name": "Law 46",
+          "file_size": 14492601,
+          "duration": 2369.2,
+          "stream_url": "The%2048%20Laws%20of%20Power/49%20-%20Law%2046.mp3"
+        },
+        {
+          "index": 49,
+          "name": "Law 47",
+          "file_size": 10114372,
+          "duration": 1640.2,
+          "stream_url": "The%2048%20Laws%20of%20Power/50%20-%20Law%2047.mp3"
+        },
+        {
+          "index": 50,
+          "name": "Law 48",
+          "file_size": 15491519,
+          "duration": 2535.5,
+          "stream_url": "The%2048%20Laws%20of%20Power/51%20-%20Law%2048.mp3"
+        },
+        {
+          "index": 51,
+          "name": "Selected Bibliography",
+          "file_size": 2954481,
+          "duration": 448.1,
+          "stream_url": "The%2048%20Laws%20of%20Power/52%20-%20Selected%20Bibliography.mp3"
+        }
+      ],
+      "total_tracks": 52,
+      "total_duration": 84261.59999999999
     }
   ]
 }
