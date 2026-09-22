@@ -826,6 +826,14 @@
       padding: 0.22rem 0.75rem;
       border-radius: var(--radius-full);
       margin-top: 0.3rem;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .full-remaining-pill:active {
+      transform: scale(0.97);
+      background: rgba(255, 159, 10, 0.25);
     }
 
     .full-scrubber-section {
@@ -875,6 +883,16 @@
       font-variant-numeric: tabular-nums;
       font-weight: 600;
       color: var(--text-secondary);
+    }
+
+    #fullTimeTotal, #fullTimeElapsed {
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.15s ease;
+    }
+
+    #fullTimeTotal:hover, #fullTimeElapsed:hover {
+      color: var(--text-primary);
     }
 
     .full-controls-row {
@@ -1574,6 +1592,7 @@
     const fullCoverImg = document.getElementById("fullCoverImg");
     const fullChapTitle = document.getElementById("fullChapTitle");
     const fullAuthorSub = document.getElementById("fullAuthorSub");
+    const fullRemainingPill = document.getElementById("fullRemainingPill");
     const fullRemainingText = document.getElementById("fullRemainingText");
     const fullScrubberTrack = document.getElementById("fullScrubberTrack");
     const fullScrubberFill = document.getElementById("fullScrubberFill");
@@ -1716,6 +1735,30 @@
       return `${String(m).padStart(2, '0')}:${String(remS).padStart(2, '0')}`;
     }
 
+    /* Helper: Format Chapter Remaining Time (e.g. "5m 4s left" or "5m left") */
+    function formatChapRemaining(sec) {
+      if (isNaN(sec) || sec <= 0) return "0s left";
+      const s = Math.round(sec);
+      const h = Math.floor(s / 3600);
+      const m = Math.floor((s % 3600) / 60);
+      const remS = s % 60;
+      if (h > 0) return `${h}h ${m}m left`;
+      if (m > 0 && remS > 0) return `${m}m ${remS}s left`;
+      if (m > 0) return `${m}m left`;
+      return `${remS}s left`;
+    }
+
+    /* Helper: Compact Book Remaining String (e.g. "23h 24m" or "11h 42m") */
+    function formatBookRemaining(rawSecs, speed) {
+      if (rawSecs <= 0) return "0m";
+      const adjusted = rawSecs / speed;
+      const totalMins = Math.round(adjusted / 60);
+      const hrs = Math.floor(totalMins / 60);
+      const mins = totalMins % 60;
+      if (hrs > 0) return `${hrs}h ${mins}m`;
+      return `${mins}m`;
+    }
+
     /* Helper: Format Speed-Adjusted Remaining Time */
     function formatRemainingTime(rawSecs, speed) {
       if (rawSecs <= 0) return "0m left";
@@ -1742,6 +1785,14 @@
       return remInCurChap + remInLaterChapters;
     }
 
+    // Interactive time display preferences
+    // Scrubber: 'speed_adjusted' (05:04 at 2x) | 'countdown' (-05:04) | 'raw' (10:08 1x)
+    let scrubberTimeMode = localStorage.getItem("ssk_scrubber_mode") || "speed_adjusted";
+    // Pill: 'both' ("5m 4s in ch • 11h 42m in book") | 'chapter' ("5m 4s left in chapter") | 'book' ("11h 42m left in book")
+    let pillTimeMode = localStorage.getItem("ssk_pill_mode") || "both";
+    // Mini player badge: 'chapter' ("5m 4s left") | 'book' ("11h 42m in book")
+    let miniTimeMode = localStorage.getItem("ssk_mini_time_mode") || "chapter";
+
     /* Update All Time Indicators */
     function updateTimes() {
       if (!activeBook) return;
@@ -1750,21 +1801,58 @@
       const curChap = activeBook.chapters ? activeBook.chapters[activeChapIdx] : null;
       const dur = (curChap && curChap.duration) ? curChap.duration : (audio.duration || 0);
 
-      // Scrubber fill percentages
+      // Scrubber fill percentages (0% to 100% based on audio track)
       const pct = dur > 0 ? (cur / dur) * 100 : 0;
       miniProgressLine.style.width = `${pct}%`;
       fullScrubberFill.style.width = `${pct}%`;
 
-      // Full Player Scrubber Times
-      fullTimeElapsed.textContent = formatClock(cur);
-      fullTimeTotal.textContent = formatClock(dur);
+      // Speed-adjusted times for the current chapter
+      const adjDur = dur / currentSpeed;
+      const adjCur = cur / currentSpeed;
+      const adjChapRem = Math.max(0, dur - cur) / currentSpeed;
 
-      // Speed-adjusted Book Remaining
+      // Full Player Scrubber Times (Left: Elapsed, Right: Total/Remaining)
+      if (scrubberTimeMode === "countdown") {
+        fullTimeElapsed.textContent = formatClock(adjCur);
+        fullTimeTotal.textContent = `-${formatClock(adjChapRem)}`;
+        fullTimeTotal.title = "Countdown remaining. Tap to switch mode.";
+      } else if (scrubberTimeMode === "raw") {
+        fullTimeElapsed.textContent = formatClock(cur);
+        fullTimeTotal.textContent = `${formatClock(dur)} (1×)`;
+        fullTimeTotal.title = "Original audio duration. Tap to switch mode.";
+      } else {
+        // "speed_adjusted" (default): at 2x speed, 10:08 chapter displays 05:04!
+        fullTimeElapsed.textContent = formatClock(adjCur);
+        fullTimeTotal.textContent = formatClock(adjDur);
+        fullTimeTotal.title = `Speed-adjusted length (${currentSpeed}×). Tap to switch mode.`;
+      }
+
+      // Remaining times
+      const chapLeftStr = formatChapRemaining(adjChapRem);
       const rawBookRemaining = computeBookRemainingRawSec();
-      const leftStr = formatRemainingTime(rawBookRemaining, currentSpeed);
+      const bookRemainingStr = formatBookRemaining(rawBookRemaining, currentSpeed);
 
-      fullRemainingText.textContent = `${leftStr} in book`;
-      miniTimeBadge.textContent = leftStr;
+      // Full Player Pill text (prominently displays chapter remaining time!)
+      if (pillTimeMode === "chapter") {
+        fullRemainingText.textContent = `${chapLeftStr} in chapter`;
+        fullRemainingPill.title = "Showing chapter remaining time. Tap to toggle.";
+      } else if (pillTimeMode === "book") {
+        fullRemainingText.textContent = `${bookRemainingStr} left in book`;
+        fullRemainingPill.title = "Showing book remaining time. Tap to toggle.";
+      } else {
+        // "both" (default): e.g. "5m 4s in ch • 11h 42m in book"
+        fullRemainingText.textContent = `${chapLeftStr} in ch • ${bookRemainingStr} in book`;
+        fullRemainingPill.title = "Showing chapter & book remaining. Tap to toggle.";
+      }
+
+      // Mini player badge shows chapter remaining time (e.g. "5m 4s left")
+      if (miniTimeMode === "book") {
+        miniTimeBadge.textContent = `${bookRemainingStr} in book`;
+        miniTimeBadge.title = "Showing book remaining. Tap to toggle.";
+      } else {
+        miniTimeBadge.textContent = chapLeftStr;
+        miniTimeBadge.title = "Showing chapter remaining. Tap to toggle.";
+      }
 
       updateMediaPositionState();
     }
@@ -2181,6 +2269,7 @@
       localStorage.setItem("ssk_speed", speed);
       updateTimes();
       renderBooks();
+      renderDrawer();
       updateMediaPositionState();
     }
 
@@ -2490,7 +2579,7 @@
             <div class="drawer-item-index">Track ${idx + 1}${isSaved ? ' • Saved Offline' : ''}</div>
             <div class="drawer-item-title">${escapeHtml(ch.name)}</div>
           </div>
-          <div class="drawer-item-time">${ch.duration ? formatClock(ch.duration) : '--:--'}</div>
+          <div class="drawer-item-time">${ch.duration ? formatClock(ch.duration / currentSpeed) : '--:--'}</div>
         `;
         li.onclick = () => {
           loadBook(activeBook, idx, 0, true);
@@ -2692,6 +2781,53 @@
         audio.currentTime = pct * audio.duration;
         updateTimes();
         updateMediaPositionState();
+      };
+
+      // Full Player Scrubber Time toggle (Speed-adjusted total, Countdown remaining, Raw track time)
+      fullTimeTotal.onclick = (e) => {
+        e.stopPropagation();
+        if (scrubberTimeMode === "speed_adjusted") {
+          scrubberTimeMode = "countdown";
+          showToast("Scrubber: Remaining countdown (-MM:SS)");
+        } else if (scrubberTimeMode === "countdown") {
+          scrubberTimeMode = "raw";
+          showToast("Scrubber: Original audio length (1×)");
+        } else {
+          scrubberTimeMode = "speed_adjusted";
+          showToast(`Scrubber: Speed-adjusted length (${currentSpeed}×)`);
+        }
+        localStorage.setItem("ssk_scrubber_mode", scrubberTimeMode);
+        updateTimes();
+      };
+
+      // Full Player Remaining Pill toggle (Chapter & Book, Chapter only, Book only)
+      fullRemainingPill.onclick = () => {
+        if (pillTimeMode === "both") {
+          pillTimeMode = "chapter";
+          showToast("Showing: Chapter remaining only");
+        } else if (pillTimeMode === "chapter") {
+          pillTimeMode = "book";
+          showToast("Showing: Book remaining only");
+        } else {
+          pillTimeMode = "both";
+          showToast("Showing: Chapter & Book remaining");
+        }
+        localStorage.setItem("ssk_pill_mode", pillTimeMode);
+        updateTimes();
+      };
+
+      // Mini Player Time Badge toggle
+      miniTimeBadge.onclick = (e) => {
+        e.stopPropagation();
+        if (miniTimeMode === "chapter") {
+          miniTimeMode = "book";
+          showToast("Mini player: Book remaining");
+        } else {
+          miniTimeMode = "chapter";
+          showToast("Mini player: Chapter remaining");
+        }
+        localStorage.setItem("ssk_mini_time_mode", miniTimeMode);
+        updateTimes();
       };
 
       // Drawer Open/Close
