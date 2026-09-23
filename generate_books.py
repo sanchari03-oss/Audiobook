@@ -6,7 +6,7 @@ import urllib.parse
 from pathlib import Path
 
 try:
-    from mutagen.mp3 import MP3
+    import mutagen
     MUTAGEN_AVAILABLE = True
 except ImportError:
     MUTAGEN_AVAILABLE = False
@@ -23,9 +23,11 @@ def clean_chapter_name(filename_stem: str) -> str:
     return name
 
 def get_audio_duration(file_path: Path) -> float:
-    if MUTAGEN_AVAILABLE and file_path.suffix.lower() == ".mp3":
+    if MUTAGEN_AVAILABLE:
         try:
-            return round(MP3(str(file_path)).info.length, 1)
+            mf = mutagen.File(str(file_path))
+            if mf is not None and hasattr(mf, "info") and hasattr(mf.info, "length"):
+                return round(mf.info.length, 1)
         except Exception:
             pass
     size_bytes = file_path.stat().st_size
@@ -51,9 +53,15 @@ def scan():
         book_id = re.sub(r'[^a-zA-Z0-9_\-]+', '-', title.lower()).strip('-')
 
         cover_rel = None
-        for c_name in ["cover.jpg", "cover.jpeg", "cover.png", "Cover.jpg", "Cover.jpeg", "Cover.png"]:
-            if (item / c_name).exists():
-                cover_rel = f"{urllib.parse.quote(item.name)}/{urllib.parse.quote(c_name)}"
+        cover_candidates = [
+            "cover.jpg", "cover.jpeg", "cover.png", "cover.webp",
+            "folder.jpg", "folder.jpeg", "folder.png", "albumart.jpg"
+        ]
+        sub_files = {f.name.lower(): f.name for f in item.iterdir() if f.is_file()}
+        for cand in cover_candidates:
+            if cand in sub_files:
+                actual_name = sub_files[cand]
+                cover_rel = f"{urllib.parse.quote(item.name)}/{urllib.parse.quote(actual_name)}"
                 break
 
         chapters = []
@@ -86,6 +94,22 @@ def scan():
         })
 
     output_file = BASE_DIR / "books.json"
+    existing_wishlist = []
+    if output_file.exists():
+        try:
+            with open(output_file, "r", encoding="utf-8") as f:
+                old_data = json.load(f)
+                for b in old_data.get("books", []):
+                    if b.get("status") == "wishlist" or not b.get("chapters") or len(b.get("chapters", [])) == 0:
+                        existing_wishlist.append(b)
+        except Exception as e:
+            print(f"Warning reading existing books.json: {e}")
+
+    scanned_ids = {b["id"] for b in books}
+    for wb in existing_wishlist:
+        if wb.get("id") not in scanned_ids:
+            books.append(wb)
+
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump({"books": books}, f, indent=2, ensure_ascii=False)
 

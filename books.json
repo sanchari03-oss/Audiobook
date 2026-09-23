@@ -574,6 +574,18 @@
       ],
       "total_tracks": 52,
       "total_duration": 84261.59999999999
+    },
+    {
+      "id": "the-appeal",
+      "title": "THE APPEAL",
+      "author": "John Grisham",
+      "cover_url": "610a2yCMbAL._AC_UF1000,1000_QL80_.jpg",
+      "cover": "610a2yCMbAL._AC_UF1000,1000_QL80_.jpg",
+      "cover_version": "1",
+      "status": "wishlist",
+      "chapters": [],
+      "total_tracks": 0,
+      "total_duration": 0
     }
   ]
 }
