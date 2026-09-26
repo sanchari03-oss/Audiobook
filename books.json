@@ -1,6 +1,24 @@
 {
   "books": [
     {
+      "id": "animal-farm",
+      "title": "Animal Farm",
+      "author": "Audiobook",
+      "cover_url": "Animal%20Farm/cover.jpg",
+      "cover_version": "1",
+      "chapters": [
+        {
+          "index": 0,
+          "name": "Animal Farm by George Orwell",
+          "file_size": 62547497,
+          "duration": 10403.7,
+          "stream_url": "Animal%20Farm/01%20-%20Animal%20Farm%20by%20George%20Orwell.mp3"
+        }
+      ],
+      "total_tracks": 1,
+      "total_duration": 10403.7
+    },
+    {
       "id": "meinkampf---audiobook",
       "title": "Meinkampf - Audiobook",
       "author": "Audiobook",
