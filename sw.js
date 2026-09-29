@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ssk-player-gh-v2';
+const CACHE_NAME = 'ssk-player-gh-v3';
 
 const STATIC_ASSETS = [
   './',
@@ -64,7 +64,7 @@ self.addEventListener('fetch', (e) => {
           return res;
         })
         .catch(async () => {
-          return (await caches.match(e.request, { ignoreSearch: true })) ||
+          return (await caches.match(e.request)) ||
                  (await caches.match('./books.json')) ||
                  new Response('{"books":[]}', { headers: { 'Content-Type': 'application/json' } });
         })
@@ -72,10 +72,10 @@ self.addEventListener('fetch', (e) => {
     return;
   }
 
-  // Static images, covers, icons: Cache first / Stale-while-revalidate
+  // Static images, covers, icons: Cache first by exact version URL, fetch fresh when version changes
   if (/\.(jpg|jpeg|png|webp|svg|ico)($|\?)/i.test(url.pathname)) {
     e.respondWith(
-      caches.match(e.request, { ignoreSearch: true }).then((cached) => {
+      caches.match(e.request).then((cached) => {
         const fetchPromise = fetch(e.request)
           .then((networkRes) => {
             if (networkRes.ok) {
@@ -84,7 +84,7 @@ self.addEventListener('fetch', (e) => {
             }
             return networkRes;
           })
-          .catch(() => cached);
+          .catch(() => cached || (url.search ? caches.match(url.pathname, { ignoreSearch: true }) : null));
         return cached || fetchPromise;
       })
     );

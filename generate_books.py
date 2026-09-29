@@ -53,6 +53,7 @@ def scan():
         book_id = re.sub(r'[^a-zA-Z0-9_\-]+', '-', title.lower()).strip('-')
 
         cover_rel = None
+        cover_version = "1"
         cover_candidates = [
             "cover.jpg", "cover.jpeg", "cover.png", "cover.webp",
             "folder.jpg", "folder.jpeg", "folder.png", "albumart.jpg"
@@ -62,6 +63,11 @@ def scan():
             if cand in sub_files:
                 actual_name = sub_files[cand]
                 cover_rel = f"{urllib.parse.quote(item.name)}/{urllib.parse.quote(actual_name)}"
+                try:
+                    cover_file = item / actual_name
+                    cover_version = str(int(cover_file.stat().st_mtime))
+                except Exception:
+                    cover_version = "1"
                 break
 
         chapters = []
@@ -87,7 +93,7 @@ def scan():
             "title": title,
             "author": "Audiobook",
             "cover_url": cover_rel,
-            "cover_version": "1",
+            "cover_version": cover_version,
             "chapters": chapters,
             "total_tracks": len(chapters),
             "total_duration": total_duration
@@ -108,6 +114,14 @@ def scan():
     scanned_ids = {b["id"] for b in books}
     for wb in existing_wishlist:
         if wb.get("id") not in scanned_ids:
+            c_url = wb.get("cover_url") or wb.get("cover")
+            if c_url:
+                try:
+                    c_path = BASE_DIR / urllib.parse.unquote(c_url.split('?')[0])
+                    if c_path.is_file():
+                        wb["cover_version"] = str(int(c_path.stat().st_mtime))
+                except Exception:
+                    pass
             books.append(wb)
 
     with open(output_file, "w", encoding="utf-8") as f:

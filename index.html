@@ -399,29 +399,115 @@
     .cover-fallback {
       width: 100%;
       height: 100%;
-      background: linear-gradient(145deg, #24242A, #121215);
+      background: linear-gradient(145deg, #22222a 0%, #111116 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 1rem;
+      padding: 0.85rem 0.65rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      user-select: none;
+    }
+
+    .cover-fallback::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 8px;
+      background: linear-gradient(90deg, rgba(255, 159, 10, 0.4), transparent);
+      pointer-events: none;
+    }
+
+    .fallback-book-icon {
+      color: var(--accent);
+      opacity: 0.85;
+      margin-bottom: 0.45rem;
+      flex-shrink: 0;
     }
 
     .cover-fallback h4 {
-      font-size: 0.95rem;
+      font-size: 0.84rem;
       font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 0.3rem;
+      color: #FFFFFF;
+      margin-bottom: 0.25rem;
+      line-height: 1.25;
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      word-break: break-word;
     }
 
     .cover-fallback p {
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       color: var(--text-secondary);
+      line-height: 1.2;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Card Progress Bar (Tracking where left off) */
+    .card-progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 7;
+      display: none;
+    }
+
+    .card-progress-bar.visible {
+      display: block;
+    }
+
+    .card-progress-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 0 2px 2px 0;
+      transition: width 0.3s ease;
+    }
+
+    .card-progress-fill.finished {
+      background: #30D158;
+    }
+
+    .card-left-off-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.68rem;
+      color: var(--text-tertiary);
+      margin-top: 2px;
+      gap: 4px;
+    }
+
+    .card-left-off-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: 1;
+    }
+
+    .card-duration-badge.finished {
+      color: #30D158;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-weight: 800;
+    }
+
+    .card-duration-badge.in-progress {
+      color: var(--accent);
+      font-weight: 800;
     }
 
     .offline-badge {
@@ -745,6 +831,13 @@
       font-size: 0.74rem;
       font-weight: 700;
       flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .btn-header-action.finished {
+      background: rgba(48, 209, 88, 0.16);
+      border-color: rgba(48, 209, 88, 0.5);
+      color: #30D158;
     }
 
     /* Content Area: Strictly fits screen proportionally without scrolling */
@@ -767,7 +860,7 @@
     /* Cover dynamically scales to fill available height */
     .full-cover-wrapper {
       flex: 1;
-      min-height: 120px;
+      min-height: 0;
       max-height: 35vh;
       aspect-ratio: 1 / 1.48;
       border-radius: var(--radius-lg);
@@ -779,6 +872,22 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      background: #141418;
+    }
+
+    .full-cover-wrapper .cover-fallback {
+      padding: 1.5rem 1.2rem;
+      border: none;
+    }
+
+    .full-cover-wrapper .cover-fallback h4 {
+      font-size: 1.15rem;
+      -webkit-line-clamp: 4;
+      margin-bottom: 0.4rem;
+    }
+
+    .full-cover-wrapper .cover-fallback p {
+      font-size: 0.85rem;
     }
 
     .full-cover-wrapper img {
@@ -973,6 +1082,24 @@
 
     .full-sub-btn:hover {
       background: rgba(255, 255, 255, 0.14);
+    }
+
+    @media (max-height: 720px) {
+      .full-player-header { height: 42px; padding: 0.25rem 0.75rem; }
+      .full-cover-wrapper { max-height: 28vh; margin-bottom: 0.25rem; }
+      .full-chap-title { font-size: 0.95rem; }
+      .full-remaining-pill { margin-top: 0.2rem; font-size: 0.7rem; padding: 0.18rem 0.65rem; }
+      .full-play-hero { width: 56px; height: 56px; }
+      .full-ctrl-skip { width: 44px; height: 44px; }
+      .full-scrubber-section { margin: 0.15rem 0 0.35rem; }
+      .full-controls-row { gap: 1.1rem; margin-bottom: 0.3rem; }
+      .full-sub-btn { padding: 0.32rem 0.6rem; font-size: 0.72rem; }
+    }
+
+    @media (max-height: 600px) {
+      .full-cover-wrapper { max-height: 22vh; }
+      .full-controls-row { gap: 0.85rem; margin-bottom: 0.2rem; }
+      .full-play-hero { width: 48px; height: 48px; }
     }
 
     /* CHAPTERS DRAWER (BOTTOM SHEET / SIDE PANEL) */
@@ -1369,7 +1496,12 @@
   <!-- MINI PLAYER BAR (DOCKED AT BOTTOM WHEN BROWSING SHELF) -->
   <div class="mini-player-bar hidden" id="miniPlayerBar">
     <div class="mini-progress-line" id="miniProgressLine"></div>
-    <img src="" alt="" class="mini-thumb" id="miniThumbImg" />
+    <div style="position:relative; width:44px; height:44px; flex-shrink:0;">
+      <img src="" alt="" class="mini-thumb" id="miniThumbImg" />
+      <div class="mini-thumb" id="miniThumbFallback" style="display:none; width:44px; height:44px; align-items:center; justify-content:center; color:var(--accent);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      </div>
+    </div>
     <div class="mini-text-wrap" id="miniTextWrap">
       <div class="mini-chapter-title" id="miniChapterTitle">Chapter Name</div>
       <div class="mini-sub-line">
@@ -1402,10 +1534,16 @@
         <div class="full-header-tag">Now Playing</div>
         <div class="full-header-book" id="fullHeaderBook">Book Title</div>
       </div>
-      <button class="btn-header-action" id="btnOpenChaptersTop">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-        <span id="topChaptersBadge">Chapters</span>
-      </button>
+      <div style="display:flex; align-items:center; gap:0.4rem;">
+        <button class="btn-header-action" id="btnToggleFinishHeader" title="Mark as Finished" style="padding: 0.35rem 0.65rem;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span id="finishHeaderLabel">Finish</span>
+        </button>
+        <button class="btn-header-action" id="btnOpenChaptersTop">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          <span id="topChaptersBadge">Chapters</span>
+        </button>
+      </div>
     </div>
 
     <!-- Content Area: Strictly fits screen proportionally without scrolling -->
@@ -1413,6 +1551,14 @@
       <!-- Cover Artwork -->
       <div class="full-cover-wrapper" id="fullCoverWrapper">
         <img src="" alt="" id="fullCoverImg" />
+        <div class="cover-fallback full-player-fallback" id="fullCoverFallback" style="display:none;">
+          <svg class="fallback-book-icon" width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+          <h4 id="fullFallbackTitle"></h4>
+          <p id="fullFallbackAuthor"></p>
+        </div>
       </div>
 
       <!-- Titles & Dynamic Total Remaining Pill -->
@@ -1506,6 +1652,10 @@
         <div class="sheet-book-author" id="sheetBookAuthor">Author</div>
       </div>
       <div class="sheet-actions">
+        <div class="sheet-action-row" id="actionToggleFinished">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span id="sheetFinishedLabel">Mark as Finished</span>
+        </div>
         <div class="sheet-action-row" id="actionChangeCover">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
           <span>Change Cover Photo</span>
@@ -1592,6 +1742,7 @@
     const miniPlayerBar = document.getElementById("miniPlayerBar");
     const miniProgressLine = document.getElementById("miniProgressLine");
     const miniThumbImg = document.getElementById("miniThumbImg");
+    const miniThumbFallback = document.getElementById("miniThumbFallback");
     const miniTextWrap = document.getElementById("miniTextWrap");
     const miniChapterTitle = document.getElementById("miniChapterTitle");
     const miniBookTitle = document.getElementById("miniBookTitle");
@@ -1606,7 +1757,13 @@
     const btnMinimizePlayer = document.getElementById("btnMinimizePlayer");
     const fullHeaderBook = document.getElementById("fullHeaderBook");
     const btnOpenChaptersTop = document.getElementById("btnOpenChaptersTop");
+    const btnToggleFinishHeader = document.getElementById("btnToggleFinishHeader");
+    const finishHeaderLabel = document.getElementById("finishHeaderLabel");
+    const fullCoverWrapper = document.getElementById("fullCoverWrapper");
     const fullCoverImg = document.getElementById("fullCoverImg");
+    const fullCoverFallback = document.getElementById("fullCoverFallback");
+    const fullFallbackTitle = document.getElementById("fullFallbackTitle");
+    const fullFallbackAuthor = document.getElementById("fullFallbackAuthor");
     const fullChapTitle = document.getElementById("fullChapTitle");
     const fullAuthorSub = document.getElementById("fullAuthorSub");
     const fullRemainingPill = document.getElementById("fullRemainingPill");
@@ -1639,6 +1796,8 @@
     const btnCloseSheet = document.getElementById("btnCloseSheet");
     const sheetBookTitle = document.getElementById("sheetBookTitle");
     const sheetBookAuthor = document.getElementById("sheetBookAuthor");
+    const actionToggleFinished = document.getElementById("actionToggleFinished");
+    const sheetFinishedLabel = document.getElementById("sheetFinishedLabel");
     const actionChangeCover = document.getElementById("actionChangeCover");
     const actionDownloadOffline = document.getElementById("actionDownloadOffline");
     const sheetDownloadLabel = document.getElementById("sheetDownloadLabel");
@@ -1922,6 +2081,84 @@
       return remSecs;
     }
 
+    /* Dynamic Cache-Busting Cover URL Resolver */
+    function getCoverUrl(book) {
+      if (!book) return "";
+      const src = book.cover || book.cover_url;
+      if (!src) return "";
+      if (src.startsWith("data:") || src.startsWith("blob:")) return src;
+      const v = book.cover_version;
+      if (v && !src.includes("?v=")) {
+        return `${src}?v=${v}`;
+      }
+      return src;
+    }
+
+    /* Comprehensive Progress & Left-Off Tracker */
+    function getBookProgress(book) {
+      if (!book || !book.chapters || book.chapters.length === 0) {
+        return { percent: 0, completedSecs: 0, totalSecs: book?.total_duration || 0, curChapIdx: 0, curChapName: "", curTime: 0, isStarted: false, timeToFinish: 0 };
+      }
+      const chaps = book.chapters;
+      const isActive = (activeBook && activeBook.id === book.id);
+      let curChapIdx = isActive ? activeChapIdx : ((typeof book.lastChapIdx === "number") ? book.lastChapIdx : 0);
+      let curTime = isActive ? (audio.currentTime || 0) : ((typeof book.lastTime === "number") ? book.lastTime : 0);
+
+      if (!isActive) {
+        try {
+          const savedProg = localStorage.getItem(`ssk_progress_${book.id}`);
+          if (savedProg) {
+            const parsed = JSON.parse(savedProg);
+            if (parsed && typeof parsed.chapIdx === "number") {
+              curChapIdx = parsed.chapIdx;
+              curTime = parsed.time || 0;
+            }
+          }
+        } catch(e) {}
+      }
+
+      curChapIdx = Math.max(0, Math.min(curChapIdx, chaps.length - 1));
+      let totalSecs = 0;
+      let completedSecs = 0;
+      let remSecs = 0;
+
+      for (let i = 0; i < chaps.length; i++) {
+        const dur = chaps[i].duration || 0;
+        totalSecs += dur;
+        if (i < curChapIdx) {
+          completedSecs += dur;
+        } else if (i === curChapIdx) {
+          completedSecs += Math.min(dur, curTime);
+          remSecs += Math.max(0, dur - curTime);
+        } else {
+          remSecs += dur;
+        }
+      }
+
+      if (totalSecs === 0 && book.total_duration) totalSecs = book.total_duration;
+      const percent = totalSecs > 0 ? Math.min(100, Math.round((completedSecs / totalSecs) * 100)) : 0;
+      const isStarted = completedSecs > 10 || curChapIdx > 0;
+      const curChapName = chaps[curChapIdx]?.name || `Chapter ${curChapIdx + 1}`;
+      const timeToFinish = remSecs > 0 ? remSecs : totalSecs;
+
+      return { percent, completedSecs, totalSecs, curChapIdx, curChapName, curTime, isStarted, timeToFinish };
+    }
+
+    /* Update Finished State in Full Player Header */
+    function updateFullPlayerFinishState() {
+      if (!activeBook) return;
+      const isFin = (activeBook.status === "finished");
+      if (btnToggleFinishHeader) {
+        if (isFin) {
+          btnToggleFinishHeader.classList.add("finished");
+          if (finishHeaderLabel) finishHeaderLabel.textContent = "Finished ✓";
+        } else {
+          btnToggleFinishHeader.classList.remove("finished");
+          if (finishHeaderLabel) finishHeaderLabel.textContent = "Finish";
+        }
+      }
+    }
+
     // Scrubber: 'duration' (MM:SS) | 'countdown' (-MM:SS)
     let scrubberTimeMode = localStorage.getItem("ssk_scrubber_mode") === "countdown" ? "countdown" : "duration";
 
@@ -2023,39 +2260,47 @@
         const card = document.createElement("div");
         card.className = "book-card";
 
-        let totalSecs = 0;
-        if (book.chapters) book.chapters.forEach(c => totalSecs += (c.duration || 0));
-        if (totalSecs === 0 && book.total_duration) totalSecs = book.total_duration;
+        const progress = getBookProgress(book);
+        const isFinished = (book.status === "finished");
+        const isWishlist = (book.status === "wishlist" || !book.chapters || book.chapters.length === 0);
+        const coverSrc = getCoverUrl(book);
 
-        let badgeText = "Wishlist";
-        if (book.status === "wishlist" || (!book.chapters || book.chapters.length === 0)) {
-          badgeText = "Wishlist";
-        } else if (book.status === "finished") {
-          badgeText = "Finished";
+        let badgeHtml = "";
+        let leftOffText = "";
+
+        if (isWishlist) {
+          badgeHtml = `<span class="card-duration-badge">Wishlist</span>`;
+        } else if (isFinished) {
+          badgeHtml = `<span class="card-duration-badge finished"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Finished</span>`;
+          leftOffText = `${book.chapters?.length || 0} tracks completed`;
+        } else if (progress.isStarted) {
+          badgeHtml = `<span class="card-duration-badge in-progress">${progress.percent}%</span>`;
+          leftOffText = `Ch. ${progress.curChapIdx + 1}/${book.chapters?.length || 0} • ${formatBookRemaining(progress.timeToFinish, currentSpeed)} left`;
         } else {
-          const remSecs = computeBookRemainingSeconds(book);
-          const timeToFinish = remSecs > 0 ? remSecs : totalSecs;
-          if (timeToFinish > 0) {
-            badgeText = `${formatBookRemaining(timeToFinish, currentSpeed)} to finish`;
-          } else {
-            badgeText = `${book.chapters?.length || 0} chaps`;
-          }
+          badgeHtml = `<span class="card-duration-badge">${book.chapters?.length || 0} chaps</span>`;
+          leftOffText = `${formatBookRemaining(progress.totalSecs, currentSpeed)}`;
         }
 
         card.innerHTML = `
           <div class="cover-box ${isDownloadingThis ? 'is-downloading' : ''}" id="coverBox_${book.id}">
             ${book.isDownloaded && !isDownloadingThis ? `<div class="offline-badge"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Offline</div>` : ''}
-            ${(book.cover || book.cover_url) 
-              ? `<img src="${book.cover || book.cover_url}" alt="${escapeHtml(book.title)}" loading="lazy" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex';" />
+            ${coverSrc 
+              ? `<img src="${coverSrc}" alt="${escapeHtml(book.title)}" loading="lazy" onerror="this.style.display='none'; const fb = this.parentElement.querySelector('.cover-fallback'); if(fb) fb.style.display='flex';" />
                  <div class="cover-fallback" style="display:none;">
+                   <svg class="fallback-book-icon" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
                    <h4>${escapeHtml(book.title)}</h4>
-                   <p>${escapeHtml(book.author)}</p>
+                   <p>${escapeHtml(book.author || 'Audiobook')}</p>
                  </div>`
               : `<div class="cover-fallback">
+                   <svg class="fallback-book-icon" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
                    <h4>${escapeHtml(book.title)}</h4>
-                   <p>${escapeHtml(book.author)}</p>
+                   <p>${escapeHtml(book.author || 'Audiobook')}</p>
                  </div>`
             }
+            ${!isWishlist ? `
+              <div class="card-progress-bar ${progress.isStarted || isFinished ? 'visible' : ''}">
+                <div class="card-progress-fill ${isFinished ? 'finished' : ''}" style="width: ${isFinished ? 100 : progress.percent}%"></div>
+              </div>` : ''}
             ${isDownloadingThis ? `
               <div class="cover-dl-badge ${isDownloadPaused ? 'is-paused' : ''}" onclick="handleDownloadToggle(event, '${book.id}')">
                 ${isDownloadPaused ? `
@@ -2077,13 +2322,14 @@
                   ${isDownloadPaused ? `<span class="card-title-pct" style="color:#ff9f0a;">${activeDownloadingProgress}% (Paused)</span>` : `<span class="card-title-spinner"></span><span class="card-title-pct">${activeDownloadingProgress}%</span>`}
                 </span>` : ''}
             </div>
-            <div class="card-author">${escapeHtml(book.author)}</div>
+            <div class="card-author">${escapeHtml(book.author || 'Audiobook')}</div>
             <div class="card-meta-row">
-              <span class="card-duration-badge">${badgeText}</span>
+              ${badgeHtml}
               <button class="card-more-btn" title="Options">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
               </button>
             </div>
+            ${leftOffText ? `<div class="card-left-off-row"><span class="card-left-off-text">${leftOffText}</span></div>` : ''}
           </div>
         `;
 
@@ -2129,6 +2375,11 @@
       sheetTargetBook = book;
       sheetBookTitle.textContent = book.title;
       sheetBookAuthor.textContent = book.author || "Audiobook";
+
+      const isFinished = (book.status === "finished");
+      if (sheetFinishedLabel) {
+        sheetFinishedLabel.textContent = isFinished ? "Mark as In Progress (Re-listen)" : "Mark as Finished";
+      }
 
       let dlCount = 0;
       const total = book.chapters?.length || 0;
@@ -2244,19 +2495,46 @@
       drawerSubtitle.textContent = `${book.chapters?.length || 0} chapters`;
       topChaptersBadge.textContent = `${activeChapIdx + 1}/${book.chapters?.length || 0}`;
 
-      const coverSrc = book.cover || "";
+      const coverSrc = getCoverUrl(book);
       if (coverSrc) {
         miniThumbImg.src = coverSrc;
         miniThumbImg.style.display = "block";
+        if (miniThumbFallback) miniThumbFallback.style.display = "none";
+        miniThumbImg.onerror = () => {
+          miniThumbImg.style.display = "none";
+          if (miniThumbFallback) miniThumbFallback.style.display = "flex";
+        };
+
         fullCoverImg.src = coverSrc;
         fullCoverImg.style.display = "block";
+        if (fullCoverFallback) fullCoverFallback.style.display = "none";
+        fullCoverImg.onerror = () => {
+          fullCoverImg.style.display = "none";
+          if (fullCoverFallback) {
+            fullCoverFallback.style.display = "flex";
+            if (fullFallbackTitle) fullFallbackTitle.textContent = book.title;
+            if (fullFallbackAuthor) fullFallbackAuthor.textContent = book.author || "Audiobook";
+          }
+        };
       } else {
         miniThumbImg.style.display = "none";
+        if (miniThumbFallback) miniThumbFallback.style.display = "flex";
+
         fullCoverImg.style.display = "none";
+        if (fullCoverFallback) {
+          fullCoverFallback.style.display = "flex";
+          if (fullFallbackTitle) fullFallbackTitle.textContent = book.title;
+          if (fullFallbackAuthor) fullFallbackAuthor.textContent = book.author || "Audiobook";
+        }
       }
 
+      updateFullPlayerFinishState();
       renderDrawer();
       updateMediaSession();
+
+      if (startTime > 5 || chapIdx > 0) {
+        showToast(`Resumed "${book.title}" at Track ${activeChapIdx + 1}`);
+      }
 
       // Check for offline downloaded blob FIRST
       const blobKey = `${book.id}_${activeChapIdx}`;
@@ -2767,11 +3045,12 @@
       activeBook.chapters.forEach((ch, idx) => {
         const li = document.createElement("li");
         const isActive = idx === activeChapIdx;
+        const isPast = idx < activeChapIdx;
         const isSaved = downloadedBlobKeys.has(`${activeBook.id}_${idx}`);
-        li.className = `drawer-item ${isActive ? "active" : ""}`;
+        li.className = `drawer-item ${isActive ? "active" : ""} ${isPast ? "completed" : ""}`;
         li.innerHTML = `
           <div style="min-width:0; flex:1;">
-            <div class="drawer-item-index">Track ${idx + 1}${isSaved ? ' • Saved Offline' : ''}</div>
+            <div class="drawer-item-index">${isActive ? '▶ Playing • ' : (isPast ? '✓ Completed • ' : '')}Track ${idx + 1}${isSaved ? ' • Saved Offline' : ''}</div>
             <div class="drawer-item-title">${escapeHtml(ch.name)}</div>
           </div>
           <div class="drawer-item-time">${ch.duration ? formatClock(ch.duration) : '--:--'}</div>
@@ -2840,7 +3119,9 @@
 
             // Sync cover from server whenever server has a cover and it differs or version updated
             if (sCover) {
-              if (!existing.cover || existing.cover !== sCover || existing.cover_version !== sBook.cover_version) {
+              const versionChanged = Boolean(sBook.cover_version && existing.cover_version !== sBook.cover_version);
+              const urlChanged = (!existing.cover || existing.cover !== sCover);
+              if (urlChanged || versionChanged) {
                 existing.cover = sCover;
                 existing.cover_url = sBook.cover_url || sCover;
                 existing.cover_version = sBook.cover_version;
@@ -2849,8 +3130,14 @@
                 if (activeBook && activeBook.id === existing.id) {
                   activeBook.cover = sCover;
                   activeBook.cover_url = sBook.cover_url || sCover;
-                  miniThumbImg.src = sCover;
-                  fullCoverImg.src = sCover;
+                  activeBook.cover_version = sBook.cover_version;
+                  const newCover = getCoverUrl(activeBook);
+                  miniThumbImg.src = newCover;
+                  miniThumbImg.style.display = "block";
+                  if (miniThumbFallback) miniThumbFallback.style.display = "none";
+                  fullCoverImg.src = newCover;
+                  fullCoverImg.style.display = "block";
+                  if (fullCoverFallback) fullCoverFallback.style.display = "none";
                   updateMediaSession();
                 }
               }
@@ -3144,11 +3431,44 @@
         if (e.target === drawerBackdrop) drawerBackdrop.classList.remove("open");
       };
 
+      // Toggle Finished in Full Player Header
+      if (btnToggleFinishHeader) {
+        btnToggleFinishHeader.onclick = async () => {
+          if (!activeBook) return;
+          const willBeFin = (activeBook.status !== "finished");
+          activeBook.status = willBeFin ? "finished" : "listening";
+          await dbSave(activeBook);
+          updateFullPlayerFinishState();
+          updateCounts();
+          renderBooks();
+          showToast(willBeFin ? `🎉 Marked "${activeBook.title}" as Finished!` : `Marked "${activeBook.title}" as In Progress.`);
+        };
+      }
+
       // Action Sheet Interactions
       btnCloseSheet.onclick = closeActionSheet;
       sheetBackdrop.onclick = (e) => {
         if (e.target === sheetBackdrop) closeActionSheet();
       };
+
+      // Toggle Finished in Action Sheet
+      if (actionToggleFinished) {
+        actionToggleFinished.onclick = async () => {
+          if (!sheetTargetBook) return;
+          const target = sheetTargetBook;
+          closeActionSheet();
+          const willBeFin = (target.status !== "finished");
+          target.status = willBeFin ? "finished" : "listening";
+          await dbSave(target);
+          if (activeBook && activeBook.id === target.id) {
+            activeBook.status = target.status;
+            updateFullPlayerFinishState();
+          }
+          updateCounts();
+          renderBooks();
+          showToast(willBeFin ? `🎉 Marked "${target.title}" as Finished!` : `Marked "${target.title}" as In Progress.`);
+        };
+      }
 
       actionChangeCover.onclick = () => {
         if (!sheetTargetBook) return;
