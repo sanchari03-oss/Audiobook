@@ -23,7 +23,7 @@
       "title": "Marcus Aurelius - Meditations",
       "author": "Audiobook",
       "cover_url": "Marcus%20Aurelius%20-%20Meditations/cover.jpg",
-      "cover_version": "1790705874",
+      "cover_version": "1790864460",
       "chapters": [
         {
           "index": 0,
@@ -715,6 +715,24 @@
       ],
       "total_tracks": 52,
       "total_duration": 84261.59999999999
+    },
+    {
+      "id": "white-nights",
+      "title": "White Nights",
+      "author": "Audiobook",
+      "cover_url": "White%20Nights/cover.jpg",
+      "cover_version": "1790864406",
+      "chapters": [
+        {
+          "index": 0,
+          "name": "White Nights",
+          "file_size": 103937372,
+          "duration": 10995.0,
+          "stream_url": "White%20Nights/01%20-%20White%20Nights.mp3"
+        }
+      ],
+      "total_tracks": 1,
+      "total_duration": 10995.0
     },
     {
       "id": "the-appeal",
