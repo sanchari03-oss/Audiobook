@@ -142,6 +142,122 @@
       "total_duration": 27060.8
     },
     {
+      "id": "meditations",
+      "title": "Meditations",
+      "author": "Audiobook",
+      "cover_url": "Meditations/cover.jpeg",
+      "cover_version": "1790864411",
+      "chapters": [
+        {
+          "index": 0,
+          "name": "Introduction",
+          "file_size": 3200256,
+          "duration": 168.0,
+          "stream_url": "Meditations/01%20-%20Introduction.mp3"
+        },
+        {
+          "index": 1,
+          "name": "Chapter 1",
+          "file_size": 20174909,
+          "duration": 986.0,
+          "stream_url": "Meditations/02%20-%20Chapter%201.mp3"
+        },
+        {
+          "index": 2,
+          "name": "Chapter 2",
+          "file_size": 17199852,
+          "duration": 830.0,
+          "stream_url": "Meditations/03%20-%20Chapter%202.mp3"
+        },
+        {
+          "index": 3,
+          "name": "Chapter 3",
+          "file_size": 25792509,
+          "duration": 1060.0,
+          "stream_url": "Meditations/04%20-%20Chapter%203.mp3"
+        },
+        {
+          "index": 4,
+          "name": "Chapter 4",
+          "file_size": 30924066,
+          "duration": 1726.0,
+          "stream_url": "Meditations/05%20-%20Chapter%204.mp3"
+        },
+        {
+          "index": 5,
+          "name": "Chapter 5",
+          "file_size": 25204625,
+          "duration": 1956.0,
+          "stream_url": "Meditations/06%20-%20Chapter%205.mp3"
+        },
+        {
+          "index": 6,
+          "name": "Chapter 6",
+          "file_size": 21763863,
+          "duration": 1664.0,
+          "stream_url": "Meditations/07%20-%20Chapter%206.mp3"
+        },
+        {
+          "index": 7,
+          "name": "Chapter 7",
+          "file_size": 36361642,
+          "duration": 1957.0,
+          "stream_url": "Meditations/08%20-%20Chapter%207.mp3"
+        },
+        {
+          "index": 8,
+          "name": "Chapter 8",
+          "file_size": 44401943,
+          "duration": 2151.0,
+          "stream_url": "Meditations/09%20-%20Chapter%208.mp3"
+        },
+        {
+          "index": 9,
+          "name": "Chapter 9",
+          "file_size": 42121994,
+          "duration": 1958.0,
+          "stream_url": "Meditations/10%20-%20Chapter%209.mp3"
+        },
+        {
+          "index": 10,
+          "name": "Chapter 10",
+          "file_size": 27343500,
+          "duration": 1716.0,
+          "stream_url": "Meditations/11%20-%20Chapter%2010.mp3"
+        },
+        {
+          "index": 11,
+          "name": "Chapter 11",
+          "file_size": 29313392,
+          "duration": 1543.0,
+          "stream_url": "Meditations/12%20-%20Chapter%2011.mp3"
+        },
+        {
+          "index": 12,
+          "name": "Chapter 12",
+          "file_size": 26478831,
+          "duration": 1373.0,
+          "stream_url": "Meditations/13%20-%20Chapter%2012.mp3"
+        },
+        {
+          "index": 13,
+          "name": "M. Aurelius Antoninus",
+          "file_size": 50842535,
+          "duration": 2575.0,
+          "stream_url": "Meditations/14%20-%20M.%20Aurelius%20Antoninus.mp3"
+        },
+        {
+          "index": 14,
+          "name": "The Philosophy of Marcus Aurelius",
+          "file_size": 66551289,
+          "duration": 3485.7,
+          "stream_url": "Meditations/15%20-%20The%20Philosophy%20of%20Marcus%20Aurelius.mp3"
+        }
+      ],
+      "total_tracks": 15,
+      "total_duration": 25148.7
+    },
+    {
       "id": "meinkampf---audiobook",
       "title": "Meinkampf - Audiobook",
       "author": "Audiobook",
