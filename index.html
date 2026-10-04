@@ -1664,6 +1664,10 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           <span id="sheetDownloadLabel">Download for Offline Listening</span>
         </div>
+        <div class="sheet-action-row danger" id="actionRemoveOffline" style="display:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          <span id="sheetRemoveOfflineLabel">Remove Offline Audio</span>
+        </div>
         <div class="sheet-action-row danger" id="actionDeleteBook">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
           <span>Delete from Library</span>
@@ -1801,6 +1805,8 @@
     const actionChangeCover = document.getElementById("actionChangeCover");
     const actionDownloadOffline = document.getElementById("actionDownloadOffline");
     const sheetDownloadLabel = document.getElementById("sheetDownloadLabel");
+    const actionRemoveOffline = document.getElementById("actionRemoveOffline");
+    const sheetRemoveOfflineLabel = document.getElementById("sheetRemoveOfflineLabel");
     const actionDeleteBook = document.getElementById("actionDeleteBook");
 
     // Add Book Modal
@@ -1859,15 +1865,80 @@
       return b;
     }
 
+    function getDeletedBookIds() {
+      try {
+        const raw = localStorage.getItem("ssk_deleted_book_ids");
+        return new Set(raw ? JSON.parse(raw) : []);
+      } catch (e) {
+        return new Set();
+      }
+    }
+
+    function markBookAsDeleted(id) {
+      try {
+        const deleted = getDeletedBookIds();
+        deleted.add(id);
+        localStorage.setItem("ssk_deleted_book_ids", JSON.stringify(Array.from(deleted)));
+      } catch (e) {}
+    }
+
+    function unmarkBookAsDeleted(id) {
+      try {
+        const deleted = getDeletedBookIds();
+        if (deleted.has(id)) {
+          deleted.delete(id);
+          localStorage.setItem("ssk_deleted_book_ids", JSON.stringify(Array.from(deleted)));
+        }
+      } catch (e) {}
+    }
+
+    function unmarkBookByTitle(title) {
+      if (!title) return;
+      try {
+        const deleted = getDeletedBookIds();
+        const slug = title.toLowerCase().replace(/[^a-z0-9_-]+/g, "-").replace(/^-|-$/g, "");
+        if (deleted.has(slug)) {
+          deleted.delete(slug);
+          localStorage.setItem("ssk_deleted_book_ids", JSON.stringify(Array.from(deleted)));
+        }
+      } catch (e) {}
+    }
+
+    function isBookFullyDownloaded(book) {
+      if (!book || !book.chapters || book.chapters.length === 0) return false;
+      return book.chapters.every((_, i) => downloadedBlobKeys.has(`${book.id}_${i}`));
+    }
+
+    function getBookDownloadedCount(book) {
+      if (!book || !book.chapters || book.chapters.length === 0) return 0;
+      let count = 0;
+      for (let i = 0; i < book.chapters.length; i++) {
+        if (downloadedBlobKeys.has(`${book.id}_${i}`)) count++;
+      }
+      return count;
+    }
+
+    async function removeOfflineFiles(book) {
+      if (!book) return;
+      await dbDeleteBlobsForBook(book.id);
+      downloadedBlobKeys = await dbGetAllBlobKeys();
+      book.isDownloaded = false;
+      await dbSave(book);
+      renderBooks();
+      renderDrawer();
+      showToast("Offline audio files removed.");
+    }
+
     function syncWishlistBackup(specificBook = null) {
       try {
+        const deletedIds = getDeletedBookIds();
         let stored = JSON.parse(localStorage.getItem("ssk_wishlist_books") || "[]");
         if (!Array.isArray(stored)) stored = [];
 
         if (specificBook) {
           const isWishlist = specificBook.status === "wishlist" || (!specificBook.chapters || specificBook.chapters.length === 0);
           const idx = stored.findIndex(x => x.id === specificBook.id);
-          if (isWishlist) {
+          if (isWishlist && !deletedIds.has(specificBook.id)) {
             const clean = sanitizeForLocalStorage(specificBook);
             if (idx >= 0) stored[idx] = clean;
             else stored.push(clean);
@@ -1878,6 +1949,7 @@
 
         if (Array.isArray(books)) {
           books.forEach(b => {
+            if (deletedIds.has(b.id)) return;
             if (b.status === "wishlist" || (!b.chapters || b.chapters.length === 0)) {
               const clean = sanitizeForLocalStorage(b);
               const idx = stored.findIndex(x => x.id === b.id);
@@ -1886,6 +1958,7 @@
             }
           });
         }
+        stored = stored.filter(x => !deletedIds.has(x.id));
         localStorage.setItem("ssk_wishlist_books", JSON.stringify(stored));
       } catch (e) {
         console.warn("Could not save wishlist to localStorage:", e);
@@ -1894,30 +1967,38 @@
 
     function dbSave(b) {
       return new Promise(res => {
-        const tx = db.transaction("books", "readwrite");
-        tx.objectStore("books").put(b);
-        tx.oncomplete = () => {
-          if (b && (b.status === "wishlist" || (!b.chapters || b.chapters.length === 0))) {
-            syncWishlistBackup(b);
-          }
-          res();
-        };
-        tx.onerror = () => res();
+        try {
+          if (!db) { res(); return; }
+          const tx = db.transaction("books", "readwrite");
+          tx.objectStore("books").put(b);
+          tx.oncomplete = () => {
+            if (b && (b.status === "wishlist" || (!b.chapters || b.chapters.length === 0))) {
+              syncWishlistBackup(b);
+            }
+            res();
+          };
+          tx.onerror = () => res();
+        } catch(e) { res(); }
       });
     }
 
     function dbDeleteBlobsForBook(id) {
       return new Promise(res => {
         try {
+          const prefix = `${id}_`;
+          for (const k of Array.from(downloadedBlobKeys)) {
+            if (typeof k === "string" && k.startsWith(prefix)) {
+              downloadedBlobKeys.delete(k);
+            }
+          }
+          if (!db) { res(); return; }
           const tx = db.transaction("audioblobs", "readwrite");
           const store = tx.objectStore("audioblobs");
           const req = store.getAllKeys();
           req.onsuccess = () => {
-            const prefix = `${id}_`;
             (req.result || []).forEach(k => {
               if (typeof k === "string" && k.startsWith(prefix)) {
                 store.delete(k);
-                downloadedBlobKeys.delete(k);
               }
             });
           };
@@ -1932,19 +2013,22 @@
     async function dbDelete(id) {
       await dbDeleteBlobsForBook(id);
       return new Promise(res => {
-        const tx = db.transaction("books", "readwrite");
-        tx.objectStore("books").delete(id);
-        tx.oncomplete = () => {
-          try {
-            let stored = JSON.parse(localStorage.getItem("ssk_wishlist_books") || "[]");
-            if (Array.isArray(stored)) {
-              stored = stored.filter(x => x.id !== id);
-              localStorage.setItem("ssk_wishlist_books", JSON.stringify(stored));
-            }
-          } catch(e) {}
-          res();
-        };
-        tx.onerror = () => res();
+        try {
+          if (!db) { res(); return; }
+          const tx = db.transaction("books", "readwrite");
+          tx.objectStore("books").delete(id);
+          tx.oncomplete = () => {
+            try {
+              let stored = JSON.parse(localStorage.getItem("ssk_wishlist_books") || "[]");
+              if (Array.isArray(stored)) {
+                stored = stored.filter(x => x.id !== id);
+                localStorage.setItem("ssk_wishlist_books", JSON.stringify(stored));
+              }
+            } catch(e) {}
+            res();
+          };
+          tx.onerror = () => res();
+        } catch(e) { res(); }
       });
     }
 
@@ -2281,9 +2365,12 @@
           leftOffText = `${formatBookRemaining(progress.totalSecs, currentSpeed)}`;
         }
 
+        const isFullDl = isBookFullyDownloaded(book);
+        book.isDownloaded = isFullDl;
+
         card.innerHTML = `
           <div class="cover-box ${isDownloadingThis ? 'is-downloading' : ''}" id="coverBox_${book.id}">
-            ${book.isDownloaded && !isDownloadingThis ? `<div class="offline-badge"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Offline</div>` : ''}
+            ${isFullDl && !isDownloadingThis ? `<div class="offline-badge"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Offline</div>` : ''}
             ${coverSrc 
               ? `<img src="${coverSrc}" alt="${escapeHtml(book.title)}" loading="lazy" onerror="this.style.display='none'; const fb = this.parentElement.querySelector('.cover-fallback'); if(fb) fb.style.display='flex';" />
                  <div class="cover-fallback" style="display:none;">
@@ -2381,21 +2468,28 @@
         sheetFinishedLabel.textContent = isFinished ? "Mark as In Progress (Re-listen)" : "Mark as Finished";
       }
 
-      let dlCount = 0;
       const total = book.chapters?.length || 0;
-      if (total > 0) {
-        for (let i = 0; i < total; i++) {
-          if (downloadedBlobKeys.has(`${book.id}_${i}`)) dlCount++;
-        }
-      }
+      const dlCount = getBookDownloadedCount(book);
+      const isFullDl = total > 0 && dlCount === total;
+
       if (isDownloading && activeDownloadingBookId === book.id) {
         sheetDownloadLabel.textContent = `Pause Download (${activeDownloadingProgress}%)`;
-      } else if (dlCount === total && total > 0) {
-        sheetDownloadLabel.textContent = `Remove Offline Download (${total} saved)`;
+        if (actionRemoveOffline) actionRemoveOffline.style.display = "none";
+      } else if (isFullDl) {
+        sheetDownloadLabel.textContent = `Re-download Audio`;
+        if (actionRemoveOffline) {
+          actionRemoveOffline.style.display = "flex";
+          sheetRemoveOfflineLabel.textContent = `Remove Offline Download (${total} saved)`;
+        }
       } else if (dlCount > 0) {
         sheetDownloadLabel.textContent = `Resume Offline Download (${dlCount}/${total})`;
+        if (actionRemoveOffline) {
+          actionRemoveOffline.style.display = "flex";
+          sheetRemoveOfflineLabel.textContent = `Remove Partial Download (${dlCount} saved)`;
+        }
       } else {
-        sheetDownloadLabel.textContent = `Download for Offline Listening`;
+        sheetDownloadLabel.textContent = total > 0 ? `Download for Offline Listening` : `No Audio Chapters`;
+        if (actionRemoveOffline) actionRemoveOffline.style.display = "none";
       }
 
       sheetBackdrop.classList.add("open");
@@ -3020,7 +3114,10 @@
 
     /* Delete Book */
     async function deleteBook(id) {
-      if (!confirm("Delete this audiobook from library?")) return;
+      const b = books.find(x => x.id === id);
+      const title = b ? b.title : "this audiobook";
+      if (!confirm(`Delete "${title}" from library?`)) return;
+
       if (activeBook && activeBook.id === id) {
         audio.pause();
         audio.src = "";
@@ -3029,9 +3126,28 @@
         activeBook = null;
         localStorage.removeItem("ssk_session");
       }
+
+      if (isDownloading && activeDownloadingBookId === id) {
+        if (downloadAbortController) {
+          downloadAbortController.abort();
+          downloadAbortController = null;
+        }
+        isDownloading = false;
+        isDownloadPaused = false;
+        activeDownloadingBookId = null;
+        activeDownloadingProgress = 0;
+      }
+
       localStorage.removeItem(`ssk_progress_${id}`);
+
+      // Track that this book was explicitly deleted by the user so server sync doesn't restore it
+      markBookAsDeleted(id);
+
       await dbDelete(id);
+      downloadedBlobKeys = await dbGetAllBlobKeys();
       books = await dbGetAll();
+      books = books.filter(x => x.id !== id);
+      syncWishlistBackup();
       updateCounts();
       renderBooks();
       showToast("Audiobook removed.");
@@ -3075,10 +3191,35 @@
         }
         if (!resp || !resp.ok) return;
         const data = await resp.json();
-        if (!data.books || data.books.length === 0) return;
+        if (!data.books || !Array.isArray(data.books)) return;
 
+        const deletedIds = getDeletedBookIds();
+        const serverBookIds = new Set(data.books.map(b => b.id));
         let changed = false;
+
+        // 1. Prune server books that were deleted from server or explicitly deleted by user
+        const remaining = [];
+        for (const b of books) {
+          const isLocalCustomBook = b.id && (b.id.startsWith("book_") || b.source === "local");
+          const isExplicitlyDeleted = deletedIds.has(b.id);
+          const isMissingFromServer = !isLocalCustomBook && !serverBookIds.has(b.id);
+
+          if (isExplicitlyDeleted || isMissingFromServer) {
+            await dbDelete(b.id);
+            changed = true;
+          } else {
+            remaining.push(b);
+          }
+        }
+        books = remaining;
+
+        // 2. Add or update server books (skipping any explicitly deleted books)
         for (const sBook of data.books) {
+          if (deletedIds.has(sBook.id)) {
+            // User explicitly deleted this book from library! Do NOT restore!
+            continue;
+          }
+
           const existing = books.find(b => b.id === sBook.id);
           const isServerWishlist = sBook.status === 'wishlist' || !sBook.chapters || sBook.chapters.length === 0;
           const sCover = sBook.cover || sBook.cover_url || null;
@@ -3150,20 +3291,27 @@
           updateCounts();
           renderBooks();
         }
-      } catch (e) {}
+      } catch (e) {
+        console.warn("syncServerBooks error:", e);
+      }
     }
 
     /* App Initialization */
     async function init() {
       await openDB();
       downloadedBlobKeys = await dbGetAllBlobKeys();
-      books = await dbGetAll();
+      const allDbBooks = await dbGetAll();
+      const deletedIds = getDeletedBookIds();
+
+      // Filter out any explicitly deleted books that might still be in DB
+      books = allDbBooks.filter(b => !deletedIds.has(b.id));
 
       // Dual storage persistence: restore wishlist books from localStorage backup
       try {
         const savedWishlist = JSON.parse(localStorage.getItem("ssk_wishlist_books") || "[]");
         if (Array.isArray(savedWishlist) && savedWishlist.length > 0) {
           for (const wb of savedWishlist) {
+            if (deletedIds.has(wb.id)) continue;
             const existingIdx = books.findIndex(b => b.id === wb.id);
             if (existingIdx === -1) {
               books.push(wb);
@@ -3524,21 +3672,32 @@
         if (!sheetTargetBook) return;
         const bookToDl = sheetTargetBook;
         closeActionSheet();
+
+        const total = bookToDl.chapters?.length || 0;
+        const dlCount = getBookDownloadedCount(bookToDl);
+        const isFullDl = total > 0 && dlCount === total;
+
         if (isDownloading && activeDownloadingBookId === bookToDl.id) {
           pauseDownload();
-        } else if (bookToDl.isDownloaded) {
+        } else if (isFullDl) {
           if (confirm(`Remove offline audio files for "${bookToDl.title}" to free up device space?`)) {
-            await dbDeleteBlobsForBook(bookToDl.id);
-            bookToDl.isDownloaded = false;
-            await dbSave(bookToDl);
-            renderBooks();
-            renderDrawer();
-            showToast("Offline audio files removed.");
+            await removeOfflineFiles(bookToDl);
           }
         } else {
           downloadOffline(bookToDl);
         }
       };
+
+      if (actionRemoveOffline) {
+        actionRemoveOffline.onclick = async () => {
+          if (!sheetTargetBook) return;
+          const bookToRemove = sheetTargetBook;
+          closeActionSheet();
+          if (confirm(`Remove offline audio files for "${bookToRemove.title}" to free up device space?`)) {
+            await removeOfflineFiles(bookToRemove);
+          }
+        };
+      }
 
       actionDeleteBook.onclick = () => {
         if (!sheetTargetBook) return;
@@ -3573,6 +3732,9 @@
 
         showToast("Importing audiobook...");
         const bookId = "book_" + Date.now();
+        unmarkBookAsDeleted(bookId);
+        unmarkBookByTitle(title);
+
         let coverData = null;
         if (coverFile) coverData = await readDataUrl(coverFile);
 
@@ -3589,6 +3751,7 @@
 
         const newBook = {
           id: bookId,
+          source: "local",
           title,
           author,
           cover: coverData,
@@ -3603,6 +3766,7 @@
         if (isWishlist) {
           syncWishlistBackup(newBook);
         }
+        downloadedBlobKeys = await dbGetAllBlobKeys();
         books = await dbGetAll();
         updateCounts();
         renderBooks();

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ssk-player-gh-v3';
+const CACHE_NAME = 'ssk-player-gh-v4';
 
 const STATIC_ASSETS = [
   './',

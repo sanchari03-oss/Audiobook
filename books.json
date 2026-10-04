@@ -19,6 +19,31 @@
       "total_duration": 10403.7
     },
     {
+      "id": "how-to-talk-to-anyone",
+      "title": "How to Talk to Anyone",
+      "author": "Audiobook",
+      "cover_url": "How%20to%20Talk%20to%20Anyone/cover.jpg",
+      "cover_version": "1791123726",
+      "chapters": [
+        {
+          "index": 0,
+          "name": "Part 1",
+          "file_size": 51936631,
+          "duration": 8656.0,
+          "stream_url": "How%20to%20Talk%20to%20Anyone/01%20-%20Part%201.mp3"
+        },
+        {
+          "index": 1,
+          "name": "Part 2",
+          "file_size": 51937495,
+          "duration": 8656.2,
+          "stream_url": "How%20to%20Talk%20to%20Anyone/02%20-%20Part%202.mp3"
+        }
+      ],
+      "total_tracks": 2,
+      "total_duration": 17312.2
+    },
+    {
       "id": "marcus-aurelius---meditations",
       "title": "Marcus Aurelius - Meditations",
       "author": "Audiobook",
@@ -458,6 +483,290 @@
       "total_duration": 88500.20000000001
     },
     {
+      "id": "the-appeal",
+      "title": "THE APPEAL",
+      "author": "Audiobook",
+      "cover_url": "THE%20APPEAL/cover.jpg",
+      "cover_version": "1791121984",
+      "chapters": [
+        {
+          "index": 0,
+          "name": "Chapter 1",
+          "file_size": 12141759,
+          "duration": 2016.8,
+          "stream_url": "THE%20APPEAL/01%20-%20Chapter%201.mp3"
+        },
+        {
+          "index": 1,
+          "name": "Chapter 2",
+          "file_size": 9854193,
+          "duration": 1636.0,
+          "stream_url": "THE%20APPEAL/02%20-%20Chapter%202.mp3"
+        },
+        {
+          "index": 2,
+          "name": "Chapter 3",
+          "file_size": 9155095,
+          "duration": 1519.6,
+          "stream_url": "THE%20APPEAL/03%20-%20Chapter%203.mp3"
+        },
+        {
+          "index": 3,
+          "name": "Chapter 4",
+          "file_size": 5230486,
+          "duration": 866.1,
+          "stream_url": "THE%20APPEAL/04%20-%20Chapter%204.mp3"
+        },
+        {
+          "index": 4,
+          "name": "Chapter 5",
+          "file_size": 8704068,
+          "duration": 1444.5,
+          "stream_url": "THE%20APPEAL/05%20-%20Chapter%205.mp3"
+        },
+        {
+          "index": 5,
+          "name": "Chapter 6",
+          "file_size": 5211459,
+          "duration": 862.9,
+          "stream_url": "THE%20APPEAL/06%20-%20Chapter%206.mp3"
+        },
+        {
+          "index": 6,
+          "name": "Chapter 7",
+          "file_size": 5241009,
+          "duration": 867.9,
+          "stream_url": "THE%20APPEAL/07%20-%20Chapter%207.mp3"
+        },
+        {
+          "index": 7,
+          "name": "Chapter 8",
+          "file_size": 5041946,
+          "duration": 834.7,
+          "stream_url": "THE%20APPEAL/08%20-%20Chapter%208.mp3"
+        },
+        {
+          "index": 8,
+          "name": "Chapter 9",
+          "file_size": 7946880,
+          "duration": 1318.4,
+          "stream_url": "THE%20APPEAL/09%20-%20Chapter%209.mp3"
+        },
+        {
+          "index": 9,
+          "name": "Chapter 10",
+          "file_size": 4922743,
+          "duration": 814.9,
+          "stream_url": "THE%20APPEAL/10%20-%20Chapter%2010.mp3"
+        },
+        {
+          "index": 10,
+          "name": "Chapter 11",
+          "file_size": 7722740,
+          "duration": 1281.1,
+          "stream_url": "THE%20APPEAL/11%20-%20Chapter%2011.mp3"
+        },
+        {
+          "index": 11,
+          "name": "Chapter 12",
+          "file_size": 6198129,
+          "duration": 1027.2,
+          "stream_url": "THE%20APPEAL/12%20-%20Chapter%2012.mp3"
+        },
+        {
+          "index": 12,
+          "name": "Chapter 13",
+          "file_size": 9324468,
+          "duration": 1547.8,
+          "stream_url": "THE%20APPEAL/13%20-%20Chapter%2013.mp3"
+        },
+        {
+          "index": 13,
+          "name": "Chapter 14",
+          "file_size": 4718491,
+          "duration": 780.9,
+          "stream_url": "THE%20APPEAL/14%20-%20Chapter%2014.mp3"
+        },
+        {
+          "index": 14,
+          "name": "Chapter 15",
+          "file_size": 6927497,
+          "duration": 1148.7,
+          "stream_url": "THE%20APPEAL/15%20-%20Chapter%2015.mp3"
+        },
+        {
+          "index": 15,
+          "name": "Chapter 16",
+          "file_size": 6748326,
+          "duration": 1118.8,
+          "stream_url": "THE%20APPEAL/16%20-%20Chapter%2016.mp3"
+        },
+        {
+          "index": 16,
+          "name": "Chapter 17",
+          "file_size": 9418594,
+          "duration": 1563.4,
+          "stream_url": "THE%20APPEAL/17%20-%20Chapter%2017.mp3"
+        },
+        {
+          "index": 17,
+          "name": "Chapter 18",
+          "file_size": 6248435,
+          "duration": 1035.6,
+          "stream_url": "THE%20APPEAL/18%20-%20Chapter%2018.mp3"
+        },
+        {
+          "index": 18,
+          "name": "Chapter 19",
+          "file_size": 6242669,
+          "duration": 1034.6,
+          "stream_url": "THE%20APPEAL/19%20-%20Chapter%2019.mp3"
+        },
+        {
+          "index": 19,
+          "name": "Chapter 20",
+          "file_size": 8382631,
+          "duration": 1390.9,
+          "stream_url": "THE%20APPEAL/20%20-%20Chapter%2020.mp3"
+        },
+        {
+          "index": 20,
+          "name": "Chapter 21",
+          "file_size": 5616220,
+          "duration": 930.3,
+          "stream_url": "THE%20APPEAL/21%20-%20Chapter%2021.mp3"
+        },
+        {
+          "index": 21,
+          "name": "Chapter 22",
+          "file_size": 5020184,
+          "duration": 831.1,
+          "stream_url": "THE%20APPEAL/22%20-%20Chapter%2022.mp3"
+        },
+        {
+          "index": 22,
+          "name": "Chapter 23",
+          "file_size": 5564472,
+          "duration": 921.7,
+          "stream_url": "THE%20APPEAL/23%20-%20Chapter%2023.mp3"
+        },
+        {
+          "index": 23,
+          "name": "Chapter 24",
+          "file_size": 6482669,
+          "duration": 1074.6,
+          "stream_url": "THE%20APPEAL/24%20-%20Chapter%2024.mp3"
+        },
+        {
+          "index": 24,
+          "name": "Chapter 25",
+          "file_size": 4333626,
+          "duration": 716.8,
+          "stream_url": "THE%20APPEAL/25%20-%20Chapter%2025.mp3"
+        },
+        {
+          "index": 25,
+          "name": "Chapter 26",
+          "file_size": 3724762,
+          "duration": 615.4,
+          "stream_url": "THE%20APPEAL/26%20-%20Chapter%2026.mp3"
+        },
+        {
+          "index": 26,
+          "name": "Chapter 27",
+          "file_size": 6812471,
+          "duration": 1129.5,
+          "stream_url": "THE%20APPEAL/27%20-%20Chapter%2027.mp3"
+        },
+        {
+          "index": 27,
+          "name": "Chapter 28",
+          "file_size": 6765480,
+          "duration": 1121.7,
+          "stream_url": "THE%20APPEAL/28%20-%20Chapter%2028.mp3"
+        },
+        {
+          "index": 28,
+          "name": "Chapter 29",
+          "file_size": 5962165,
+          "duration": 987.9,
+          "stream_url": "THE%20APPEAL/29%20-%20Chapter%2029.mp3"
+        },
+        {
+          "index": 29,
+          "name": "Chapter 30",
+          "file_size": 8232721,
+          "duration": 1366.0,
+          "stream_url": "THE%20APPEAL/30%20-%20Chapter%2030.mp3"
+        },
+        {
+          "index": 30,
+          "name": "Chapter 31",
+          "file_size": 4443608,
+          "duration": 735.1,
+          "stream_url": "THE%20APPEAL/31%20-%20Chapter%2031.mp3"
+        },
+        {
+          "index": 31,
+          "name": "Chapter 32",
+          "file_size": 4998995,
+          "duration": 827.6,
+          "stream_url": "THE%20APPEAL/32%20-%20Chapter%2032.mp3"
+        },
+        {
+          "index": 32,
+          "name": "Chapter 33",
+          "file_size": 6659246,
+          "duration": 1104.0,
+          "stream_url": "THE%20APPEAL/33%20-%20Chapter%2033.mp3"
+        },
+        {
+          "index": 33,
+          "name": "Chapter 34",
+          "file_size": 4640509,
+          "duration": 767.9,
+          "stream_url": "THE%20APPEAL/34%20-%20Chapter%2034.mp3"
+        },
+        {
+          "index": 34,
+          "name": "Chapter 35",
+          "file_size": 5819318,
+          "duration": 964.2,
+          "stream_url": "THE%20APPEAL/35%20-%20Chapter%2035.mp3"
+        },
+        {
+          "index": 35,
+          "name": "Chapter 36",
+          "file_size": 6697444,
+          "duration": 1110.4,
+          "stream_url": "THE%20APPEAL/36%20-%20Chapter%2036.mp3"
+        },
+        {
+          "index": 36,
+          "name": "Chapter 37",
+          "file_size": 3869915,
+          "duration": 639.6,
+          "stream_url": "THE%20APPEAL/37%20-%20Chapter%2037.mp3"
+        },
+        {
+          "index": 37,
+          "name": "Chapter 38",
+          "file_size": 3589987,
+          "duration": 593.0,
+          "stream_url": "THE%20APPEAL/38%20-%20Chapter%2038.mp3"
+        },
+        {
+          "index": 38,
+          "name": "Chapter 39",
+          "file_size": 3687285,
+          "duration": 609.2,
+          "stream_url": "THE%20APPEAL/39%20-%20Chapter%2039.mp3"
+        }
+      ],
+      "total_tracks": 39,
+      "total_duration": 41156.799999999996
+    },
+    {
       "id": "the-48-laws-of-power",
       "title": "The 48 Laws of Power",
       "author": "Audiobook",
@@ -833,6 +1142,84 @@
       "total_duration": 84261.59999999999
     },
     {
+      "id": "the-power-of-your-subconscious-mind",
+      "title": "The Power of Your Subconscious Mind",
+      "author": "Audiobook",
+      "cover_url": "The%20Power%20of%20Your%20Subconscious%20Mind/cover.jpg",
+      "cover_version": "1791123736",
+      "chapters": [
+        {
+          "index": 0,
+          "name": "Introduction",
+          "file_size": 11579007,
+          "duration": 1894.1,
+          "stream_url": "The%20Power%20of%20Your%20Subconscious%20Mind/01%20-%20Introduction.mp3"
+        },
+        {
+          "index": 1,
+          "name": "The Science & Practice of Mental Healing",
+          "file_size": 14419827,
+          "duration": 2367.0,
+          "stream_url": "The%20Power%20of%20Your%20Subconscious%20Mind/02%20-%20The%20Science%20%26%20Practice%20of%20Mental%20Healing.mp3"
+        },
+        {
+          "index": 2,
+          "name": "Wealth, Prosperity & Career Success",
+          "file_size": 15950775,
+          "duration": 2622.0,
+          "stream_url": "The%20Power%20of%20Your%20Subconscious%20Mind/03%20-%20Wealth%2C%20Prosperity%20%26%20Career%20Success.mp3"
+        },
+        {
+          "index": 3,
+          "name": "Creative Problem: Solving & Sleep Wisdom",
+          "file_size": 13490241,
+          "duration": 2212.3,
+          "stream_url": "The%20Power%20of%20Your%20Subconscious%20Mind/04%20-%20Creative%20Problem-Solving%20%26%20Sleep%20Wisdom.mp3"
+        },
+        {
+          "index": 4,
+          "name": "Relationships, Marriage, Happiness & Forgiveness",
+          "file_size": 19313524,
+          "duration": 3181.8,
+          "stream_url": "The%20Power%20of%20Your%20Subconscious%20Mind/05%20-%20Relationships%2C%20Marriage%2C%20Happiness%20%26%20Forgiveness.mp3"
+        },
+        {
+          "index": 5,
+          "name": "Breaking Habits, Eliminating Fear & Lifelong Vitality",
+          "file_size": 18688232,
+          "duration": 3077.7,
+          "stream_url": "The%20Power%20of%20Your%20Subconscious%20Mind/06%20-%20Breaking%20Habits%2C%20Eliminating%20Fear%20%26%20Lifelong%20Vitality.mp3"
+        }
+      ],
+      "total_tracks": 6,
+      "total_duration": 15354.900000000001
+    },
+    {
+      "id": "the-secret",
+      "title": "The Secret",
+      "author": "Audiobook",
+      "cover_url": "The%20Secret/cover.jpg",
+      "cover_version": "1791123726",
+      "chapters": [
+        {
+          "index": 0,
+          "name": "Part 1",
+          "file_size": 52672630,
+          "duration": 8774.0,
+          "stream_url": "The%20Secret/01%20-%20Part%201.mp3"
+        },
+        {
+          "index": 1,
+          "name": "Part 2",
+          "file_size": 52672774,
+          "duration": 8774.1,
+          "stream_url": "The%20Secret/02%20-%20Part%202.mp3"
+        }
+      ],
+      "total_tracks": 2,
+      "total_duration": 17548.1
+    },
+    {
       "id": "white-nights",
       "title": "White Nights",
       "author": "Audiobook",
@@ -849,18 +1236,6 @@
       ],
       "total_tracks": 1,
       "total_duration": 10995.0
-    },
-    {
-      "id": "the-appeal",
-      "title": "THE APPEAL",
-      "author": "John Grisham",
-      "cover_url": "610a2yCMbAL._AC_UF1000,1000_QL80_.jpg",
-      "cover": "610a2yCMbAL._AC_UF1000,1000_QL80_.jpg",
-      "cover_version": "1790095839",
-      "status": "wishlist",
-      "chapters": [],
-      "total_tracks": 0,
-      "total_duration": 0
     }
   ]
 }
