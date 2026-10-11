@@ -19,6 +19,1827 @@
       "total_duration": 10403.7
     },
     {
+      "id": "deception-point",
+      "title": "Deception Point",
+      "author": "Audiobook",
+      "cover_url": "Deception%20Point/cover.jpg",
+      "cover_version": "1791650262",
+      "chapters": [
+        {
+          "index": 0,
+          "name": "Author’s Note",
+          "file_size": 1090031,
+          "duration": 174.2,
+          "stream_url": "Deception%20Point/01%20-%20Author%E2%80%99s%20Note.mp3"
+        },
+        {
+          "index": 1,
+          "name": "Chapter 1",
+          "file_size": 3921443,
+          "duration": 645.6,
+          "stream_url": "Deception%20Point/02%20-%20Chapter%201.mp3"
+        },
+        {
+          "index": 2,
+          "name": "Chapter 2",
+          "file_size": 1248005,
+          "duration": 200.5,
+          "stream_url": "Deception%20Point/03%20-%20Chapter%202.mp3"
+        },
+        {
+          "index": 3,
+          "name": "Chapter 3",
+          "file_size": 2617228,
+          "duration": 428.5,
+          "stream_url": "Deception%20Point/04%20-%20Chapter%203.mp3"
+        },
+        {
+          "index": 4,
+          "name": "Chapter 4",
+          "file_size": 2594165,
+          "duration": 424.7,
+          "stream_url": "Deception%20Point/05%20-%20Chapter%204.mp3"
+        },
+        {
+          "index": 5,
+          "name": "Chapter 5",
+          "file_size": 1249590,
+          "duration": 200.8,
+          "stream_url": "Deception%20Point/06%20-%20Chapter%205.mp3"
+        },
+        {
+          "index": 6,
+          "name": "Chapter 6",
+          "file_size": 2509697,
+          "duration": 410.6,
+          "stream_url": "Deception%20Point/07%20-%20Chapter%206.mp3"
+        },
+        {
+          "index": 7,
+          "name": "Chapter 7",
+          "file_size": 4233659,
+          "duration": 697.6,
+          "stream_url": "Deception%20Point/08%20-%20Chapter%207.mp3"
+        },
+        {
+          "index": 8,
+          "name": "Chapter 8",
+          "file_size": 1354095,
+          "duration": 218.2,
+          "stream_url": "Deception%20Point/09%20-%20Chapter%208.mp3"
+        },
+        {
+          "index": 9,
+          "name": "Chapter 9",
+          "file_size": 1287935,
+          "duration": 207.2,
+          "stream_url": "Deception%20Point/10%20-%20Chapter%209.mp3"
+        },
+        {
+          "index": 10,
+          "name": "Chapter 10",
+          "file_size": 4213916,
+          "duration": 694.3,
+          "stream_url": "Deception%20Point/11%20-%20Chapter%2010.mp3"
+        },
+        {
+          "index": 11,
+          "name": "Chapter 11",
+          "file_size": 2686998,
+          "duration": 440.1,
+          "stream_url": "Deception%20Point/12%20-%20Chapter%2011.mp3"
+        },
+        {
+          "index": 12,
+          "name": "Chapter 12",
+          "file_size": 2393953,
+          "duration": 391.3,
+          "stream_url": "Deception%20Point/13%20-%20Chapter%2012.mp3"
+        },
+        {
+          "index": 13,
+          "name": "Chapter 13",
+          "file_size": 1354531,
+          "duration": 218.3,
+          "stream_url": "Deception%20Point/14%20-%20Chapter%2013.mp3"
+        },
+        {
+          "index": 14,
+          "name": "Chapter 14",
+          "file_size": 1270351,
+          "duration": 204.2,
+          "stream_url": "Deception%20Point/15%20-%20Chapter%2014.mp3"
+        },
+        {
+          "index": 15,
+          "name": "Chapter 15",
+          "file_size": 2541989,
+          "duration": 416.0,
+          "stream_url": "Deception%20Point/16%20-%20Chapter%2015.mp3"
+        },
+        {
+          "index": 16,
+          "name": "Chapter 16",
+          "file_size": 4136943,
+          "duration": 681.5,
+          "stream_url": "Deception%20Point/17%20-%20Chapter%2016.mp3"
+        },
+        {
+          "index": 17,
+          "name": "Chapter 17",
+          "file_size": 1372693,
+          "duration": 221.3,
+          "stream_url": "Deception%20Point/18%20-%20Chapter%2017.mp3"
+        },
+        {
+          "index": 18,
+          "name": "Chapter 18",
+          "file_size": 1427035,
+          "duration": 230.3,
+          "stream_url": "Deception%20Point/19%20-%20Chapter%2018.mp3"
+        },
+        {
+          "index": 19,
+          "name": "Chapter 19",
+          "file_size": 4088222,
+          "duration": 673.4,
+          "stream_url": "Deception%20Point/20%20-%20Chapter%2019.mp3"
+        },
+        {
+          "index": 20,
+          "name": "Chapter 20",
+          "file_size": 1315468,
+          "duration": 211.8,
+          "stream_url": "Deception%20Point/21%20-%20Chapter%2020.mp3"
+        },
+        {
+          "index": 21,
+          "name": "Chapter 21",
+          "file_size": 2670710,
+          "duration": 437.4,
+          "stream_url": "Deception%20Point/22%20-%20Chapter%2021.mp3"
+        },
+        {
+          "index": 22,
+          "name": "Chapter 22",
+          "file_size": 5566851,
+          "duration": 919.6,
+          "stream_url": "Deception%20Point/23%20-%20Chapter%2022.mp3"
+        },
+        {
+          "index": 23,
+          "name": "Chapter 23",
+          "file_size": 2725340,
+          "duration": 446.5,
+          "stream_url": "Deception%20Point/24%20-%20Chapter%2023.mp3"
+        },
+        {
+          "index": 24,
+          "name": "Chapter 24",
+          "file_size": 3989916,
+          "duration": 657.0,
+          "stream_url": "Deception%20Point/25%20-%20Chapter%2024.mp3"
+        },
+        {
+          "index": 25,
+          "name": "Chapter 25",
+          "file_size": 1477774,
+          "duration": 238.8,
+          "stream_url": "Deception%20Point/26%20-%20Chapter%2025.mp3"
+        },
+        {
+          "index": 26,
+          "name": "Chapter 26",
+          "file_size": 1187468,
+          "duration": 190.4,
+          "stream_url": "Deception%20Point/27%20-%20Chapter%2026.mp3"
+        },
+        {
+          "index": 27,
+          "name": "Chapter 27",
+          "file_size": 3981123,
+          "duration": 655.6,
+          "stream_url": "Deception%20Point/28%20-%20Chapter%2027.mp3"
+        },
+        {
+          "index": 28,
+          "name": "Chapter 28",
+          "file_size": 3712439,
+          "duration": 610.8,
+          "stream_url": "Deception%20Point/29%20-%20Chapter%2028.mp3"
+        },
+        {
+          "index": 29,
+          "name": "Chapter 29",
+          "file_size": 1200009,
+          "duration": 192.5,
+          "stream_url": "Deception%20Point/30%20-%20Chapter%2029.mp3"
+        },
+        {
+          "index": 30,
+          "name": "Chapter 30",
+          "file_size": 1346891,
+          "duration": 217.0,
+          "stream_url": "Deception%20Point/31%20-%20Chapter%2030.mp3"
+        },
+        {
+          "index": 31,
+          "name": "Chapter 31",
+          "file_size": 3905736,
+          "duration": 643.0,
+          "stream_url": "Deception%20Point/32%20-%20Chapter%2031.mp3"
+        },
+        {
+          "index": 32,
+          "name": "Chapter 33",
+          "file_size": 1375864,
+          "duration": 221.8,
+          "stream_url": "Deception%20Point/33%20-%20Chapter%2033.mp3"
+        },
+        {
+          "index": 33,
+          "name": "Chapter 34",
+          "file_size": 1356405,
+          "duration": 218.6,
+          "stream_url": "Deception%20Point/34%20-%20Chapter%2034.mp3"
+        },
+        {
+          "index": 34,
+          "name": "Chapter 35",
+          "file_size": 1330315,
+          "duration": 214.2,
+          "stream_url": "Deception%20Point/35%20-%20Chapter%2035.mp3"
+        },
+        {
+          "index": 35,
+          "name": "Chapter 36",
+          "file_size": 1475756,
+          "duration": 238.4,
+          "stream_url": "Deception%20Point/36%20-%20Chapter%2036.mp3"
+        },
+        {
+          "index": 36,
+          "name": "Chapter 37",
+          "file_size": 1222063,
+          "duration": 196.2,
+          "stream_url": "Deception%20Point/37%20-%20Chapter%2037.mp3"
+        },
+        {
+          "index": 37,
+          "name": "Chapter 38",
+          "file_size": 2918638,
+          "duration": 478.7,
+          "stream_url": "Deception%20Point/38%20-%20Chapter%2038.mp3"
+        },
+        {
+          "index": 38,
+          "name": "Chapter 39",
+          "file_size": 2785160,
+          "duration": 456.5,
+          "stream_url": "Deception%20Point/39%20-%20Chapter%2039.mp3"
+        },
+        {
+          "index": 39,
+          "name": "Chapter 40",
+          "file_size": 1135432,
+          "duration": 181.8,
+          "stream_url": "Deception%20Point/40%20-%20Chapter%2040.mp3"
+        },
+        {
+          "index": 40,
+          "name": "Chapter 41",
+          "file_size": 4108546,
+          "duration": 676.8,
+          "stream_url": "Deception%20Point/41%20-%20Chapter%2041.mp3"
+        },
+        {
+          "index": 41,
+          "name": "Chapter 42",
+          "file_size": 2945160,
+          "duration": 483.1,
+          "stream_url": "Deception%20Point/42%20-%20Chapter%2042.mp3"
+        },
+        {
+          "index": 42,
+          "name": "Chapter 43",
+          "file_size": 4033015,
+          "duration": 664.2,
+          "stream_url": "Deception%20Point/43%20-%20Chapter%2043.mp3"
+        },
+        {
+          "index": 43,
+          "name": "Chapter 44",
+          "file_size": 1295288,
+          "duration": 208.4,
+          "stream_url": "Deception%20Point/44%20-%20Chapter%2044.mp3"
+        },
+        {
+          "index": 44,
+          "name": "Chapter 45",
+          "file_size": 4103357,
+          "duration": 675.9,
+          "stream_url": "Deception%20Point/45%20-%20Chapter%2045.mp3"
+        },
+        {
+          "index": 45,
+          "name": "Chapter 46",
+          "file_size": 1463504,
+          "duration": 236.4,
+          "stream_url": "Deception%20Point/46%20-%20Chapter%2046.mp3"
+        },
+        {
+          "index": 46,
+          "name": "Chapter 47",
+          "file_size": 1375432,
+          "duration": 221.7,
+          "stream_url": "Deception%20Point/47%20-%20Chapter%2047.mp3"
+        },
+        {
+          "index": 47,
+          "name": "Chapter 48",
+          "file_size": 4128726,
+          "duration": 680.2,
+          "stream_url": "Deception%20Point/48%20-%20Chapter%2048.mp3"
+        },
+        {
+          "index": 48,
+          "name": "Chapter 49",
+          "file_size": 2606854,
+          "duration": 426.8,
+          "stream_url": "Deception%20Point/49%20-%20Chapter%2049.mp3"
+        },
+        {
+          "index": 49,
+          "name": "Chapter 50",
+          "file_size": 2734710,
+          "duration": 448.1,
+          "stream_url": "Deception%20Point/50%20-%20Chapter%2050.mp3"
+        },
+        {
+          "index": 50,
+          "name": "Chapter 51",
+          "file_size": 3912943,
+          "duration": 644.2,
+          "stream_url": "Deception%20Point/51%20-%20Chapter%2051.mp3"
+        },
+        {
+          "index": 51,
+          "name": "Chapter 52",
+          "file_size": 1422135,
+          "duration": 229.5,
+          "stream_url": "Deception%20Point/52%20-%20Chapter%2052.mp3"
+        },
+        {
+          "index": 52,
+          "name": "Chapter 53",
+          "file_size": 2666097,
+          "duration": 436.6,
+          "stream_url": "Deception%20Point/53%20-%20Chapter%2053.mp3"
+        },
+        {
+          "index": 53,
+          "name": "Chapter 54",
+          "file_size": 2793088,
+          "duration": 457.8,
+          "stream_url": "Deception%20Point/54%20-%20Chapter%2054.mp3"
+        },
+        {
+          "index": 54,
+          "name": "Chapter 55",
+          "file_size": 2445413,
+          "duration": 399.9,
+          "stream_url": "Deception%20Point/55%20-%20Chapter%2055.mp3"
+        },
+        {
+          "index": 55,
+          "name": "Chapter 56",
+          "file_size": 1376153,
+          "duration": 221.9,
+          "stream_url": "Deception%20Point/56%20-%20Chapter%2056.mp3"
+        },
+        {
+          "index": 56,
+          "name": "Chapter 57",
+          "file_size": 4367861,
+          "duration": 720.0,
+          "stream_url": "Deception%20Point/57%20-%20Chapter%2057.mp3"
+        },
+        {
+          "index": 57,
+          "name": "Chapter 58",
+          "file_size": 1256946,
+          "duration": 202.0,
+          "stream_url": "Deception%20Point/58%20-%20Chapter%2058.mp3"
+        },
+        {
+          "index": 58,
+          "name": "Chapter 59",
+          "file_size": 1288369,
+          "duration": 207.2,
+          "stream_url": "Deception%20Point/59%20-%20Chapter%2059.mp3"
+        },
+        {
+          "index": 59,
+          "name": "Chapter 60",
+          "file_size": 2503359,
+          "duration": 409.5,
+          "stream_url": "Deception%20Point/60%20-%20Chapter%2060.mp3"
+        },
+        {
+          "index": 60,
+          "name": "Chapter 61",
+          "file_size": 1349342,
+          "duration": 217.4,
+          "stream_url": "Deception%20Point/61%20-%20Chapter%2061.mp3"
+        },
+        {
+          "index": 61,
+          "name": "Chapter 62",
+          "file_size": 1351072,
+          "duration": 217.7,
+          "stream_url": "Deception%20Point/62%20-%20Chapter%2062.mp3"
+        },
+        {
+          "index": 62,
+          "name": "Chapter 63",
+          "file_size": 1435252,
+          "duration": 231.7,
+          "stream_url": "Deception%20Point/63%20-%20Chapter%2063.mp3"
+        },
+        {
+          "index": 63,
+          "name": "Chapter 64",
+          "file_size": 2742061,
+          "duration": 449.3,
+          "stream_url": "Deception%20Point/64%20-%20Chapter%2064.mp3"
+        },
+        {
+          "index": 64,
+          "name": "Chapter 65",
+          "file_size": 1349198,
+          "duration": 217.4,
+          "stream_url": "Deception%20Point/65%20-%20Chapter%2065.mp3"
+        },
+        {
+          "index": 65,
+          "name": "Chapter 66",
+          "file_size": 2683395,
+          "duration": 439.5,
+          "stream_url": "Deception%20Point/66%20-%20Chapter%2066.mp3"
+        },
+        {
+          "index": 66,
+          "name": "Chapter 67",
+          "file_size": 2445989,
+          "duration": 400.0,
+          "stream_url": "Deception%20Point/67%20-%20Chapter%2067.mp3"
+        },
+        {
+          "index": 67,
+          "name": "Chapter 68",
+          "file_size": 3876042,
+          "duration": 638.1,
+          "stream_url": "Deception%20Point/68%20-%20Chapter%2068.mp3"
+        },
+        {
+          "index": 68,
+          "name": "Chapter 69",
+          "file_size": 2603827,
+          "duration": 426.3,
+          "stream_url": "Deception%20Point/69%20-%20Chapter%2069.mp3"
+        },
+        {
+          "index": 69,
+          "name": "Chapter 70",
+          "file_size": 1274387,
+          "duration": 204.9,
+          "stream_url": "Deception%20Point/70%20-%20Chapter%2070.mp3"
+        },
+        {
+          "index": 70,
+          "name": "Chapter 71",
+          "file_size": 2664656,
+          "duration": 436.4,
+          "stream_url": "Deception%20Point/71%20-%20Chapter%2071.mp3"
+        },
+        {
+          "index": 71,
+          "name": "Chapter 72",
+          "file_size": 1316333,
+          "duration": 211.9,
+          "stream_url": "Deception%20Point/72%20-%20Chapter%2072.mp3"
+        },
+        {
+          "index": 72,
+          "name": "Chapter 73",
+          "file_size": 2815863,
+          "duration": 461.6,
+          "stream_url": "Deception%20Point/73%20-%20Chapter%2073.mp3"
+        },
+        {
+          "index": 73,
+          "name": "Chapter 74",
+          "file_size": 1372117,
+          "duration": 221.2,
+          "stream_url": "Deception%20Point/74%20-%20Chapter%2074.mp3"
+        },
+        {
+          "index": 74,
+          "name": "Chapter 75",
+          "file_size": 2764836,
+          "duration": 453.1,
+          "stream_url": "Deception%20Point/75%20-%20Chapter%2075.mp3"
+        },
+        {
+          "index": 75,
+          "name": "Chapter 76",
+          "file_size": 2617232,
+          "duration": 428.5,
+          "stream_url": "Deception%20Point/76%20-%20Chapter%2076.mp3"
+        },
+        {
+          "index": 76,
+          "name": "Chapter 77",
+          "file_size": 2674890,
+          "duration": 438.1,
+          "stream_url": "Deception%20Point/77%20-%20Chapter%2077.mp3"
+        },
+        {
+          "index": 77,
+          "name": "Chapter 78",
+          "file_size": 1342855,
+          "duration": 216.3,
+          "stream_url": "Deception%20Point/78%20-%20Chapter%2078.mp3"
+        },
+        {
+          "index": 78,
+          "name": "Chapter 79",
+          "file_size": 1361306,
+          "duration": 219.4,
+          "stream_url": "Deception%20Point/79%20-%20Chapter%2079.mp3"
+        },
+        {
+          "index": 79,
+          "name": "Chapter 80",
+          "file_size": 2574133,
+          "duration": 421.3,
+          "stream_url": "Deception%20Point/80%20-%20Chapter%2080.mp3"
+        },
+        {
+          "index": 80,
+          "name": "Chapter 81",
+          "file_size": 2348980,
+          "duration": 383.8,
+          "stream_url": "Deception%20Point/81%20-%20Chapter%2081.mp3"
+        },
+        {
+          "index": 81,
+          "name": "Chapter 82",
+          "file_size": 2854638,
+          "duration": 468.0,
+          "stream_url": "Deception%20Point/82%20-%20Chapter%2082.mp3"
+        },
+        {
+          "index": 82,
+          "name": "Chapter 83",
+          "file_size": 2565485,
+          "duration": 419.9,
+          "stream_url": "Deception%20Point/83%20-%20Chapter%2083.mp3"
+        },
+        {
+          "index": 83,
+          "name": "Chapter 84",
+          "file_size": 1233738,
+          "duration": 198.1,
+          "stream_url": "Deception%20Point/84%20-%20Chapter%2084.mp3"
+        },
+        {
+          "index": 84,
+          "name": "Chapter 85",
+          "file_size": 2646061,
+          "duration": 433.3,
+          "stream_url": "Deception%20Point/85%20-%20Chapter%2085.mp3"
+        },
+        {
+          "index": 85,
+          "name": "Chapter 87",
+          "file_size": 5100113,
+          "duration": 841.9,
+          "stream_url": "Deception%20Point/86%20-%20Chapter%2087.mp3"
+        },
+        {
+          "index": 86,
+          "name": "Chapter 88",
+          "file_size": 4011826,
+          "duration": 660.7,
+          "stream_url": "Deception%20Point/87%20-%20Chapter%2088.mp3"
+        },
+        {
+          "index": 87,
+          "name": "Chapter 90",
+          "file_size": 2643755,
+          "duration": 432.9,
+          "stream_url": "Deception%20Point/88%20-%20Chapter%2090.mp3"
+        },
+        {
+          "index": 88,
+          "name": "Chapter 91",
+          "file_size": 4157555,
+          "duration": 685.0,
+          "stream_url": "Deception%20Point/89%20-%20Chapter%2091.mp3"
+        },
+        {
+          "index": 89,
+          "name": "Chapter 92",
+          "file_size": 3860474,
+          "duration": 635.5,
+          "stream_url": "Deception%20Point/90%20-%20Chapter%2092.mp3"
+        },
+        {
+          "index": 90,
+          "name": "Chapter 94",
+          "file_size": 1297738,
+          "duration": 208.8,
+          "stream_url": "Deception%20Point/91%20-%20Chapter%2094.mp3"
+        },
+        {
+          "index": 91,
+          "name": "Chapter 95",
+          "file_size": 2947466,
+          "duration": 483.5,
+          "stream_url": "Deception%20Point/92%20-%20Chapter%2095.mp3"
+        },
+        {
+          "index": 92,
+          "name": "Chapter 96",
+          "file_size": 1349774,
+          "duration": 217.5,
+          "stream_url": "Deception%20Point/93%20-%20Chapter%2096.mp3"
+        },
+        {
+          "index": 93,
+          "name": "Chapter 97",
+          "file_size": 2651106,
+          "duration": 434.1,
+          "stream_url": "Deception%20Point/94%20-%20Chapter%2097.mp3"
+        },
+        {
+          "index": 94,
+          "name": "Chapter 98",
+          "file_size": 1282171,
+          "duration": 206.2,
+          "stream_url": "Deception%20Point/95%20-%20Chapter%2098.mp3"
+        },
+        {
+          "index": 95,
+          "name": "Chapter 100",
+          "file_size": 1310713,
+          "duration": 211.0,
+          "stream_url": "Deception%20Point/96%20-%20Chapter%20100.mp3"
+        },
+        {
+          "index": 96,
+          "name": "Chapter 101",
+          "file_size": 2642748,
+          "duration": 432.7,
+          "stream_url": "Deception%20Point/97%20-%20Chapter%20101.mp3"
+        },
+        {
+          "index": 97,
+          "name": "Chapter 102",
+          "file_size": 2473811,
+          "duration": 404.6,
+          "stream_url": "Deception%20Point/98%20-%20Chapter%20102.mp3"
+        },
+        {
+          "index": 98,
+          "name": "Chapter 103",
+          "file_size": 2040226,
+          "duration": 332.4,
+          "stream_url": "Deception%20Point/99%20-%20Chapter%20103.mp3"
+        },
+        {
+          "index": 99,
+          "name": "Chapter 104",
+          "file_size": 2437777,
+          "duration": 398.6,
+          "stream_url": "Deception%20Point/100%20-%20Chapter%20104.mp3"
+        },
+        {
+          "index": 100,
+          "name": "Chapter 105",
+          "file_size": 2668984,
+          "duration": 437.1,
+          "stream_url": "Deception%20Point/101%20-%20Chapter%20105.mp3"
+        },
+        {
+          "index": 101,
+          "name": "Chapter 106",
+          "file_size": 1368229,
+          "duration": 220.5,
+          "stream_url": "Deception%20Point/102%20-%20Chapter%20106.mp3"
+        },
+        {
+          "index": 102,
+          "name": "Chapter 107",
+          "file_size": 1234896,
+          "duration": 198.3,
+          "stream_url": "Deception%20Point/103%20-%20Chapter%20107.mp3"
+        },
+        {
+          "index": 103,
+          "name": "Chapter 108",
+          "file_size": 4062136,
+          "duration": 669.1,
+          "stream_url": "Deception%20Point/104%20-%20Chapter%20108.mp3"
+        },
+        {
+          "index": 104,
+          "name": "Chapter 109",
+          "file_size": 2706606,
+          "duration": 443.4,
+          "stream_url": "Deception%20Point/105%20-%20Chapter%20109.mp3"
+        },
+        {
+          "index": 105,
+          "name": "Chapter 110",
+          "file_size": 1285778,
+          "duration": 206.8,
+          "stream_url": "Deception%20Point/106%20-%20Chapter%20110.mp3"
+        },
+        {
+          "index": 106,
+          "name": "Chapter 111",
+          "file_size": 1184301,
+          "duration": 189.9,
+          "stream_url": "Deception%20Point/107%20-%20Chapter%20111.mp3"
+        },
+        {
+          "index": 107,
+          "name": "Chapter 112",
+          "file_size": 729671,
+          "duration": 114.2,
+          "stream_url": "Deception%20Point/108%20-%20Chapter%20112.mp3"
+        },
+        {
+          "index": 108,
+          "name": "Chapter 113",
+          "file_size": 2456372,
+          "duration": 401.7,
+          "stream_url": "Deception%20Point/109%20-%20Chapter%20113.mp3"
+        },
+        {
+          "index": 109,
+          "name": "Chapter 114",
+          "file_size": 2606137,
+          "duration": 426.6,
+          "stream_url": "Deception%20Point/110%20-%20Chapter%20114.mp3"
+        },
+        {
+          "index": 110,
+          "name": "Chapter 115",
+          "file_size": 1292697,
+          "duration": 208.0,
+          "stream_url": "Deception%20Point/111%20-%20Chapter%20115.mp3"
+        },
+        {
+          "index": 111,
+          "name": "Chapter 116",
+          "file_size": 1033382,
+          "duration": 164.8,
+          "stream_url": "Deception%20Point/112%20-%20Chapter%20116.mp3"
+        },
+        {
+          "index": 112,
+          "name": "Chapter 117",
+          "file_size": 1202607,
+          "duration": 193.0,
+          "stream_url": "Deception%20Point/113%20-%20Chapter%20117.mp3"
+        },
+        {
+          "index": 113,
+          "name": "Chapter 118",
+          "file_size": 2654714,
+          "duration": 434.7,
+          "stream_url": "Deception%20Point/114%20-%20Chapter%20118.mp3"
+        },
+        {
+          "index": 114,
+          "name": "Chapter 119",
+          "file_size": 3363326,
+          "duration": 552.7,
+          "stream_url": "Deception%20Point/115%20-%20Chapter%20119.mp3"
+        },
+        {
+          "index": 115,
+          "name": "Chapter 121",
+          "file_size": 2401885,
+          "duration": 392.6,
+          "stream_url": "Deception%20Point/116%20-%20Chapter%20121.mp3"
+        },
+        {
+          "index": 116,
+          "name": "Chapter 122",
+          "file_size": 1365058,
+          "duration": 220.0,
+          "stream_url": "Deception%20Point/117%20-%20Chapter%20122.mp3"
+        },
+        {
+          "index": 117,
+          "name": "Chapter 123",
+          "file_size": 2475399,
+          "duration": 404.9,
+          "stream_url": "Deception%20Point/118%20-%20Chapter%20123.mp3"
+        },
+        {
+          "index": 118,
+          "name": "Chapter 124",
+          "file_size": 5264297,
+          "duration": 869.2,
+          "stream_url": "Deception%20Point/119%20-%20Chapter%20124.mp3"
+        },
+        {
+          "index": 119,
+          "name": "Chapter 125",
+          "file_size": 4926135,
+          "duration": 812.9,
+          "stream_url": "Deception%20Point/120%20-%20Chapter%20125.mp3"
+        },
+        {
+          "index": 120,
+          "name": "Chapter 126",
+          "file_size": 2624011,
+          "duration": 429.6,
+          "stream_url": "Deception%20Point/121%20-%20Chapter%20126.mp3"
+        },
+        {
+          "index": 121,
+          "name": "Chapter 127",
+          "file_size": 2526426,
+          "duration": 413.4,
+          "stream_url": "Deception%20Point/122%20-%20Chapter%20127.mp3"
+        },
+        {
+          "index": 122,
+          "name": "Chapter 128",
+          "file_size": 2434174,
+          "duration": 398.0,
+          "stream_url": "Deception%20Point/123%20-%20Chapter%20128.mp3"
+        },
+        {
+          "index": 123,
+          "name": "Chapter 129",
+          "file_size": 2710930,
+          "duration": 444.1,
+          "stream_url": "Deception%20Point/124%20-%20Chapter%20129.mp3"
+        },
+        {
+          "index": 124,
+          "name": "Chapter 130",
+          "file_size": 2374066,
+          "duration": 388.0,
+          "stream_url": "Deception%20Point/125%20-%20Chapter%20130.mp3"
+        },
+        {
+          "index": 125,
+          "name": "Chapter 131",
+          "file_size": 3909199,
+          "duration": 643.6,
+          "stream_url": "Deception%20Point/126%20-%20Chapter%20131.mp3"
+        },
+        {
+          "index": 126,
+          "name": "Chapter 132",
+          "file_size": 1273094,
+          "duration": 204.7,
+          "stream_url": "Deception%20Point/127%20-%20Chapter%20132.mp3"
+        },
+        {
+          "index": 127,
+          "name": "Chapter 133",
+          "file_size": 4011397,
+          "duration": 660.6,
+          "stream_url": "Deception%20Point/128%20-%20Chapter%20133.mp3"
+        },
+        {
+          "index": 128,
+          "name": "Epilogue",
+          "file_size": 1207790,
+          "duration": 193.8,
+          "stream_url": "Deception%20Point/129%20-%20Epilogue.mp3"
+        }
+      ],
+      "total_tracks": 129,
+      "total_duration": 50830.19999999999
+    },
+    {
+      "id": "digital-fortress",
+      "title": "Digital Fortress",
+      "author": "Audiobook",
+      "cover_url": "Digital%20Fortress/cover.jpg",
+      "cover_version": "1791696653",
+      "chapters": [
+        {
+          "index": 0,
+          "name": "Chapter 1",
+          "file_size": 1590388,
+          "duration": 251.2,
+          "stream_url": "Digital%20Fortress/01%20-%20Chapter%201.mp3"
+        },
+        {
+          "index": 1,
+          "name": "Chapter 2",
+          "file_size": 295831,
+          "duration": 35.6,
+          "stream_url": "Digital%20Fortress/02%20-%20Chapter%202.mp3"
+        },
+        {
+          "index": 2,
+          "name": "Chapter 3",
+          "file_size": 8330129,
+          "duration": 1373.3,
+          "stream_url": "Digital%20Fortress/03%20-%20Chapter%203.mp3"
+        },
+        {
+          "index": 3,
+          "name": "Chapter 4",
+          "file_size": 3671828,
+          "duration": 597.7,
+          "stream_url": "Digital%20Fortress/04%20-%20Chapter%204.mp3"
+        },
+        {
+          "index": 4,
+          "name": "Chapter 5",
+          "file_size": 5632475,
+          "duration": 924.2,
+          "stream_url": "Digital%20Fortress/05%20-%20Chapter%205.mp3"
+        },
+        {
+          "index": 5,
+          "name": "Chapter 6",
+          "file_size": 2383901,
+          "duration": 383.3,
+          "stream_url": "Digital%20Fortress/06%20-%20Chapter%206.mp3"
+        },
+        {
+          "index": 6,
+          "name": "Chapter 7",
+          "file_size": 5102889,
+          "duration": 836.0,
+          "stream_url": "Digital%20Fortress/07%20-%20Chapter%207.mp3"
+        },
+        {
+          "index": 7,
+          "name": "Chapter 8",
+          "file_size": 751038,
+          "duration": 111.4,
+          "stream_url": "Digital%20Fortress/08%20-%20Chapter%208.mp3"
+        },
+        {
+          "index": 8,
+          "name": "Chapter 9",
+          "file_size": 2103397,
+          "duration": 336.6,
+          "stream_url": "Digital%20Fortress/09%20-%20Chapter%209.mp3"
+        },
+        {
+          "index": 9,
+          "name": "Chapter 10",
+          "file_size": 4571579,
+          "duration": 747.5,
+          "stream_url": "Digital%20Fortress/10%20-%20Chapter%2010.mp3"
+        },
+        {
+          "index": 10,
+          "name": "Chapter 11",
+          "file_size": 3115436,
+          "duration": 505.1,
+          "stream_url": "Digital%20Fortress/11%20-%20Chapter%2011.mp3"
+        },
+        {
+          "index": 11,
+          "name": "Chapter 12",
+          "file_size": 2312266,
+          "duration": 371.4,
+          "stream_url": "Digital%20Fortress/12%20-%20Chapter%2012.mp3"
+        },
+        {
+          "index": 12,
+          "name": "Chapter 13",
+          "file_size": 1262321,
+          "duration": 196.5,
+          "stream_url": "Digital%20Fortress/13%20-%20Chapter%2013.mp3"
+        },
+        {
+          "index": 13,
+          "name": "Chapter 14",
+          "file_size": 1269240,
+          "duration": 197.7,
+          "stream_url": "Digital%20Fortress/14%20-%20Chapter%2014.mp3"
+        },
+        {
+          "index": 14,
+          "name": "Chapter 15",
+          "file_size": 1854897,
+          "duration": 295.2,
+          "stream_url": "Digital%20Fortress/15%20-%20Chapter%2015.mp3"
+        },
+        {
+          "index": 15,
+          "name": "Chapter 16",
+          "file_size": 1721996,
+          "duration": 273.1,
+          "stream_url": "Digital%20Fortress/16%20-%20Chapter%2016.mp3"
+        },
+        {
+          "index": 16,
+          "name": "Chapter 17",
+          "file_size": 1666789,
+          "duration": 263.9,
+          "stream_url": "Digital%20Fortress/17%20-%20Chapter%2017.mp3"
+        },
+        {
+          "index": 17,
+          "name": "Chapter 18",
+          "file_size": 767619,
+          "duration": 114.2,
+          "stream_url": "Digital%20Fortress/18%20-%20Chapter%2018.mp3"
+        },
+        {
+          "index": 18,
+          "name": "Chapter 19",
+          "file_size": 2742247,
+          "duration": 442.9,
+          "stream_url": "Digital%20Fortress/19%20-%20Chapter%2019.mp3"
+        },
+        {
+          "index": 19,
+          "name": "Chapter 20",
+          "file_size": 2025707,
+          "duration": 323.6,
+          "stream_url": "Digital%20Fortress/20%20-%20Chapter%2020.mp3"
+        },
+        {
+          "index": 20,
+          "name": "Chapter 21",
+          "file_size": 711546,
+          "duration": 104.8,
+          "stream_url": "Digital%20Fortress/21%20-%20Chapter%2021.mp3"
+        },
+        {
+          "index": 21,
+          "name": "Chapter 22",
+          "file_size": 6024983,
+          "duration": 989.5,
+          "stream_url": "Digital%20Fortress/22%20-%20Chapter%2022.mp3"
+        },
+        {
+          "index": 22,
+          "name": "Chapter 23",
+          "file_size": 3455616,
+          "duration": 561.7,
+          "stream_url": "Digital%20Fortress/23%20-%20Chapter%2023.mp3"
+        },
+        {
+          "index": 23,
+          "name": "Chapter 24",
+          "file_size": 2618139,
+          "duration": 422.3,
+          "stream_url": "Digital%20Fortress/24%20-%20Chapter%2024.mp3"
+        },
+        {
+          "index": 24,
+          "name": "Chapter 25",
+          "file_size": 1008483,
+          "duration": 154.3,
+          "stream_url": "Digital%20Fortress/25%20-%20Chapter%2025.mp3"
+        },
+        {
+          "index": 25,
+          "name": "Chapter 26",
+          "file_size": 886826,
+          "duration": 134.0,
+          "stream_url": "Digital%20Fortress/26%20-%20Chapter%2026.mp3"
+        },
+        {
+          "index": 26,
+          "name": "Chapter 27",
+          "file_size": 1796807,
+          "duration": 285.5,
+          "stream_url": "Digital%20Fortress/27%20-%20Chapter%2027.mp3"
+        },
+        {
+          "index": 27,
+          "name": "Chapter 28",
+          "file_size": 2413166,
+          "duration": 388.2,
+          "stream_url": "Digital%20Fortress/28%20-%20Chapter%2028.mp3"
+        },
+        {
+          "index": 28,
+          "name": "Chapter 29",
+          "file_size": 3331508,
+          "duration": 541.1,
+          "stream_url": "Digital%20Fortress/29%20-%20Chapter%2029.mp3"
+        },
+        {
+          "index": 29,
+          "name": "Chapter 30",
+          "file_size": 1750104,
+          "duration": 277.8,
+          "stream_url": "Digital%20Fortress/30%20-%20Chapter%2030.mp3"
+        },
+        {
+          "index": 30,
+          "name": "Chapter 31",
+          "file_size": 2595076,
+          "duration": 418.4,
+          "stream_url": "Digital%20Fortress/31%20-%20Chapter%2031.mp3"
+        },
+        {
+          "index": 31,
+          "name": "Chapter 32",
+          "file_size": 3913994,
+          "duration": 638.0,
+          "stream_url": "Digital%20Fortress/32%20-%20Chapter%2032.mp3"
+        },
+        {
+          "index": 32,
+          "name": "Chapter 33",
+          "file_size": 723943,
+          "duration": 106.9,
+          "stream_url": "Digital%20Fortress/33%20-%20Chapter%2033.mp3"
+        },
+        {
+          "index": 33,
+          "name": "Chapter 34",
+          "file_size": 2190320,
+          "duration": 351.0,
+          "stream_url": "Digital%20Fortress/34%20-%20Chapter%2034.mp3"
+        },
+        {
+          "index": 34,
+          "name": "Chapter 35",
+          "file_size": 2836085,
+          "duration": 458.6,
+          "stream_url": "Digital%20Fortress/35%20-%20Chapter%2035.mp3"
+        },
+        {
+          "index": 35,
+          "name": "Chapter 36",
+          "file_size": 3075796,
+          "duration": 498.5,
+          "stream_url": "Digital%20Fortress/36%20-%20Chapter%2036.mp3"
+        },
+        {
+          "index": 36,
+          "name": "Chapter 37",
+          "file_size": 999402,
+          "duration": 152.8,
+          "stream_url": "Digital%20Fortress/37%20-%20Chapter%2037.mp3"
+        },
+        {
+          "index": 37,
+          "name": "Chapter 38",
+          "file_size": 720772,
+          "duration": 106.4,
+          "stream_url": "Digital%20Fortress/38%20-%20Chapter%2038.mp3"
+        },
+        {
+          "index": 38,
+          "name": "Chapter 39",
+          "file_size": 1239114,
+          "duration": 192.7,
+          "stream_url": "Digital%20Fortress/39%20-%20Chapter%2039.mp3"
+        },
+        {
+          "index": 39,
+          "name": "Chapter 40",
+          "file_size": 2694103,
+          "duration": 434.9,
+          "stream_url": "Digital%20Fortress/40%20-%20Chapter%2040.mp3"
+        },
+        {
+          "index": 40,
+          "name": "Chapter 41",
+          "file_size": 850645,
+          "duration": 128.0,
+          "stream_url": "Digital%20Fortress/41%20-%20Chapter%2041.mp3"
+        },
+        {
+          "index": 41,
+          "name": "Chapter 42",
+          "file_size": 828015,
+          "duration": 124.2,
+          "stream_url": "Digital%20Fortress/42%20-%20Chapter%2042.mp3"
+        },
+        {
+          "index": 42,
+          "name": "Chapter 43",
+          "file_size": 2923004,
+          "duration": 473.0,
+          "stream_url": "Digital%20Fortress/43%20-%20Chapter%2043.mp3"
+        },
+        {
+          "index": 43,
+          "name": "Chapter 44",
+          "file_size": 2104842,
+          "duration": 336.8,
+          "stream_url": "Digital%20Fortress/44%20-%20Chapter%2044.mp3"
+        },
+        {
+          "index": 44,
+          "name": "Chapter 45",
+          "file_size": 1877816,
+          "duration": 299.0,
+          "stream_url": "Digital%20Fortress/45%20-%20Chapter%2045.mp3"
+        },
+        {
+          "index": 45,
+          "name": "Chapter 46",
+          "file_size": 952267,
+          "duration": 144.9,
+          "stream_url": "Digital%20Fortress/46%20-%20Chapter%2046.mp3"
+        },
+        {
+          "index": 46,
+          "name": "Chapter 47",
+          "file_size": 3423472,
+          "duration": 556.4,
+          "stream_url": "Digital%20Fortress/47%20-%20Chapter%2047.mp3"
+        },
+        {
+          "index": 47,
+          "name": "Chapter 48",
+          "file_size": 773096,
+          "duration": 115.1,
+          "stream_url": "Digital%20Fortress/48%20-%20Chapter%2048.mp3"
+        },
+        {
+          "index": 48,
+          "name": "Chapter 49",
+          "file_size": 916375,
+          "duration": 138.9,
+          "stream_url": "Digital%20Fortress/49%20-%20Chapter%2049.mp3"
+        },
+        {
+          "index": 49,
+          "name": "Chapter 50",
+          "file_size": 944916,
+          "duration": 143.7,
+          "stream_url": "Digital%20Fortress/50%20-%20Chapter%2050.mp3"
+        },
+        {
+          "index": 50,
+          "name": "Chapter 51",
+          "file_size": 2343689,
+          "duration": 376.6,
+          "stream_url": "Digital%20Fortress/51%20-%20Chapter%2051.mp3"
+        },
+        {
+          "index": 51,
+          "name": "Chapter 52",
+          "file_size": 1331798,
+          "duration": 208.1,
+          "stream_url": "Digital%20Fortress/52%20-%20Chapter%2052.mp3"
+        },
+        {
+          "index": 52,
+          "name": "Chapter 53",
+          "file_size": 556736,
+          "duration": 79.1,
+          "stream_url": "Digital%20Fortress/53%20-%20Chapter%2053.mp3"
+        },
+        {
+          "index": 53,
+          "name": "Chapter 54",
+          "file_size": 750610,
+          "duration": 111.3,
+          "stream_url": "Digital%20Fortress/54%20-%20Chapter%2054.mp3"
+        },
+        {
+          "index": 54,
+          "name": "Chapter 55",
+          "file_size": 2179797,
+          "duration": 349.3,
+          "stream_url": "Digital%20Fortress/55%20-%20Chapter%2055.mp3"
+        },
+        {
+          "index": 55,
+          "name": "Chapter 56",
+          "file_size": 730574,
+          "duration": 108.0,
+          "stream_url": "Digital%20Fortress/56%20-%20Chapter%2056.mp3"
+        },
+        {
+          "index": 56,
+          "name": "Chapter 57",
+          "file_size": 1086609,
+          "duration": 167.3,
+          "stream_url": "Digital%20Fortress/57%20-%20Chapter%2057.mp3"
+        },
+        {
+          "index": 57,
+          "name": "Chapter 58",
+          "file_size": 2186140,
+          "duration": 350.4,
+          "stream_url": "Digital%20Fortress/58%20-%20Chapter%2058.mp3"
+        },
+        {
+          "index": 58,
+          "name": "Chapter 59",
+          "file_size": 1662176,
+          "duration": 263.1,
+          "stream_url": "Digital%20Fortress/59%20-%20Chapter%2059.mp3"
+        },
+        {
+          "index": 59,
+          "name": "Chapter 60",
+          "file_size": 757817,
+          "duration": 112.5,
+          "stream_url": "Digital%20Fortress/60%20-%20Chapter%2060.mp3"
+        },
+        {
+          "index": 60,
+          "name": "Chapter 61",
+          "file_size": 1499726,
+          "duration": 236.1,
+          "stream_url": "Digital%20Fortress/61%20-%20Chapter%2061.mp3"
+        },
+        {
+          "index": 61,
+          "name": "Chapter 62",
+          "file_size": 2909887,
+          "duration": 470.9,
+          "stream_url": "Digital%20Fortress/62%20-%20Chapter%2062.mp3"
+        },
+        {
+          "index": 62,
+          "name": "Chapter 63",
+          "file_size": 1539365,
+          "duration": 242.7,
+          "stream_url": "Digital%20Fortress/63%20-%20Chapter%2063.mp3"
+        },
+        {
+          "index": 63,
+          "name": "Chapter 64",
+          "file_size": 1691726,
+          "duration": 268.0,
+          "stream_url": "Digital%20Fortress/64%20-%20Chapter%2064.mp3"
+        },
+        {
+          "index": 64,
+          "name": "Chapter 65",
+          "file_size": 2849923,
+          "duration": 460.9,
+          "stream_url": "Digital%20Fortress/65%20-%20Chapter%2065.mp3"
+        },
+        {
+          "index": 65,
+          "name": "Chapter 66",
+          "file_size": 1285672,
+          "duration": 200.4,
+          "stream_url": "Digital%20Fortress/66%20-%20Chapter%2066.mp3"
+        },
+        {
+          "index": 66,
+          "name": "Chapter 67",
+          "file_size": 1166321,
+          "duration": 180.6,
+          "stream_url": "Digital%20Fortress/67%20-%20Chapter%2067.mp3"
+        },
+        {
+          "index": 67,
+          "name": "Chapter 68",
+          "file_size": 1461528,
+          "duration": 229.7,
+          "stream_url": "Digital%20Fortress/68%20-%20Chapter%2068.mp3"
+        },
+        {
+          "index": 68,
+          "name": "Chapter 69",
+          "file_size": 1846536,
+          "duration": 293.8,
+          "stream_url": "Digital%20Fortress/69%20-%20Chapter%2069.mp3"
+        },
+        {
+          "index": 69,
+          "name": "Chapter 70",
+          "file_size": 817348,
+          "duration": 122.4,
+          "stream_url": "Digital%20Fortress/70%20-%20Chapter%2070.mp3"
+        },
+        {
+          "index": 70,
+          "name": "Chapter 71",
+          "file_size": 403367,
+          "duration": 53.5,
+          "stream_url": "Digital%20Fortress/71%20-%20Chapter%2071.mp3"
+        },
+        {
+          "index": 71,
+          "name": "Chapter 72",
+          "file_size": 2225779,
+          "duration": 357.0,
+          "stream_url": "Digital%20Fortress/72%20-%20Chapter%2072.mp3"
+        },
+        {
+          "index": 72,
+          "name": "Chapter 73",
+          "file_size": 1070897,
+          "duration": 164.7,
+          "stream_url": "Digital%20Fortress/73%20-%20Chapter%2073.mp3"
+        },
+        {
+          "index": 73,
+          "name": "Chapter 74",
+          "file_size": 2469527,
+          "duration": 397.5,
+          "stream_url": "Digital%20Fortress/74%20-%20Chapter%2074.mp3"
+        },
+        {
+          "index": 74,
+          "name": "Chapter 75",
+          "file_size": 4441128,
+          "duration": 725.8,
+          "stream_url": "Digital%20Fortress/75%20-%20Chapter%2075.mp3"
+        },
+        {
+          "index": 75,
+          "name": "Chapter 76",
+          "file_size": 384195,
+          "duration": 50.3,
+          "stream_url": "Digital%20Fortress/76%20-%20Chapter%2076.mp3"
+        },
+        {
+          "index": 76,
+          "name": "Chapter 77",
+          "file_size": 2072122,
+          "duration": 331.4,
+          "stream_url": "Digital%20Fortress/77%20-%20Chapter%2077.mp3"
+        },
+        {
+          "index": 77,
+          "name": "Chapter 78",
+          "file_size": 718177,
+          "duration": 105.9,
+          "stream_url": "Digital%20Fortress/78%20-%20Chapter%2078.mp3"
+        },
+        {
+          "index": 78,
+          "name": "Chapter 79",
+          "file_size": 632123,
+          "duration": 91.6,
+          "stream_url": "Digital%20Fortress/79%20-%20Chapter%2079.mp3"
+        },
+        {
+          "index": 79,
+          "name": "Chapter 80",
+          "file_size": 4962065,
+          "duration": 812.5,
+          "stream_url": "Digital%20Fortress/80%20-%20Chapter%2080.mp3"
+        },
+        {
+          "index": 80,
+          "name": "Chapter 81",
+          "file_size": 2762716,
+          "duration": 446.4,
+          "stream_url": "Digital%20Fortress/81%20-%20Chapter%2081.mp3"
+        },
+        {
+          "index": 81,
+          "name": "Chapter 82",
+          "file_size": 2333599,
+          "duration": 374.9,
+          "stream_url": "Digital%20Fortress/82%20-%20Chapter%2082.mp3"
+        },
+        {
+          "index": 82,
+          "name": "Chapter 83",
+          "file_size": 1405023,
+          "duration": 220.3,
+          "stream_url": "Digital%20Fortress/83%20-%20Chapter%2083.mp3"
+        },
+        {
+          "index": 83,
+          "name": "Chapter 84",
+          "file_size": 628087,
+          "duration": 90.9,
+          "stream_url": "Digital%20Fortress/84%20-%20Chapter%2084.mp3"
+        },
+        {
+          "index": 84,
+          "name": "Chapter 85",
+          "file_size": 4838389,
+          "duration": 792.0,
+          "stream_url": "Digital%20Fortress/85%20-%20Chapter%2085.mp3"
+        },
+        {
+          "index": 85,
+          "name": "Chapter 86",
+          "file_size": 4121129,
+          "duration": 672.5,
+          "stream_url": "Digital%20Fortress/86%20-%20Chapter%2086.mp3"
+        },
+        {
+          "index": 86,
+          "name": "Chapter 87",
+          "file_size": 1555510,
+          "duration": 245.4,
+          "stream_url": "Digital%20Fortress/87%20-%20Chapter%2087.mp3"
+        },
+        {
+          "index": 87,
+          "name": "Chapter 88",
+          "file_size": 2634139,
+          "duration": 424.9,
+          "stream_url": "Digital%20Fortress/88%20-%20Chapter%2088.mp3"
+        },
+        {
+          "index": 88,
+          "name": "Chapter 89",
+          "file_size": 1493816,
+          "duration": 235.1,
+          "stream_url": "Digital%20Fortress/89%20-%20Chapter%2089.mp3"
+        },
+        {
+          "index": 89,
+          "name": "Chapter 90",
+          "file_size": 942177,
+          "duration": 143.2,
+          "stream_url": "Digital%20Fortress/90%20-%20Chapter%2090.mp3"
+        },
+        {
+          "index": 90,
+          "name": "Chapter 91",
+          "file_size": 2037383,
+          "duration": 325.6,
+          "stream_url": "Digital%20Fortress/91%20-%20Chapter%2091.mp3"
+        },
+        {
+          "index": 91,
+          "name": "Chapter 92",
+          "file_size": 2144914,
+          "duration": 343.5,
+          "stream_url": "Digital%20Fortress/92%20-%20Chapter%2092.mp3"
+        },
+        {
+          "index": 92,
+          "name": "Chapter 93",
+          "file_size": 1281636,
+          "duration": 199.8,
+          "stream_url": "Digital%20Fortress/93%20-%20Chapter%2093.mp3"
+        },
+        {
+          "index": 93,
+          "name": "Chapter 94",
+          "file_size": 715438,
+          "duration": 105.5,
+          "stream_url": "Digital%20Fortress/94%20-%20Chapter%2094.mp3"
+        },
+        {
+          "index": 94,
+          "name": "Chapter 95",
+          "file_size": 1936915,
+          "duration": 308.9,
+          "stream_url": "Digital%20Fortress/95%20-%20Chapter%2095.mp3"
+        },
+        {
+          "index": 95,
+          "name": "Chapter 96",
+          "file_size": 2617130,
+          "duration": 422.1,
+          "stream_url": "Digital%20Fortress/96%20-%20Chapter%2096.mp3"
+        },
+        {
+          "index": 96,
+          "name": "Chapter 97",
+          "file_size": 583114,
+          "duration": 83.4,
+          "stream_url": "Digital%20Fortress/97%20-%20Chapter%2097.mp3"
+        },
+        {
+          "index": 97,
+          "name": "Chapter 98",
+          "file_size": 1220231,
+          "duration": 189.5,
+          "stream_url": "Digital%20Fortress/98%20-%20Chapter%2098.mp3"
+        },
+        {
+          "index": 98,
+          "name": "Chapter 99",
+          "file_size": 740519,
+          "duration": 109.7,
+          "stream_url": "Digital%20Fortress/99%20-%20Chapter%2099.mp3"
+        },
+        {
+          "index": 99,
+          "name": "Chapter 100",
+          "file_size": 2795008,
+          "duration": 451.7,
+          "stream_url": "Digital%20Fortress/100%20-%20Chapter%20100.mp3"
+        },
+        {
+          "index": 100,
+          "name": "Chapter 101",
+          "file_size": 1028091,
+          "duration": 157.5,
+          "stream_url": "Digital%20Fortress/101%20-%20Chapter%20101.mp3"
+        },
+        {
+          "index": 101,
+          "name": "Chapter 102",
+          "file_size": 2177063,
+          "duration": 348.8,
+          "stream_url": "Digital%20Fortress/102%20-%20Chapter%20102.mp3"
+        },
+        {
+          "index": 102,
+          "name": "Chapter 103",
+          "file_size": 1566469,
+          "duration": 247.2,
+          "stream_url": "Digital%20Fortress/103%20-%20Chapter%20103.mp3"
+        },
+        {
+          "index": 103,
+          "name": "Chapter 104",
+          "file_size": 1095406,
+          "duration": 168.7,
+          "stream_url": "Digital%20Fortress/104%20-%20Chapter%20104.mp3"
+        },
+        {
+          "index": 104,
+          "name": "Chapter 105",
+          "file_size": 1448126,
+          "duration": 227.5,
+          "stream_url": "Digital%20Fortress/105%20-%20Chapter%20105.mp3"
+        },
+        {
+          "index": 105,
+          "name": "Chapter 106",
+          "file_size": 373533,
+          "duration": 48.6,
+          "stream_url": "Digital%20Fortress/106%20-%20Chapter%20106.mp3"
+        },
+        {
+          "index": 106,
+          "name": "Chapter 107",
+          "file_size": 1811946,
+          "duration": 288.0,
+          "stream_url": "Digital%20Fortress/107%20-%20Chapter%20107.mp3"
+        },
+        {
+          "index": 107,
+          "name": "Chapter 108",
+          "file_size": 1750829,
+          "duration": 277.9,
+          "stream_url": "Digital%20Fortress/108%20-%20Chapter%20108.mp3"
+        },
+        {
+          "index": 108,
+          "name": "Chapter 109",
+          "file_size": 2996233,
+          "duration": 485.2,
+          "stream_url": "Digital%20Fortress/109%20-%20Chapter%20109.mp3"
+        },
+        {
+          "index": 109,
+          "name": "Chapter 110",
+          "file_size": 3005026,
+          "duration": 486.7,
+          "stream_url": "Digital%20Fortress/110%20-%20Chapter%20110.mp3"
+        },
+        {
+          "index": 110,
+          "name": "Chapter 111",
+          "file_size": 609497,
+          "duration": 87.8,
+          "stream_url": "Digital%20Fortress/111%20-%20Chapter%20111.mp3"
+        },
+        {
+          "index": 111,
+          "name": "Chapter 112",
+          "file_size": 763875,
+          "duration": 113.5,
+          "stream_url": "Digital%20Fortress/112%20-%20Chapter%20112.mp3"
+        },
+        {
+          "index": 112,
+          "name": "Chapter 113",
+          "file_size": 1181748,
+          "duration": 183.1,
+          "stream_url": "Digital%20Fortress/113%20-%20Chapter%20113.mp3"
+        },
+        {
+          "index": 113,
+          "name": "Chapter 114",
+          "file_size": 947803,
+          "duration": 144.2,
+          "stream_url": "Digital%20Fortress/114%20-%20Chapter%20114.mp3"
+        },
+        {
+          "index": 114,
+          "name": "Chapter 115",
+          "file_size": 1464559,
+          "duration": 230.2,
+          "stream_url": "Digital%20Fortress/115%20-%20Chapter%20115.mp3"
+        },
+        {
+          "index": 115,
+          "name": "Chapter 116",
+          "file_size": 2579801,
+          "duration": 415.9,
+          "stream_url": "Digital%20Fortress/116%20-%20Chapter%20116.mp3"
+        },
+        {
+          "index": 116,
+          "name": "Chapter 117",
+          "file_size": 2423116,
+          "duration": 389.8,
+          "stream_url": "Digital%20Fortress/117%20-%20Chapter%20117.mp3"
+        },
+        {
+          "index": 117,
+          "name": "Chapter 118",
+          "file_size": 875586,
+          "duration": 132.1,
+          "stream_url": "Digital%20Fortress/118%20-%20Chapter%20118.mp3"
+        },
+        {
+          "index": 118,
+          "name": "Chapter 119",
+          "file_size": 789388,
+          "duration": 117.8,
+          "stream_url": "Digital%20Fortress/119%20-%20Chapter%20119.mp3"
+        },
+        {
+          "index": 119,
+          "name": "Chapter 120",
+          "file_size": 2247549,
+          "duration": 360.6,
+          "stream_url": "Digital%20Fortress/120%20-%20Chapter%20120.mp3"
+        },
+        {
+          "index": 120,
+          "name": "Chapter 121",
+          "file_size": 679118,
+          "duration": 99.4,
+          "stream_url": "Digital%20Fortress/121%20-%20Chapter%20121.mp3"
+        },
+        {
+          "index": 121,
+          "name": "Chapter 122",
+          "file_size": 466650,
+          "duration": 64.1,
+          "stream_url": "Digital%20Fortress/122%20-%20Chapter%20122.mp3"
+        },
+        {
+          "index": 122,
+          "name": "Chapter 123",
+          "file_size": 668163,
+          "duration": 97.6,
+          "stream_url": "Digital%20Fortress/123%20-%20Chapter%20123.mp3"
+        },
+        {
+          "index": 123,
+          "name": "Chapter 124",
+          "file_size": 1211442,
+          "duration": 188.1,
+          "stream_url": "Digital%20Fortress/124%20-%20Chapter%20124.mp3"
+        },
+        {
+          "index": 124,
+          "name": "Chapter 125",
+          "file_size": 3393061,
+          "duration": 551.3,
+          "stream_url": "Digital%20Fortress/125%20-%20Chapter%20125.mp3"
+        },
+        {
+          "index": 125,
+          "name": "Chapter 126",
+          "file_size": 1494685,
+          "duration": 235.2,
+          "stream_url": "Digital%20Fortress/126%20-%20Chapter%20126.mp3"
+        },
+        {
+          "index": 126,
+          "name": "Chapter 127",
+          "file_size": 3097278,
+          "duration": 502.1,
+          "stream_url": "Digital%20Fortress/127%20-%20Chapter%20127.mp3"
+        },
+        {
+          "index": 127,
+          "name": "Chapter 128",
+          "file_size": 2687909,
+          "duration": 433.9,
+          "stream_url": "Digital%20Fortress/128%20-%20Chapter%20128.mp3"
+        }
+      ],
+      "total_tracks": 128,
+      "total_duration": 39447.299999999996
+    },
+    {
       "id": "how-to-talk-to-anyone",
       "title": "How to Talk to Anyone",
       "author": "Audiobook",
@@ -53,118 +1874,118 @@
         {
           "index": 0,
           "name": "Introduction",
-          "file_size": 12534052,
-          "duration": 1961.8,
+          "file_size": 10893794,
+          "duration": 1808.3,
           "stream_url": "Marcus%20Aurelius%20-%20Meditations/01%20-%20Introduction.mp3"
         },
         {
           "index": 1,
           "name": "THE FIRST BOOK",
-          "file_size": 10108401,
-          "duration": 1558.0,
+          "file_size": 8518882,
+          "duration": 1412.9,
           "stream_url": "Marcus%20Aurelius%20-%20Meditations/02%20-%20THE%20FIRST%20BOOK.mp3"
         },
         {
           "index": 2,
           "name": "THE SECOND BOOK",
-          "file_size": 5795759,
-          "duration": 839.9,
+          "file_size": 4638095,
+          "duration": 766.7,
           "stream_url": "Marcus%20Aurelius%20-%20Meditations/03%20-%20THE%20SECOND%20BOOK.mp3"
         },
         {
           "index": 3,
           "name": "THE THIRD BOOK",
-          "file_size": 8007214,
-          "duration": 1208.1,
+          "file_size": 6702956,
+          "duration": 1110.5,
           "stream_url": "Marcus%20Aurelius%20-%20Meditations/04%20-%20THE%20THIRD%20BOOK.mp3"
         },
         {
           "index": 4,
           "name": "THE FOURTH BOOK",
-          "file_size": 13015932,
-          "duration": 2042.1,
+          "file_size": 11302593,
+          "duration": 1876.3,
           "stream_url": "Marcus%20Aurelius%20-%20Meditations/05%20-%20THE%20FOURTH%20BOOK.mp3"
         },
         {
           "index": 5,
           "name": "THE FIFTH BOOK",
-          "file_size": 13163677,
-          "duration": 2066.7,
+          "file_size": 11435059,
+          "duration": 1898.4,
           "stream_url": "Marcus%20Aurelius%20-%20Meditations/06%20-%20THE%20FIFTH%20BOOK.mp3"
         },
         {
           "index": 6,
           "name": "THE SIXTH BOOK",
-          "file_size": 13337515,
-          "duration": 2095.6,
+          "file_size": 11617833,
+          "duration": 1928.8,
           "stream_url": "Marcus%20Aurelius%20-%20Meditations/07%20-%20THE%20SIXTH%20BOOK.mp3"
         },
         {
           "index": 7,
           "name": "THE SEVENTH BOOK",
-          "file_size": 14641878,
-          "duration": 2312.8,
+          "file_size": 12775314,
+          "duration": 2121.6,
           "stream_url": "Marcus%20Aurelius%20-%20Meditations/08%20-%20THE%20SEVENTH%20BOOK.mp3"
         },
         {
           "index": 8,
           "name": "THE EIGHTH BOOK",
-          "file_size": 14102922,
-          "duration": 2223.0,
+          "file_size": 12417114,
+          "duration": 2061.9,
           "stream_url": "Marcus%20Aurelius%20-%20Meditations/09%20-%20THE%20EIGHTH%20BOOK.mp3"
         },
         {
           "index": 9,
           "name": "THE NINTH BOOK",
-          "file_size": 12522383,
-          "duration": 1959.9,
+          "file_size": 10850269,
+          "duration": 1801.0,
           "stream_url": "Marcus%20Aurelius%20-%20Meditations/10%20-%20THE%20NINTH%20BOOK.mp3"
         },
         {
           "index": 10,
           "name": "THE TENTH BOOK",
-          "file_size": 14476399,
-          "duration": 2285.2,
+          "file_size": 12658555,
+          "duration": 2102.1,
           "stream_url": "Marcus%20Aurelius%20-%20Meditations/11%20-%20THE%20TENTH%20BOOK.mp3"
         },
         {
           "index": 11,
           "name": "THE ELEVENTH BOOK",
-          "file_size": 11033237,
-          "duration": 1711.9,
+          "file_size": 9517519,
+          "duration": 1579.1,
           "stream_url": "Marcus%20Aurelius%20-%20Meditations/12%20-%20THE%20ELEVENTH%20BOOK.mp3"
         },
         {
           "index": 12,
           "name": "THE TWELFTH BOOK",
-          "file_size": 8882030,
-          "duration": 1353.8,
+          "file_size": 7516510,
+          "duration": 1246.0,
           "stream_url": "Marcus%20Aurelius%20-%20Meditations/13%20-%20THE%20TWELFTH%20BOOK.mp3"
         },
         {
           "index": 13,
           "name": "Appendix",
-          "file_size": 15241647,
-          "duration": 2412.6,
+          "file_size": 13171119,
+          "duration": 2187.5,
           "stream_url": "Marcus%20Aurelius%20-%20Meditations/14%20-%20Appendix.mp3"
         },
         {
           "index": 14,
           "name": "Notes",
-          "file_size": 1457583,
-          "duration": 117.6,
+          "file_size": 775312,
+          "duration": 123.6,
           "stream_url": "Marcus%20Aurelius%20-%20Meditations/15%20-%20Notes.mp3"
         },
         {
           "index": 15,
           "name": "Glossary",
-          "file_size": 6227314,
-          "duration": 911.8,
+          "file_size": 5041974,
+          "duration": 834.0,
           "stream_url": "Marcus%20Aurelius%20-%20Meditations/16%20-%20Glossary.mp3"
         }
       ],
       "total_tracks": 16,
-      "total_duration": 27060.8
+      "total_duration": 24858.699999999997
     },
     {
       "id": "meditations",
@@ -292,195 +2113,195 @@
         {
           "index": 0,
           "name": "Chapter 1: In The Home Of My Parents",
-          "file_size": 12887348,
-          "duration": 2135.4,
+          "file_size": 11537199,
+          "duration": 1913.2,
           "stream_url": "Meinkampf%20-%20Audiobook/01%20-%20Chapter%201%20-%20%20-%20In%20The%20Home%20Of%20My%20Parents.mp3"
         },
         {
           "index": 1,
           "name": "Chapter 2: Years Of Study And Suffering In Vienna",
-          "file_size": 36575999,
-          "duration": 6079.6,
+          "file_size": 35300109,
+          "duration": 5869.7,
           "stream_url": "Meinkampf%20-%20Audiobook/02%20-%20Chapter%202%20-%20%20-%20Years%20Of%20Study%20And%20Suffering%20In%20Vienna.mp3"
         },
         {
           "index": 2,
           "name": "Chapter 3: Political Reflections Arising Out Of My Sojou",
-          "file_size": 48743641,
-          "duration": 8105.5,
+          "file_size": 43492235,
+          "duration": 7233.7,
           "stream_url": "Meinkampf%20-%20Audiobook/03%20-%20Chapter%203%20-%20%20-%20Political%20Reflections%20Arising%20Out%20Of%20My%20Sojou.mp3"
         },
         {
           "index": 3,
           "name": "Chapter 4: Munich",
-          "file_size": 24385677,
-          "duration": 4049.9,
+          "file_size": 23500561,
+          "duration": 3905.1,
           "stream_url": "Meinkampf%20-%20Audiobook/04%20-%20Chapter%204%20-%20%20-%20Munich.mp3"
         },
         {
           "index": 4,
           "name": "Chapter 5: The World War",
-          "file_size": 13712549,
-          "duration": 2272.8,
+          "file_size": 13212297,
+          "duration": 2192.1,
           "stream_url": "Meinkampf%20-%20Audiobook/05%20-%20Chapter%205%20-%20%20-%20The%20World%20War.mp3"
         },
         {
           "index": 5,
           "name": "Chapter 6: War Propaganda",
-          "file_size": 7856989,
-          "duration": 1297.9,
+          "file_size": 7570070,
+          "duration": 1252.6,
           "stream_url": "Meinkampf%20-%20Audiobook/06%20-%20Chapter%206%20-%20%20-%20War%20Propaganda.mp3"
         },
         {
           "index": 6,
           "name": "Chapter 7: The Revolution",
-          "file_size": 14437451,
-          "duration": 2393.5,
+          "file_size": 14004082,
+          "duration": 2323.9,
           "stream_url": "Meinkampf%20-%20Audiobook/07%20-%20Chapter%207%20-%20%20-%20The%20Revolution.mp3"
         },
         {
           "index": 7,
           "name": "Chapter 8: The Beginning Of My Political Activities",
-          "file_size": 6790664,
-          "duration": 1120.3,
+          "file_size": 6557943,
+          "duration": 1084.1,
           "stream_url": "Meinkampf%20-%20Audiobook/08%20-%20Chapter%208%20-%20%20-%20The%20Beginning%20Of%20My%20Political%20Activities.mp3"
         },
         {
           "index": 8,
           "name": "Chapter 9: The German Labour Party",
-          "file_size": 6123099,
-          "duration": 1009.2,
+          "file_size": 5932180,
+          "duration": 979.9,
           "stream_url": "Meinkampf%20-%20Audiobook/09%20-%20Chapter%209%20-%20%20-%20The%20German%20Labour%20Party.mp3"
         },
         {
           "index": 9,
           "name": "Chapter 10: Why The Second Reich Collapsed",
-          "file_size": 45309816,
-          "duration": 7533.8,
+          "file_size": 40454374,
+          "duration": 6727.9,
           "stream_url": "Meinkampf%20-%20Audiobook/10%20-%20Chapter%2010%20-%20%20-%20Why%20The%20Second%20Reich%20Collapsed.mp3"
         },
         {
           "index": 10,
           "name": "Chapter 11: Race And People",
-          "file_size": 39765287,
-          "duration": 6610.6,
+          "file_size": 38364856,
+          "duration": 6380.0,
           "stream_url": "Meinkampf%20-%20Audiobook/11%20-%20Chapter%2011%20-%20%20-%20Race%20And%20People.mp3"
         },
         {
           "index": 11,
           "name": "Chapter 12: The First Stage In The Development Of The Ge",
-          "file_size": 31875623,
-          "duration": 5297.0,
+          "file_size": 30945823,
+          "duration": 5144.7,
           "stream_url": "Meinkampf%20-%20Audiobook/12%20-%20Chapter%2012%20-%20%20-%20The%20First%20Stage%20In%20The%20Development%20Of%20The%20Ge.mp3"
         },
         {
           "index": 12,
           "name": "Chapter 1: Weltanschauung And Party",
-          "file_size": 10813404,
-          "duration": 1790.1,
+          "file_size": 10549693,
+          "duration": 1748.7,
           "stream_url": "Meinkampf%20-%20Audiobook/13%20-%20Chapter%201%20-%20%20-%20Weltanschauung%20And%20Party.mp3"
         },
         {
           "index": 13,
           "name": "Chapter 2: The State",
-          "file_size": 42295145,
-          "duration": 7031.9,
+          "file_size": 40929597,
+          "duration": 6807.0,
           "stream_url": "Meinkampf%20-%20Audiobook/14%20-%20Chapter%202%20-%20%20-%20The%20State.mp3"
         },
         {
           "index": 14,
           "name": "Chapter 3: Citizens And Subjects Of The State",
-          "file_size": 2967378,
-          "duration": 483.8,
+          "file_size": 2635030,
+          "duration": 430.9,
           "stream_url": "Meinkampf%20-%20Audiobook/15%20-%20Chapter%203%20-%20%20-%20Citizens%20And%20Subjects%20Of%20The%20State.mp3"
         },
         {
           "index": 15,
           "name": "Chapter 4: Personality And The Ideal Of The People's Sta",
-          "file_size": 7599179,
-          "duration": 1255.0,
+          "file_size": 6811336,
+          "duration": 1126.3,
           "stream_url": "Meinkampf%20-%20Audiobook/16%20-%20Chapter%204%20-%20%20-%20Personality%20And%20The%20Ideal%20Of%20The%20People%27s%20Sta.mp3"
         },
         {
           "index": 16,
           "name": "Chapter 5: Weltanschauung And Organization",
-          "file_size": 8888663,
-          "duration": 1469.7,
+          "file_size": 8018514,
+          "duration": 1327.3,
           "stream_url": "Meinkampf%20-%20Audiobook/17%20-%20Chapter%205%20-%20%20-%20Weltanschauung%20And%20Organization.mp3"
         },
         {
           "index": 17,
           "name": "Chapter 6: The First Period Of Our Struggle",
-          "file_size": 12931184,
-          "duration": 2142.7,
+          "file_size": 11634513,
+          "duration": 1929.4,
           "stream_url": "Meinkampf%20-%20Audiobook/18%20-%20Chapter%206%20-%20%20-%20The%20First%20Period%20Of%20Our%20Struggle.mp3"
         },
         {
           "index": 18,
           "name": "Chapter 7: The Conflict With The Red Forces",
-          "file_size": 19412042,
-          "duration": 3221.8,
+          "file_size": 17434723,
+          "duration": 2895.1,
           "stream_url": "Meinkampf%20-%20Audiobook/19%20-%20Chapter%207%20-%20%20-%20The%20Conflict%20With%20The%20Red%20Forces.mp3"
         },
         {
           "index": 19,
           "name": "Chapter 8: The Strong Is Strongest When Alone",
-          "file_size": 7256815,
-          "duration": 1198.0,
+          "file_size": 6478918,
+          "duration": 1071.0,
           "stream_url": "Meinkampf%20-%20Audiobook/20%20-%20Chapter%208%20-%20%20-%20The%20Strong%20Is%20Strongest%20When%20Alone.mp3"
         },
         {
           "index": 20,
           "name": "Chapter 9: Fundamental Ideas Regarding The Nature And Or",
-          "file_size": 28036636,
-          "duration": 4657.8,
+          "file_size": 25125696,
+          "duration": 4175.6,
           "stream_url": "Meinkampf%20-%20Audiobook/21%20-%20Chapter%209%20-%20%20-%20Fundamental%20Ideas%20Regarding%20The%20Nature%20And%20Or.mp3"
         },
         {
           "index": 21,
           "name": "Chapter 10: The Mask Of Federalism",
-          "file_size": 18533034,
-          "duration": 3075.5,
+          "file_size": 16580652,
+          "duration": 2752.9,
           "stream_url": "Meinkampf%20-%20Audiobook/22%20-%20Chapter%2010%20-%20%20-%20The%20Mask%20Of%20Federalism.mp3"
         },
         {
           "index": 22,
           "name": "Chapter 11: Propaganda And Organization",
-          "file_size": 12927572,
-          "duration": 2142.1,
+          "file_size": 11685387,
+          "duration": 1937.8,
           "stream_url": "Meinkampf%20-%20Audiobook/23%20-%20Chapter%2011%20-%20%20-%20Propaganda%20And%20Organization.mp3"
         },
         {
           "index": 23,
           "name": "Chapter 12: The Problem Of The Trade Unions",
-          "file_size": 8801314,
-          "duration": 1455.1,
+          "file_size": 7930300,
+          "duration": 1312.6,
           "stream_url": "Meinkampf%20-%20Audiobook/24%20-%20Chapter%2012%20-%20%20-%20The%20Problem%20Of%20The%20Trade%20Unions.mp3"
         },
         {
           "index": 24,
           "name": "Chapter 13: The German Post: War Policy Of Alliances",
-          "file_size": 26516772,
-          "duration": 4404.7,
+          "file_size": 23783706,
+          "duration": 3952.2,
           "stream_url": "Meinkampf%20-%20Audiobook/25%20-%20Chapter%2013%20-%20%20-%20The%20German%20Post-War%20Policy%20Of%20Alliances.mp3"
         },
         {
           "index": 25,
           "name": "Chapter 14: Germany's Policy In Eastern Europe",
-          "file_size": 21289812,
-          "duration": 3534.5,
+          "file_size": 19050151,
+          "duration": 3164.1,
           "stream_url": "Meinkampf%20-%20Audiobook/26%20-%20Chapter%2014%20-%20%20-%20Germany%27s%20Policy%20In%20Eastern%20Europe.mp3"
         },
         {
           "index": 26,
           "name": "Chapter 15: The Right To Self: Defence",
-          "file_size": 16470340,
-          "duration": 2732.0,
+          "file_size": 14704335,
+          "duration": 2440.5,
           "stream_url": "Meinkampf%20-%20Audiobook/27%20-%20Chapter%2015%20-%20%20-%20The%20Right%20To%20Self-Defence.mp3"
         }
       ],
       "total_tracks": 27,
-      "total_duration": 88500.20000000001
+      "total_duration": 82078.3
     },
     {
       "id": "the-appeal",
@@ -492,279 +2313,279 @@
         {
           "index": 0,
           "name": "Chapter 1",
-          "file_size": 12141759,
-          "duration": 2016.8,
+          "file_size": 10923081,
+          "duration": 1813.9,
           "stream_url": "THE%20APPEAL/01%20-%20Chapter%201.mp3"
         },
         {
           "index": 1,
           "name": "Chapter 2",
-          "file_size": 9854193,
-          "duration": 1636.0,
+          "file_size": 8834579,
+          "duration": 1466.2,
           "stream_url": "THE%20APPEAL/02%20-%20Chapter%202.mp3"
         },
         {
           "index": 2,
           "name": "Chapter 3",
-          "file_size": 9155095,
-          "duration": 1519.6,
+          "file_size": 8227877,
+          "duration": 1365.2,
           "stream_url": "THE%20APPEAL/03%20-%20Chapter%203.mp3"
         },
         {
           "index": 3,
           "name": "Chapter 4",
-          "file_size": 5230486,
-          "duration": 866.1,
+          "file_size": 4607268,
+          "duration": 762.3,
           "stream_url": "THE%20APPEAL/04%20-%20Chapter%204.mp3"
         },
         {
           "index": 4,
           "name": "Chapter 5",
-          "file_size": 8704068,
-          "duration": 1444.5,
+          "file_size": 7617138,
+          "duration": 1263.5,
           "stream_url": "THE%20APPEAL/05%20-%20Chapter%205.mp3"
         },
         {
           "index": 5,
           "name": "Chapter 6",
-          "file_size": 5211459,
-          "duration": 862.9,
+          "file_size": 4620385,
+          "duration": 764.5,
           "stream_url": "THE%20APPEAL/06%20-%20Chapter%206.mp3"
         },
         {
           "index": 6,
           "name": "Chapter 7",
-          "file_size": 5241009,
-          "duration": 867.9,
+          "file_size": 4647051,
+          "duration": 769.0,
           "stream_url": "THE%20APPEAL/07%20-%20Chapter%207.mp3"
         },
         {
           "index": 7,
           "name": "Chapter 8",
-          "file_size": 5041946,
-          "duration": 834.7,
+          "file_size": 4408925,
+          "duration": 729.3,
           "stream_url": "THE%20APPEAL/08%20-%20Chapter%208.mp3"
         },
         {
           "index": 8,
           "name": "Chapter 9",
-          "file_size": 7946880,
-          "duration": 1318.4,
+          "file_size": 7030905,
+          "duration": 1165.9,
           "stream_url": "THE%20APPEAL/09%20-%20Chapter%209.mp3"
         },
         {
           "index": 9,
           "name": "Chapter 10",
-          "file_size": 4922743,
-          "duration": 814.9,
+          "file_size": 4351992,
+          "duration": 719.8,
           "stream_url": "THE%20APPEAL/10%20-%20Chapter%2010.mp3"
         },
         {
           "index": 10,
           "name": "Chapter 11",
-          "file_size": 7722740,
-          "duration": 1281.1,
+          "file_size": 6695197,
+          "duration": 1110.0,
           "stream_url": "THE%20APPEAL/11%20-%20Chapter%2011.mp3"
         },
         {
           "index": 11,
           "name": "Chapter 12",
-          "file_size": 6198129,
-          "duration": 1027.2,
+          "file_size": 5506730,
+          "duration": 912.1,
           "stream_url": "THE%20APPEAL/12%20-%20Chapter%2012.mp3"
         },
         {
           "index": 12,
           "name": "Chapter 13",
-          "file_size": 9324468,
-          "duration": 1547.8,
+          "file_size": 8211304,
+          "duration": 1362.4,
           "stream_url": "THE%20APPEAL/13%20-%20Chapter%2013.mp3"
         },
         {
           "index": 13,
           "name": "Chapter 14",
-          "file_size": 4718491,
-          "duration": 780.9,
+          "file_size": 4121362,
+          "duration": 681.4,
           "stream_url": "THE%20APPEAL/14%20-%20Chapter%2014.mp3"
         },
         {
           "index": 14,
           "name": "Chapter 15",
-          "file_size": 6927497,
-          "duration": 1148.7,
+          "file_size": 6097576,
+          "duration": 1010.5,
           "stream_url": "THE%20APPEAL/15%20-%20Chapter%2015.mp3"
         },
         {
           "index": 15,
           "name": "Chapter 16",
-          "file_size": 6748326,
-          "duration": 1118.8,
+          "file_size": 5850802,
+          "duration": 969.4,
           "stream_url": "THE%20APPEAL/16%20-%20Chapter%2016.mp3"
         },
         {
           "index": 16,
           "name": "Chapter 17",
-          "file_size": 9418594,
-          "duration": 1563.4,
+          "file_size": 8290439,
+          "duration": 1375.6,
           "stream_url": "THE%20APPEAL/17%20-%20Chapter%2017.mp3"
         },
         {
           "index": 17,
           "name": "Chapter 18",
-          "file_size": 6248435,
-          "duration": 1035.6,
+          "file_size": 5559343,
+          "duration": 920.9,
           "stream_url": "THE%20APPEAL/18%20-%20Chapter%2018.mp3"
         },
         {
           "index": 18,
           "name": "Chapter 19",
-          "file_size": 6242669,
-          "duration": 1034.6,
+          "file_size": 5472712,
+          "duration": 906.4,
           "stream_url": "THE%20APPEAL/19%20-%20Chapter%2019.mp3"
         },
         {
           "index": 19,
           "name": "Chapter 20",
-          "file_size": 8382631,
-          "duration": 1390.9,
+          "file_size": 7463197,
+          "duration": 1237.8,
           "stream_url": "THE%20APPEAL/20%20-%20Chapter%2020.mp3"
         },
         {
           "index": 20,
           "name": "Chapter 21",
-          "file_size": 5616220,
-          "duration": 930.3,
+          "file_size": 5070694,
+          "duration": 839.5,
           "stream_url": "THE%20APPEAL/21%20-%20Chapter%2021.mp3"
         },
         {
           "index": 21,
           "name": "Chapter 22",
-          "file_size": 5020184,
-          "duration": 831.1,
+          "file_size": 4460389,
+          "duration": 737.9,
           "stream_url": "THE%20APPEAL/22%20-%20Chapter%2022.mp3"
         },
         {
           "index": 22,
           "name": "Chapter 23",
-          "file_size": 5564472,
-          "duration": 921.7,
+          "file_size": 4942839,
+          "duration": 818.2,
           "stream_url": "THE%20APPEAL/23%20-%20Chapter%2023.mp3"
         },
         {
           "index": 23,
           "name": "Chapter 24",
-          "file_size": 6482669,
-          "duration": 1074.6,
+          "file_size": 5715162,
+          "duration": 946.8,
           "stream_url": "THE%20APPEAL/24%20-%20Chapter%2024.mp3"
         },
         {
           "index": 24,
           "name": "Chapter 25",
-          "file_size": 4333626,
-          "duration": 716.8,
+          "file_size": 3793146,
+          "duration": 626.8,
           "stream_url": "THE%20APPEAL/25%20-%20Chapter%2025.mp3"
         },
         {
           "index": 25,
           "name": "Chapter 26",
-          "file_size": 3724762,
-          "duration": 615.4,
+          "file_size": 3239777,
+          "duration": 534.6,
           "stream_url": "THE%20APPEAL/26%20-%20Chapter%2026.mp3"
         },
         {
           "index": 26,
           "name": "Chapter 27",
-          "file_size": 6812471,
-          "duration": 1129.5,
+          "file_size": 5996099,
+          "duration": 993.6,
           "stream_url": "THE%20APPEAL/27%20-%20Chapter%2027.mp3"
         },
         {
           "index": 27,
           "name": "Chapter 28",
-          "file_size": 6765480,
-          "duration": 1121.7,
+          "file_size": 6028676,
+          "duration": 999.0,
           "stream_url": "THE%20APPEAL/28%20-%20Chapter%2028.mp3"
         },
         {
           "index": 28,
           "name": "Chapter 29",
-          "file_size": 5962165,
-          "duration": 987.9,
+          "file_size": 5303487,
+          "duration": 878.3,
           "stream_url": "THE%20APPEAL/29%20-%20Chapter%2029.mp3"
         },
         {
           "index": 29,
           "name": "Chapter 30",
-          "file_size": 8232721,
-          "duration": 1366.0,
+          "file_size": 7270188,
+          "duration": 1205.7,
           "stream_url": "THE%20APPEAL/30%20-%20Chapter%2030.mp3"
         },
         {
           "index": 30,
           "name": "Chapter 31",
-          "file_size": 4443608,
-          "duration": 735.1,
+          "file_size": 3974912,
+          "duration": 657.0,
           "stream_url": "THE%20APPEAL/31%20-%20Chapter%2031.mp3"
         },
         {
           "index": 31,
           "name": "Chapter 32",
-          "file_size": 4998995,
-          "duration": 827.6,
+          "file_size": 4490515,
+          "duration": 742.9,
           "stream_url": "THE%20APPEAL/32%20-%20Chapter%2032.mp3"
         },
         {
           "index": 32,
           "name": "Chapter 33",
-          "file_size": 6659246,
-          "duration": 1104.0,
+          "file_size": 5971450,
+          "duration": 989.5,
           "stream_url": "THE%20APPEAL/33%20-%20Chapter%2033.mp3"
         },
         {
           "index": 33,
           "name": "Chapter 34",
-          "file_size": 4640509,
-          "duration": 767.9,
+          "file_size": 4150335,
+          "duration": 686.3,
           "stream_url": "THE%20APPEAL/34%20-%20Chapter%2034.mp3"
         },
         {
           "index": 34,
           "name": "Chapter 35",
-          "file_size": 5819318,
-          "duration": 964.2,
+          "file_size": 5148388,
+          "duration": 852.4,
           "stream_url": "THE%20APPEAL/35%20-%20Chapter%2035.mp3"
         },
         {
           "index": 35,
           "name": "Chapter 36",
-          "file_size": 6697444,
-          "duration": 1110.4,
+          "file_size": 5957036,
+          "duration": 987.1,
           "stream_url": "THE%20APPEAL/36%20-%20Chapter%2036.mp3"
         },
         {
           "index": 36,
           "name": "Chapter 37",
-          "file_size": 3869915,
-          "duration": 639.6,
+          "file_size": 3451813,
+          "duration": 570.0,
           "stream_url": "THE%20APPEAL/37%20-%20Chapter%2037.mp3"
         },
         {
           "index": 37,
           "name": "Chapter 38",
-          "file_size": 3589987,
-          "duration": 593.0,
+          "file_size": 3240354,
+          "duration": 534.7,
           "stream_url": "THE%20APPEAL/38%20-%20Chapter%2038.mp3"
         },
         {
           "index": 38,
           "name": "Chapter 39",
-          "file_size": 3687285,
-          "duration": 609.2,
+          "file_size": 3304498,
+          "duration": 545.4,
           "stream_url": "THE%20APPEAL/39%20-%20Chapter%2039.mp3"
         }
       ],
       "total_tracks": 39,
-      "total_duration": 41156.799999999996
+      "total_duration": 36451.799999999996
     },
     {
       "id": "the-48-laws-of-power",
@@ -776,370 +2597,377 @@
         {
           "index": 0,
           "name": "The 48 Laws of Power",
-          "file_size": 3916638,
-          "duration": 608.3,
+          "file_size": 3644074,
+          "duration": 562.9,
           "stream_url": "The%2048%20Laws%20of%20Power/01%20-%20The%2048%20Laws%20of%20Power.mp3"
         },
         {
           "index": 1,
           "name": "Contents",
-          "file_size": 8250448,
-          "duration": 1329.8,
+          "file_size": 7482028,
+          "duration": 1201.9,
           "stream_url": "The%2048%20Laws%20of%20Power/02%20-%20Contents.mp3"
         },
         {
           "index": 2,
           "name": "Preface",
-          "file_size": 8526625,
-          "duration": 1375.8,
+          "file_size": 7739467,
+          "duration": 1244.8,
           "stream_url": "The%2048%20Laws%20of%20Power/03%20-%20Preface.mp3"
         },
         {
           "index": 3,
           "name": "Law 1",
-          "file_size": 6356678,
-          "duration": 1014.5,
+          "file_size": 5783285,
+          "duration": 919.1,
           "stream_url": "The%2048%20Laws%20of%20Power/04%20-%20Law%201.mp3"
         },
         {
           "index": 4,
           "name": "Law 2",
-          "file_size": 9625864,
-          "duration": 1558.8,
+          "file_size": 8718922,
+          "duration": 1407.8,
           "stream_url": "The%2048%20Laws%20of%20Power/05%20-%20Law%202.mp3"
         },
         {
           "index": 5,
           "name": "Law 3",
-          "file_size": 16816055,
-          "duration": 2756.0,
+          "file_size": 15170951,
+          "duration": 2482.1,
           "stream_url": "The%2048%20Laws%20of%20Power/06%20-%20Law%203.mp3"
         },
         {
           "index": 6,
           "name": "Law 4",
-          "file_size": 6635452,
-          "duration": 1060.9,
+          "file_size": 6050672,
+          "duration": 963.6,
           "stream_url": "The%2048%20Laws%20of%20Power/07%20-%20Law%204.mp3"
         },
         {
           "index": 7,
           "name": "Law 5",
-          "file_size": 8333180,
-          "duration": 1343.6,
+          "file_size": 7532616,
+          "duration": 1210.3,
           "stream_url": "The%2048%20Laws%20of%20Power/08%20-%20Law%205.mp3"
         },
         {
           "index": 8,
           "name": "Law 6",
-          "file_size": 12882365,
-          "duration": 2101.1,
+          "file_size": 11678486,
+          "duration": 1900.6,
           "stream_url": "The%2048%20Laws%20of%20Power/09%20-%20Law%206.mp3"
         },
         {
           "index": 9,
           "name": "Law 7",
-          "file_size": 6571887,
-          "duration": 1050.4,
+          "file_size": 5899034,
+          "duration": 938.3,
           "stream_url": "The%2048%20Laws%20of%20Power/10%20-%20Law%207.mp3"
         },
         {
           "index": 10,
           "name": "Law 8",
-          "file_size": 6260103,
-          "duration": 998.4,
+          "file_size": 5603683,
+          "duration": 889.2,
           "stream_url": "The%2048%20Laws%20of%20Power/11%20-%20Law%208.mp3"
         },
         {
           "index": 11,
           "name": "Law 9",
-          "file_size": 8842011,
-          "duration": 1428.3,
+          "file_size": 7971393,
+          "duration": 1283.4,
           "stream_url": "The%2048%20Laws%20of%20Power/12%20-%20Law%209.mp3"
         },
         {
           "index": 12,
           "name": "Law 10",
-          "file_size": 7707455,
-          "duration": 1239.4,
+          "file_size": 6968585,
+          "duration": 1116.4,
           "stream_url": "The%2048%20Laws%20of%20Power/13%20-%20Law%2010.mp3"
         },
         {
           "index": 13,
           "name": "Law 11",
-          "file_size": 8205328,
-          "duration": 1322.3,
+          "file_size": 7406062,
+          "duration": 1189.2,
           "stream_url": "The%2048%20Laws%20of%20Power/14%20-%20Law%2011.mp3"
         },
         {
           "index": 14,
           "name": "Law 12",
-          "file_size": 7037185,
-          "duration": 1127.8,
+          "file_size": 6404694,
+          "duration": 1022.5,
           "stream_url": "The%2048%20Laws%20of%20Power/15%20-%20Law%2012.mp3"
         },
         {
           "index": 15,
           "name": "Law 13",
-          "file_size": 6260538,
-          "duration": 998.5,
+          "file_size": 5619830,
+          "duration": 891.8,
           "stream_url": "The%2048%20Laws%20of%20Power/16%20-%20Law%2013.mp3"
         },
         {
           "index": 16,
           "name": "Law 14",
-          "file_size": 5341187,
-          "duration": 845.4,
+          "file_size": 4827902,
+          "duration": 760.0,
           "stream_url": "The%2048%20Laws%20of%20Power/17%20-%20Law%2014.mp3"
         },
         {
           "index": 17,
           "name": "Law 15",
-          "file_size": 8734193,
-          "duration": 1410.4,
+          "file_size": 7910710,
+          "duration": 1273.3,
           "stream_url": "The%2048%20Laws%20of%20Power/18%20-%20Law%2015.mp3"
         },
         {
           "index": 18,
           "name": "Law 16",
-          "file_size": 8239779,
-          "duration": 1328.1,
+          "file_size": 7575431,
+          "duration": 1217.4,
           "stream_url": "The%2048%20Laws%20of%20Power/19%20-%20Law%2016.mp3"
         },
         {
           "index": 19,
           "name": "Law 17",
-          "file_size": 6819528,
-          "duration": 1091.6,
+          "file_size": 6090748,
+          "duration": 970.2,
           "stream_url": "The%2048%20Laws%20of%20Power/20%20-%20Law%2017.mp3"
         },
         {
           "index": 20,
           "name": "Law 18",
-          "file_size": 8500391,
-          "duration": 1371.5,
+          "file_size": 7711791,
+          "duration": 1240.2,
           "stream_url": "The%2048%20Laws%20of%20Power/21%20-%20Law%2018.mp3"
         },
         {
           "index": 21,
           "name": "Law 19",
-          "file_size": 8725688,
-          "duration": 1409.0,
+          "file_size": 7981629,
+          "duration": 1285.1,
           "stream_url": "The%2048%20Laws%20of%20Power/22%20-%20Law%2019.mp3"
         },
         {
           "index": 22,
           "name": "Law 20",
-          "file_size": 13006044,
-          "duration": 2121.6,
+          "file_size": 11813265,
+          "duration": 1923.0,
           "stream_url": "The%2048%20Laws%20of%20Power/23%20-%20Law%2020.mp3"
         },
         {
           "index": 23,
           "name": "Law 21",
-          "file_size": 7180897,
-          "duration": 1151.8,
+          "file_size": 6456009,
+          "duration": 1031.1,
           "stream_url": "The%2048%20Laws%20of%20Power/24%20-%20Law%2021.mp3"
         },
         {
           "index": 24,
           "name": "Law 22",
-          "file_size": 7709617,
-          "duration": 1239.8,
+          "file_size": 7013414,
+          "duration": 1123.9,
           "stream_url": "The%2048%20Laws%20of%20Power/25%20-%20Law%2022.mp3"
         },
         {
           "index": 25,
           "name": "Law 23",
-          "file_size": 7011240,
-          "duration": 1123.5,
+          "file_size": 6388117,
+          "duration": 1019.8,
           "stream_url": "The%2048%20Laws%20of%20Power/26%20-%20Law%2023.mp3"
         },
         {
           "index": 26,
           "name": "Law 24",
-          "file_size": 14155160,
-          "duration": 2313.0,
+          "file_size": 12924183,
+          "duration": 2108.0,
           "stream_url": "The%2048%20Laws%20of%20Power/27%20-%20Law%2024.mp3"
         },
         {
           "index": 27,
           "name": "Law 25",
-          "file_size": 8910625,
-          "duration": 1439.8,
+          "file_size": 8092908,
+          "duration": 1303.6,
           "stream_url": "The%2048%20Laws%20of%20Power/28%20-%20Law%2025.mp3"
         },
         {
           "index": 28,
           "name": "Law 26",
-          "file_size": 18314580,
-          "duration": 3005.5,
+          "file_size": 16557765,
+          "duration": 2713.0,
           "stream_url": "The%2048%20Laws%20of%20Power/29%20-%20Law%2026.mp3"
         },
         {
           "index": 29,
           "name": "Law 27",
-          "file_size": 16085537,
-          "duration": 2634.4,
+          "file_size": 14651604,
+          "duration": 2395.6,
           "stream_url": "The%2048%20Laws%20of%20Power/30%20-%20Law%2027.mp3"
         },
         {
           "index": 30,
           "name": "Law 28",
-          "file_size": 11535920,
-          "duration": 1876.9,
+          "file_size": 10477482,
+          "duration": 1700.6,
           "stream_url": "The%2048%20Laws%20of%20Power/31%20-%20Law%2028.mp3"
         },
         {
           "index": 31,
           "name": "Law 29",
-          "file_size": 9394949,
-          "duration": 1520.4,
+          "file_size": 8593232,
+          "duration": 1386.9,
           "stream_url": "The%2048%20Laws%20of%20Power/32%20-%20Law%2029.mp3"
         },
         {
           "index": 32,
           "name": "Law 30",
-          "file_size": 9737291,
-          "duration": 1577.4,
+          "file_size": 8922601,
+          "duration": 1441.8,
           "stream_url": "The%2048%20Laws%20of%20Power/33%20-%20Law%2030.mp3"
         },
         {
           "index": 33,
           "name": "Law 31",
-          "file_size": 9586660,
-          "duration": 1552.3,
+          "file_size": 8733628,
+          "duration": 1410.3,
           "stream_url": "The%2048%20Laws%20of%20Power/34%20-%20Law%2031.mp3"
         },
         {
           "index": 34,
           "name": "Law 32",
-          "file_size": 8728571,
-          "duration": 1409.4,
+          "file_size": 7960584,
+          "duration": 1281.6,
           "stream_url": "The%2048%20Laws%20of%20Power/35%20-%20Law%2032.mp3"
         },
         {
           "index": 35,
           "name": "Law 33",
-          "file_size": 14973610,
-          "duration": 2449.2,
+          "file_size": 13530452,
+          "duration": 2209.0,
           "stream_url": "The%2048%20Laws%20of%20Power/36%20-%20Law%2033.mp3"
         },
         {
           "index": 36,
           "name": "Law 34",
-          "file_size": 9999777,
-          "duration": 1621.1,
+          "file_size": 9079718,
+          "duration": 1467.9,
           "stream_url": "The%2048%20Laws%20of%20Power/37%20-%20Law%2034.mp3"
         },
         {
           "index": 37,
           "name": "Law 35",
-          "file_size": 11224425,
-          "duration": 1825.0,
+          "file_size": 10085267,
+          "duration": 1635.3,
           "stream_url": "The%2048%20Laws%20of%20Power/38%20-%20Law%2035.mp3"
         },
         {
           "index": 38,
           "name": "Law 36",
-          "file_size": 11193001,
-          "duration": 1819.8,
+          "file_size": 10107321,
+          "duration": 1639.0,
           "stream_url": "The%2048%20Laws%20of%20Power/39%20-%20Law%2036.mp3"
         },
         {
           "index": 39,
           "name": "Law 37",
-          "file_size": 9290300,
-          "duration": 1503.0,
+          "file_size": 8515971,
+          "duration": 1374.0,
           "stream_url": "The%2048%20Laws%20of%20Power/40%20-%20Law%2037.mp3"
         },
         {
           "index": 40,
           "name": "Law 38",
-          "file_size": 9759345,
-          "duration": 1581.1,
+          "file_size": 8874024,
+          "duration": 1433.7,
           "stream_url": "The%2048%20Laws%20of%20Power/41%20-%20Law%2038.mp3"
         },
         {
           "index": 41,
           "name": "Law 39",
-          "file_size": 8674085,
-          "duration": 1400.4,
+          "file_size": 7872224,
+          "duration": 1266.9,
           "stream_url": "The%2048%20Laws%20of%20Power/42%20-%20Law%2039.mp3"
         },
         {
           "index": 42,
           "name": "Law 40",
-          "file_size": 19574542,
-          "duration": 3215.3,
+          "file_size": 17797691,
+          "duration": 2919.5,
           "stream_url": "The%2048%20Laws%20of%20Power/43%20-%20Law%2040.mp3"
         },
         {
           "index": 43,
           "name": "Law 41",
-          "file_size": 13601936,
-          "duration": 2220.9,
+          "file_size": 12437841,
+          "duration": 2027.0,
           "stream_url": "The%2048%20Laws%20of%20Power/44%20-%20Law%2041.mp3"
         },
         {
           "index": 44,
           "name": "Law 42",
-          "file_size": 9732102,
-          "duration": 1576.5,
+          "file_size": 8877916,
+          "duration": 1434.3,
           "stream_url": "The%2048%20Laws%20of%20Power/45%20-%20Law%2042.mp3"
         },
         {
           "index": 45,
           "name": "Law 43",
-          "file_size": 10274948,
-          "duration": 1666.9,
+          "file_size": 9389483,
+          "duration": 1519.5,
           "stream_url": "The%2048%20Laws%20of%20Power/46%20-%20Law%2043.mp3"
         },
         {
           "index": 46,
           "name": "Law 44",
-          "file_size": 19313353,
-          "duration": 3171.8,
+          "file_size": 17628610,
+          "duration": 2891.3,
           "stream_url": "The%2048%20Laws%20of%20Power/47%20-%20Law%2044.mp3"
         },
         {
           "index": 47,
           "name": "Law 45",
-          "file_size": 9163454,
-          "duration": 1481.9,
+          "file_size": 8348187,
+          "duration": 1346.1,
           "stream_url": "The%2048%20Laws%20of%20Power/48%20-%20Law%2045.mp3"
         },
         {
           "index": 48,
           "name": "Law 46",
-          "file_size": 14492601,
-          "duration": 2369.2,
+          "file_size": 13165624,
+          "duration": 2148.2,
           "stream_url": "The%2048%20Laws%20of%20Power/49%20-%20Law%2046.mp3"
         },
         {
           "index": 49,
           "name": "Law 47",
-          "file_size": 10114372,
-          "duration": 1640.2,
+          "file_size": 9250384,
+          "duration": 1496.3,
           "stream_url": "The%2048%20Laws%20of%20Power/50%20-%20Law%2047.mp3"
         },
         {
           "index": 50,
           "name": "Law 48",
-          "file_size": 15491519,
-          "duration": 2535.5,
+          "file_size": 14087713,
+          "duration": 2301.7,
           "stream_url": "The%2048%20Laws%20of%20Power/51%20-%20Law%2048.mp3"
         },
         {
           "index": 51,
           "name": "Selected Bibliography",
-          "file_size": 2954481,
-          "duration": 448.1,
+          "file_size": 2608115,
+          "duration": 390.4,
           "stream_url": "The%2048%20Laws%20of%20Power/52%20-%20Selected%20Bibliography.mp3"
+        },
+        {
+          "index": 52,
+          "name": "Index",
+          "file_size": 41902746,
+          "duration": 6933.0,
+          "stream_url": "The%2048%20Laws%20of%20Power/53%20-%20Index.mp3"
         }
       ],
-      "total_tracks": 52,
-      "total_duration": 84261.59999999999
+      "total_tracks": 53,
+      "total_duration": 83242.4
     },
     {
       "id": "the-power-of-your-subconscious-mind",

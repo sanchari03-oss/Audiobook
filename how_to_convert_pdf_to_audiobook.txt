@@ -41,24 +41,28 @@ To check chapter names, word counts, and estimated duration before converting:
 python3 /home/ssk/audiobook_maker.py ~/Desktop/my_book.pdf --preview
 
 
-5. NARRATOR VOICES
-------------------
-Add "--voice <VoiceName>" at the end:
+5. NARRATOR VOICES (EXPRESSIVE & SOULFUL)
+----------------------------------------
+By default, the maker uses Option 1 (Andrew - Warm American Storyteller).
+You can pick any voice using simple shortcuts: `--voice 1`, `--voice 2`, or `--voice 3`:
 
-- Default Deep Engaging Narrator (Male US):
-  python3 /home/ssk/audiobook_maker.py ~/Desktop/my_book.pdf --voice en-US-ChristopherNeural
+- Option 1 (Default - American Storyteller - Warm & Engaging):
+  python3 /home/ssk/audiobook_maker.py ~/Desktop/my_book.pdf
+  (or add `--voice 1` / `--voice andrew`)
 
-- British Narrator (Male UK):
-  python3 /home/ssk/audiobook_maker.py ~/Desktop/my_book.pdf --voice en-GB-RyanNeural
+- Option 2 (American Narrator - Deep & Dynamic):
+  python3 /home/ssk/audiobook_maker.py ~/Desktop/my_book.pdf --voice 2
+  (or `--voice brian`)
 
-- Casual / Natural Narrator (Male US):
-  python3 /home/ssk/audiobook_maker.py ~/Desktop/my_book.pdf --voice en-US-GuyNeural
+- Option 3 (British Narrator - Sophisticated & Classic):
+  python3 /home/ssk/audiobook_maker.py ~/Desktop/my_book.pdf --voice 3
+  (or `--voice ryan`)
 
-- Expressive Storyteller (Female US):
-  python3 /home/ssk/audiobook_maker.py ~/Desktop/my_book.pdf --voice en-US-JennyNeural
-
-- Indian English Narrator (Male IN):
-  python3 /home/ssk/audiobook_maker.py ~/Desktop/my_book.pdf --voice en-IN-PrabhatNeural
+- Other Specialty Voices:
+  --voice Jenny   (Female US - Expressive Storyteller)
+  --voice Guy     (Male US - Casual / Clear)
+  --voice Neerja  (Female IN - Warm Indian English)
+  --voice Prabhat (Male IN - Clear Indian English)
 
 
 6. PAUSING AND RESUMING
