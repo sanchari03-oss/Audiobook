@@ -15,7 +15,7 @@ for extra_p in [
     '/home/ssk/.kokoro_venv/lib/python3.12/site-packages'
 ]:
     if os.path.exists(extra_p) and extra_p not in sys.path:
-        sys.path.insert(0, extra_p)
+        sys.path.append(extra_p)
 import re
 import argparse
 import asyncio
@@ -62,6 +62,11 @@ VOICE_ALIASES = {
     "british": "en-GB-RyanNeural",
     "adam": "am_adam",
     "george": "bm_george",
+    "ava": "en-US-AvaMultilingualNeural",
+    "guy": "en-US-GuyNeural",
+    "libby": "en-GB-LibbyNeural",
+    "sonia": "en-GB-SoniaNeural",
+    "thomas": "en-GB-ThomasNeural",
 }
 
 def resolve_voice(voice_input: str) -> str:
@@ -126,7 +131,8 @@ def clean_extracted_text(text: str) -> str:
     for line in cleaned_lines:
         is_heading = (
             line.upper() in ROMAN_NUMERALS or
-            bool(re.match(r'^(?:CHAPTER|Chapter|BOOK|Book|PART|Part|ACT|Act)\s+(?:[0-9]+|[IVXLCDM]+|[A-Za-z]+)', line))
+            bool(re.match(r'^(?:CHAPTER|Chapter|BOOK|Book|PART|Part|ACT|Act)\s+(?:[0-9]+|[IVXLCDM]+|[A-Za-z]+)', line)) or
+            bool(re.match(r'^[0-9]{1,3}\.$', line))
         )
         if is_heading:
             if buffer:
@@ -316,7 +322,7 @@ def parse_pdf_into_chapters(pdf_path: str, min_words: int = 100) -> Tuple[str, s
         full_doc_text = clean_extracted_text(full_doc_text)
 
         chapter_pattern = re.compile(
-            r'(?m)^[ \t]*(?:(?:CHAPTER|Chapter|BOOK|Book|PART|Part|ACT|Act)\s+(?:[0-9]+|[IVXLCDM]+|[A-Za-z]+)|PROLOGUE|Prologue|EPILOGUE|Epilogue|PREFACE|Preface|INTRODUCTION|Introduction|CONCLUSION|Conclusion)(?:\s*[:\-\—\.\n]\s*[^\n]{1,80})?$',
+            r'(?m)^[ \t]*(?:(?:CHAPTER|Chapter|BOOK|Book|PART|Part|ACT|Act)\s+(?:[0-9]+|[IVXLCDM]+|[A-Za-z]+)|[0-9]{1,3}\.|PROLOGUE|Prologue|EPILOGUE|Epilogue|PREFACE|Preface|INTRODUCTION|Introduction|CONCLUSION|Conclusion)(?:\s*[:\-\—\.\n]\s*[^\n]{1,80})?$',
             re.MULTILINE
         )
 
@@ -331,7 +337,14 @@ def parse_pdf_into_chapters(pdf_path: str, min_words: int = 100) -> Tuple[str, s
                 chap_body = full_doc_text[start_pos:end_pos].strip()
                 word_count = len(chap_body.split())
                 if word_count >= min_words:
-                    clean_title = re.sub(r'[\\/*?:"<>|]', '', chap_title)
+                    m_num = re.match(r'^\s*(\d+)\.?\s*$', chap_title)
+                    m_part = re.match(r'^\s*PART\s+[A-Za-z]+\s*[-–—\s]+\s*(\d+)\.?\s*$', chap_title, re.IGNORECASE)
+                    if m_num:
+                        clean_title = f"Chapter {m_num.group(1)}"
+                    elif m_part:
+                        clean_title = f"Chapter {m_part.group(1)}"
+                    else:
+                        clean_title = re.sub(r'[\\/*?:"<>|]', '', chap_title)
                     chapters.append({
                         "title": clean_title[:60],
                         "text": chap_body,
