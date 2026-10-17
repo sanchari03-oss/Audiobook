@@ -67,6 +67,7 @@ VOICE_ALIASES = {
     "libby": "en-GB-LibbyNeural",
     "sonia": "en-GB-SoniaNeural",
     "thomas": "en-GB-ThomasNeural",
+    "christopher": "en-US-ChristopherNeural",
 }
 
 def resolve_voice(voice_input: str) -> str:
@@ -132,6 +133,7 @@ def clean_extracted_text(text: str) -> str:
         is_heading = (
             line.upper() in ROMAN_NUMERALS or
             bool(re.match(r'^(?:CHAPTER|Chapter|BOOK|Book|PART|Part|ACT|Act)\s+(?:[0-9]+|[IVXLCDM]+|[A-Za-z]+)', line)) or
+            bool(re.match(r'^(?:PROLOGUE|Prologue|EPILOGUE|Epilogue|PREFACE|Preface)', line)) or
             bool(re.match(r'^[0-9]{1,3}\.$', line))
         )
         if is_heading:

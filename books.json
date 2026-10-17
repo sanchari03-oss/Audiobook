@@ -5077,6 +5077,108 @@
       "total_duration": 28391.799999999996
     },
     {
+      "id": "the-time-machine",
+      "title": "The Time Machine",
+      "author": "Audiobook",
+      "cover_url": "The%20Time%20Machine/cover.jpg",
+      "cover_version": "1792219709",
+      "chapters": [
+        {
+          "index": 0,
+          "name": "Chapter 1",
+          "file_size": 6604947,
+          "duration": 1019.6,
+          "stream_url": "The%20Time%20Machine/01%20-%20Chapter%201.mp3"
+        },
+        {
+          "index": 1,
+          "name": "Chapter 2",
+          "file_size": 4545994,
+          "duration": 676.8,
+          "stream_url": "The%20Time%20Machine/02%20-%20Chapter%202.mp3"
+        },
+        {
+          "index": 2,
+          "name": "Chapter 3",
+          "file_size": 4588228,
+          "duration": 683.8,
+          "stream_url": "The%20Time%20Machine/03%20-%20Chapter%203.mp3"
+        },
+        {
+          "index": 3,
+          "name": "Chapter 4",
+          "file_size": 7915504,
+          "duration": 1237.8,
+          "stream_url": "The%20Time%20Machine/04%20-%20Chapter%204.mp3"
+        },
+        {
+          "index": 4,
+          "name": "Chapter 5",
+          "file_size": 12970779,
+          "duration": 2079.5,
+          "stream_url": "The%20Time%20Machine/05%20-%20Chapter%205.mp3"
+        },
+        {
+          "index": 5,
+          "name": "Chapter 6",
+          "file_size": 4539652,
+          "duration": 675.7,
+          "stream_url": "The%20Time%20Machine/06%20-%20Chapter%206.mp3"
+        },
+        {
+          "index": 6,
+          "name": "Chapter 7",
+          "file_size": 5248552,
+          "duration": 793.8,
+          "stream_url": "The%20Time%20Machine/07%20-%20Chapter%207.mp3"
+        },
+        {
+          "index": 7,
+          "name": "Chapter 8",
+          "file_size": 5299435,
+          "duration": 802.2,
+          "stream_url": "The%20Time%20Machine/08%20-%20Chapter%208.mp3"
+        },
+        {
+          "index": 8,
+          "name": "Chapter 9",
+          "file_size": 5436372,
+          "duration": 825.0,
+          "stream_url": "The%20Time%20Machine/09%20-%20Chapter%209.mp3"
+        },
+        {
+          "index": 9,
+          "name": "Chapter 10",
+          "file_size": 2618793,
+          "duration": 355.9,
+          "stream_url": "The%20Time%20Machine/10%20-%20Chapter%2010.mp3"
+        },
+        {
+          "index": 10,
+          "name": "Chapter 11",
+          "file_size": 4108089,
+          "duration": 603.9,
+          "stream_url": "The%20Time%20Machine/11%20-%20Chapter%2011.mp3"
+        },
+        {
+          "index": 11,
+          "name": "Chapter 12",
+          "file_size": 4271980,
+          "duration": 631.2,
+          "stream_url": "The%20Time%20Machine/12%20-%20Chapter%2012.mp3"
+        },
+        {
+          "index": 12,
+          "name": "Epilogue",
+          "file_size": 1030322,
+          "duration": 91.4,
+          "stream_url": "The%20Time%20Machine/13%20-%20Epilogue.mp3"
+        }
+      ],
+      "total_tracks": 13,
+      "total_duration": 10476.6
+    },
+    {
       "id": "white-nights",
       "title": "White Nights",
       "author": "Audiobook",
