@@ -6,6 +6,8 @@ Converts PDF, EPUB, and TXT files into full audiobooks using high-quality neural
 
 import os
 import sys
+import time
+import json
 
 # Add environment package paths
 import os
