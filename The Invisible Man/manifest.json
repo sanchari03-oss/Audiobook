@@ -1,0 +1,221 @@
+{
+  "id": "the-invisible-man",
+  "title": "The Invisible Man",
+  "author": "Audiobook",
+  "cover_url": "The%20Invisible%20Man/cover.jpg",
+  "cover_version": "1791971922",
+  "total_tracks": 30,
+  "total_duration": 16062.7,
+  "chapters": [
+    {
+      "index": 0,
+      "name": "Contents",
+      "file_size": 1037683,
+      "duration": 73.6,
+      "stream_url": "The%20Invisible%20Man/01%20-%20Contents.mp3"
+    },
+    {
+      "index": 1,
+      "name": "I. The Strange Man’s Arrival",
+      "file_size": 4317864,
+      "duration": 619.7,
+      "stream_url": "The%20Invisible%20Man/02%20-%20I.%20The%20Strange%20Man%E2%80%99s%20Arrival.mp3"
+    },
+    {
+      "index": 2,
+      "name": "II. Mr. Teddy Henfrey’s First Impressions",
+      "file_size": 3975404,
+      "duration": 562.7,
+      "stream_url": "The%20Invisible%20Man/03%20-%20II.%20Mr.%20Teddy%20Henfrey%E2%80%99s%20First%20Impressions.mp3"
+    },
+    {
+      "index": 3,
+      "name": "III. The Thousand And One Bottles",
+      "file_size": 4094451,
+      "duration": 582.5,
+      "stream_url": "The%20Invisible%20Man/04%20-%20III.%20The%20Thousand%20And%20One%20Bottles.mp3"
+    },
+    {
+      "index": 4,
+      "name": "IV. Mr. Cuss Interviews The Stranger",
+      "file_size": 4992041,
+      "duration": 732.0,
+      "stream_url": "The%20Invisible%20Man/05%20-%20IV.%20Mr.%20Cuss%20Interviews%20The%20Stranger.mp3"
+    },
+    {
+      "index": 5,
+      "name": "V. The Burglary At The Vicarage",
+      "file_size": 2029440,
+      "duration": 238.7,
+      "stream_url": "The%20Invisible%20Man/06%20-%20V.%20The%20Burglary%20At%20The%20Vicarage.mp3"
+    },
+    {
+      "index": 6,
+      "name": "VI. The Furniture That Went Mad",
+      "file_size": 3223817,
+      "duration": 437.6,
+      "stream_url": "The%20Invisible%20Man/07%20-%20VI.%20The%20Furniture%20That%20Went%20Mad.mp3"
+    },
+    {
+      "index": 7,
+      "name": "VII. The Unveiling Of The Stranger",
+      "file_size": 6248252,
+      "duration": 941.1,
+      "stream_url": "The%20Invisible%20Man/08%20-%20VII.%20The%20Unveiling%20Of%20The%20Stranger.mp3"
+    },
+    {
+      "index": 8,
+      "name": "VIII. In Transit",
+      "file_size": 896005,
+      "duration": 50.0,
+      "stream_url": "The%20Invisible%20Man/09%20-%20VIII.%20In%20Transit.mp3"
+    },
+    {
+      "index": 9,
+      "name": "IX. Mr. Thomas Marvel",
+      "file_size": 4688158,
+      "duration": 681.4,
+      "stream_url": "The%20Invisible%20Man/10%20-%20IX.%20Mr.%20Thomas%20Marvel.mp3"
+    },
+    {
+      "index": 10,
+      "name": "X. Mr. Marvel’s Visit To Iping",
+      "file_size": 2459277,
+      "duration": 310.3,
+      "stream_url": "The%20Invisible%20Man/11%20-%20X.%20Mr.%20Marvel%E2%80%99s%20Visit%20To%20Iping.mp3"
+    },
+    {
+      "index": 11,
+      "name": "XI. In The “Coach And Horses”",
+      "file_size": 2798734,
+      "duration": 366.8,
+      "stream_url": "The%20Invisible%20Man/12%20-%20XI.%20In%20The%20%E2%80%9CCoach%20And%20Horses%E2%80%9D.mp3"
+    },
+    {
+      "index": 12,
+      "name": "XII. The Invisible Man Loses His Temper",
+      "file_size": 4019510,
+      "duration": 570.0,
+      "stream_url": "The%20Invisible%20Man/13%20-%20XII.%20The%20Invisible%20Man%20Loses%20His%20Temper.mp3"
+    },
+    {
+      "index": 13,
+      "name": "XIII. Mr. Marvel Discusses His Resignation",
+      "file_size": 2043734,
+      "duration": 241.1,
+      "stream_url": "The%20Invisible%20Man/14%20-%20XIII.%20Mr.%20Marvel%20Discusses%20His%20Resignation.mp3"
+    },
+    {
+      "index": 14,
+      "name": "XIV. At Port Stowe",
+      "file_size": 4393089,
+      "duration": 632.3,
+      "stream_url": "The%20Invisible%20Man/15%20-%20XIV.%20At%20Port%20Stowe.mp3"
+    },
+    {
+      "index": 15,
+      "name": "XV. The Man Who Was Running",
+      "file_size": 1763056,
+      "duration": 194.4,
+      "stream_url": "The%20Invisible%20Man/16%20-%20XV.%20The%20Man%20Who%20Was%20Running.mp3"
+    },
+    {
+      "index": 16,
+      "name": "XVI. In The “Jolly Cricketers”",
+      "file_size": 3181871,
+      "duration": 430.6,
+      "stream_url": "The%20Invisible%20Man/17%20-%20XVI.%20In%20The%20%E2%80%9CJolly%20Cricketers%E2%80%9D.mp3"
+    },
+    {
+      "index": 17,
+      "name": "XVII. Dr. Kemp’s Visitor",
+      "file_size": 5904018,
+      "duration": 883.8,
+      "stream_url": "The%20Invisible%20Man/18%20-%20XVII.%20Dr.%20Kemp%E2%80%99s%20Visitor.mp3"
+    },
+    {
+      "index": 18,
+      "name": "XVIII. The Invisible Man Sleeps",
+      "file_size": 3272972,
+      "duration": 445.8,
+      "stream_url": "The%20Invisible%20Man/19%20-%20XVIII.%20The%20Invisible%20Man%20Sleeps.mp3"
+    },
+    {
+      "index": 19,
+      "name": "XIX. Certain First Principles",
+      "file_size": 4267994,
+      "duration": 611.4,
+      "stream_url": "The%20Invisible%20Man/20%20-%20XIX.%20Certain%20First%20Principles.mp3"
+    },
+    {
+      "index": 20,
+      "name": "XX. At The House In Great Portland Street",
+      "file_size": 7136340,
+      "duration": 1089.0,
+      "stream_url": "The%20Invisible%20Man/21%20-%20XX.%20At%20The%20House%20In%20Great%20Portland%20Street.mp3"
+    },
+    {
+      "index": 21,
+      "name": "XXI. In Oxford Street",
+      "file_size": 3828627,
+      "duration": 538.3,
+      "stream_url": "The%20Invisible%20Man/22%20-%20XXI.%20In%20Oxford%20Street.mp3"
+    },
+    {
+      "index": 22,
+      "name": "XXII. In The Emporium",
+      "file_size": 4555978,
+      "duration": 659.4,
+      "stream_url": "The%20Invisible%20Man/23%20-%20XXII.%20In%20The%20Emporium.mp3"
+    },
+    {
+      "index": 23,
+      "name": "XXIII. In Drury Lane",
+      "file_size": 7099108,
+      "duration": 1082.8,
+      "stream_url": "The%20Invisible%20Man/24%20-%20XXIII.%20In%20Drury%20Lane.mp3"
+    },
+    {
+      "index": 24,
+      "name": "XXIV. The Plan That Failed",
+      "file_size": 3447953,
+      "duration": 474.9,
+      "stream_url": "The%20Invisible%20Man/25%20-%20XXIV.%20The%20Plan%20That%20Failed.mp3"
+    },
+    {
+      "index": 25,
+      "name": "XXV. The Hunting Of The Invisible Man",
+      "file_size": 2132228,
+      "duration": 255.8,
+      "stream_url": "The%20Invisible%20Man/26%20-%20XXV.%20The%20Hunting%20Of%20The%20Invisible%20Man.mp3"
+    },
+    {
+      "index": 26,
+      "name": "XXVI. The Wicksteed Murder",
+      "file_size": 3445935,
+      "duration": 474.6,
+      "stream_url": "The%20Invisible%20Man/27%20-%20XXVI.%20The%20Wicksteed%20Murder.mp3"
+    },
+    {
+      "index": 27,
+      "name": "XXVII. The Siege Of Kemp’s House",
+      "file_size": 6595061,
+      "duration": 998.9,
+      "stream_url": "The%20Invisible%20Man/28%20-%20XXVII.%20The%20Siege%20Of%20Kemp%E2%80%99s%20House.mp3"
+    },
+    {
+      "index": 28,
+      "name": "XXVIII. The Hunter Hunted",
+      "file_size": 4674040,
+      "duration": 679.0,
+      "stream_url": "The%20Invisible%20Man/29%20-%20XXVIII.%20The%20Hunter%20Hunted.mp3"
+    },
+    {
+      "index": 29,
+      "name": "The Epilogue",
+      "file_size": 1822269,
+      "duration": 204.2,
+      "stream_url": "The%20Invisible%20Man/30%20-%20The%20Epilogue.mp3"
+    }
+  ]
+}

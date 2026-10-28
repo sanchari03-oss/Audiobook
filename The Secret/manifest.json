@@ -1,0 +1,25 @@
+{
+  "id": "the-secret",
+  "title": "The Secret",
+  "author": "Audiobook",
+  "cover_url": "The%20Secret/cover.jpg",
+  "cover_version": "1791123726",
+  "total_tracks": 2,
+  "total_duration": 17548.1,
+  "chapters": [
+    {
+      "index": 0,
+      "name": "Part 1",
+      "file_size": 52672630,
+      "duration": 8774.0,
+      "stream_url": "The%20Secret/01%20-%20Part%201.mp3"
+    },
+    {
+      "index": 1,
+      "name": "Part 2",
+      "file_size": 52672774,
+      "duration": 8774.1,
+      "stream_url": "The%20Secret/02%20-%20Part%202.mp3"
+    }
+  ]
+}

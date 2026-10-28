@@ -1,0 +1,18 @@
+{
+  "id": "white-nights",
+  "title": "White Nights",
+  "author": "Audiobook",
+  "cover_url": "White%20Nights/cover.jpg",
+  "cover_version": "1790864406",
+  "total_tracks": 1,
+  "total_duration": 10995.0,
+  "chapters": [
+    {
+      "index": 0,
+      "name": "White Nights",
+      "file_size": 103937372,
+      "duration": 10995.0,
+      "stream_url": "White%20Nights/01%20-%20White%20Nights.mp3"
+    }
+  ]
+}

@@ -272,8 +272,22 @@ def generate_fallback_cover(title: str, author: str, output_cover_path: Path):
     except Exception:
         return False
 
-def parse_pdf_into_chapters(pdf_path: str, min_words: int = 100) -> Tuple[str, str, List[Dict[str, str]]]:
-    """Parse PDF into chapters using bookmarks or pattern detection."""
+def parse_pdf_into_chapters(pdf_path: str, min_words: int = 100, checkpoint_dir: Optional[Path] = None) -> Tuple[str, str, List[Dict[str, str]]]:
+    """Parse PDF into chapters using bookmarks or pattern detection, with checkpoint support."""
+    # 0. Checkpoint Stage 2: 02_clean_text.json
+    if checkpoint_dir:
+        clean_text_ckpt = checkpoint_dir / "02_clean_text.json"
+        if clean_text_ckpt.exists():
+            try:
+                with open(clean_text_ckpt, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    chaps = data.get("chapters", [])
+                    if chaps:
+                        print(f"📦 Checkpoint 02_clean_text.json loaded! Restored {len(chaps)} cleaned chapters without re-parsing PDF.")
+                        return data.get("title", Path(pdf_path).stem), data.get("author", "Unknown Author"), chaps
+            except Exception as e:
+                print(f"⚠️ Warning reading 02_clean_text.json: {e}")
+
     print(f"📖 Opening PDF: {pdf_path}")
     reader = pypdf.PdfReader(pdf_path)
     total_pages = len(reader.pages)
@@ -282,8 +296,38 @@ def parse_pdf_into_chapters(pdf_path: str, min_words: int = 100) -> Tuple[str, s
     book_title = meta.title or Path(pdf_path).stem.replace('_', ' ').replace('-', ' ').title()
     book_author = meta.author or "Unknown Author"
 
-    # 1. Try outline / bookmarks
-    outline_chapters = extract_outline_chapters(reader)
+    # 1. Outline / bookmarks with Checkpoint Stage 1: 01_outline.json
+    outline_chapters = []
+    if checkpoint_dir:
+        outline_ckpt = checkpoint_dir / "01_outline.json"
+        if outline_ckpt.exists():
+            try:
+                with open(outline_ckpt, "r", encoding="utf-8") as f:
+                    outline_data = json.load(f)
+                    outline_chapters = [(item["title"], item["page"]) for item in outline_data.get("outline", [])]
+                    book_title = outline_data.get("title", book_title)
+                    book_author = outline_data.get("author", book_author)
+                    print(f"📦 Checkpoint 01_outline.json loaded! Restored {len(outline_chapters)} bookmarks.")
+            except Exception as e:
+                print(f"⚠️ Warning reading 01_outline.json: {e}")
+                outline_chapters = extract_outline_chapters(reader)
+        else:
+            outline_chapters = extract_outline_chapters(reader)
+            if outline_chapters:
+                try:
+                    outline_payload = {
+                        "title": book_title,
+                        "author": book_author,
+                        "outline": [{"title": t, "page": p} for t, p in outline_chapters]
+                    }
+                    with open(outline_ckpt, "w", encoding="utf-8") as f:
+                        json.dump(outline_payload, f, indent=2, ensure_ascii=False)
+                    print(f"💾 Checkpointed stage 1: {outline_ckpt.name} ({len(outline_chapters)} bookmarks saved)")
+                except Exception as e:
+                    print(f"⚠️ Warning saving 01_outline.json: {e}")
+    else:
+        outline_chapters = extract_outline_chapters(reader)
+
     chapters = []
 
     if outline_chapters:
@@ -383,6 +427,21 @@ def parse_pdf_into_chapters(pdf_path: str, min_words: int = 100) -> Tuple[str, s
                 "text": chunk_text,
                 "word_count": len(chunk_text.split())
             })
+
+    if checkpoint_dir and chapters:
+        clean_text_ckpt = checkpoint_dir / "02_clean_text.json"
+        try:
+            clean_payload = {
+                "title": book_title,
+                "author": book_author,
+                "total_chapters": len(chapters),
+                "chapters": chapters
+            }
+            with open(clean_text_ckpt, "w", encoding="utf-8") as f:
+                json.dump(clean_payload, f, indent=2, ensure_ascii=False)
+            print(f"💾 Checkpointed stage 2: {clean_text_ckpt.name} ({len(chapters)} clean chapters saved)")
+        except Exception as e:
+            print(f"⚠️ Warning saving 02_clean_text.json: {e}")
 
     return book_title, book_author, chapters
 
@@ -578,15 +637,32 @@ def tag_mp3(
         print(f"⚠️ Warning: Could not set all ID3 tags for {file_path.name}: {e}")
 
 async def process_audiobook(args):
-    """Main async pipeline for processing the book into an audiobook."""
+    """Main async pipeline for processing the book into an audiobook with idempotent checkpoints."""
     pdf_path = Path(args.input).expanduser().resolve()
     if not pdf_path.exists():
         print(f"❌ Error: File not found: {pdf_path}")
         sys.exit(1)
 
-    # 1. Parse PDF
-    reader = pypdf.PdfReader(str(pdf_path))
-    book_title, book_author, chapters = parse_pdf_into_chapters(str(pdf_path), min_words=args.min_chapter_words)
+    # 1. Output directory & .checkpoints setup upfront (DDIA Ch 10)
+    meta_title = args.title or pdf_path.stem.replace('_', ' ').replace('-', ' ').title()
+    clean_folder_name = re.sub(r'[\\/*?:"<>|]', '', f"{meta_title} - Audiobook").strip()
+    if args.output_dir:
+        output_dir = Path(args.output_dir).expanduser().resolve()
+    else:
+        output_dir = pdf_path.parent / clean_folder_name
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+    checkpoint_dir = output_dir / ".checkpoints"
+    checkpoint_dir.mkdir(parents=True, exist_ok=True)
+    print(f"📁 Saving audiobook tracks to: {output_dir}")
+    print(f"📦 Checkpoint directory: {checkpoint_dir}\n")
+
+    # 2. Parse PDF or restore from checkpoints (01_outline.json, 02_clean_text.json)
+    book_title, book_author, chapters = parse_pdf_into_chapters(
+        str(pdf_path),
+        min_words=args.min_chapter_words,
+        checkpoint_dir=checkpoint_dir
+    )
 
     if args.title:
         book_title = args.title
@@ -615,25 +691,30 @@ async def process_audiobook(args):
         print("❌ Error: Could not extract any readable text or chapters from the document.")
         sys.exit(1)
 
-    # 2. Output directory setup
-    clean_folder_name = re.sub(r'[\\/*?:"<>|]', '', f"{book_title} - Audiobook").strip()
-    if args.output_dir:
-        output_dir = Path(args.output_dir).expanduser().resolve()
-    else:
-        output_dir = pdf_path.parent / clean_folder_name
+    # 3. Checkpoint Stage 3: Load track completion status
+    tracks_status_ckpt = checkpoint_dir / "03_tracks_status.json"
+    tracks_status = {}
+    if tracks_status_ckpt.exists():
+        try:
+            with open(tracks_status_ckpt, "r", encoding="utf-8") as f:
+                tracks_status = json.load(f)
+            print(f"📦 Loaded checkpoint: 03_tracks_status.json ({len(tracks_status)} tracks previously completed)")
+        except Exception as e:
+            print(f"⚠️ Warning reading 03_tracks_status.json: {e}")
 
-    output_dir.mkdir(parents=True, exist_ok=True)
-    print(f"📁 Saving audiobook tracks to: {output_dir}\n")
-
-    # 3. Extract or generate cover art
+    # 4. Extract or generate cover art
     cover_path = output_dir / "cover.jpg"
     if not cover_path.exists():
         print("🎨 Generating audiobook cover art...")
-        has_cover = extract_cover_image(reader, cover_path)
+        try:
+            reader = pypdf.PdfReader(str(pdf_path))
+            has_cover = extract_cover_image(reader, cover_path)
+        except Exception:
+            has_cover = False
         if not has_cover:
             generate_fallback_cover(book_title, book_author, cover_path)
 
-    # 4. Generate audio chapter by chapter
+    # 5. Generate audio chapter by chapter
     total_tracks = len(chapters)
     playlist_entries = []
     failed_chapters = []
@@ -659,9 +740,26 @@ async def process_audiobook(args):
         if getattr(args, 'end_chapter', None) and i > args.end_chapter:
             continue
 
-        # Skip if already completed (resume support)
-        if track_path.exists() and track_path.stat().st_size > 1000:
-            print(f"⏭️ Skipping [{i:02d}/{total_tracks:02d}] (already exists): {chap['title']}")
+        # Checkpoint resume check (DDIA Ch 10 - Idempotency)
+        is_ckpt_done = (
+            tracks_status.get(str(i), {}).get("status") == "completed" and
+            track_path.exists() and
+            track_path.stat().st_size > 1000
+        )
+
+        if is_ckpt_done or (track_path.exists() and track_path.stat().st_size > 1000):
+            if not is_ckpt_done:
+                tracks_status[str(i)] = {
+                    "status": "completed",
+                    "track_num": i,
+                    "title": chap['title'],
+                    "filename": track_filename,
+                    "size_bytes": track_path.stat().st_size,
+                    "completed_at": time.time()
+                }
+                with open(tracks_status_ckpt, "w", encoding="utf-8") as f:
+                    json.dump(tracks_status, f, indent=2, ensure_ascii=False)
+            print(f"⏭️ Skipping [{i:02d}/{total_tracks:02d}] (checkpoint verified): {chap['title']}")
             continue
 
         print(f"🔊 Narrating [{i:02d}/{total_tracks:02d}]: {chap['title']} ({chap['word_count']:,} words)...")
@@ -694,7 +792,20 @@ async def process_audiobook(args):
                 voice=args.voice,
                 cover_image_path=cover_path if cover_path.exists() else None
             )
-            print(f"   ✅ Done: {track_filename}")
+
+            # Record track completion in 03_tracks_status.json checkpoint
+            tracks_status[str(i)] = {
+                "status": "completed",
+                "track_num": i,
+                "title": chap['title'],
+                "filename": track_filename,
+                "size_bytes": track_path.stat().st_size,
+                "completed_at": time.time()
+            }
+            with open(tracks_status_ckpt, "w", encoding="utf-8") as f:
+                json.dump(tracks_status, f, indent=2, ensure_ascii=False)
+
+            print(f"   ✅ Done & Checkpointed: {track_filename}")
         except Exception as e:
             print(f"   ❌ Error generating chapter {i}: {e}")
             failed_chapters.append((i, chap, track_filename, track_path))
@@ -736,7 +847,20 @@ async def process_audiobook(args):
                     voice=args.voice,
                     cover_image_path=cover_path if cover_path.exists() else None
                 )
-                print(f"   ✅ Done on retry: {track_filename}")
+
+                # Update checkpoint on successful retry
+                tracks_status[str(i)] = {
+                    "status": "completed",
+                    "track_num": i,
+                    "title": chap['title'],
+                    "filename": track_filename,
+                    "size_bytes": track_path.stat().st_size,
+                    "completed_at": time.time()
+                }
+                with open(tracks_status_ckpt, "w", encoding="utf-8") as f:
+                    json.dump(tracks_status, f, indent=2, ensure_ascii=False)
+
+                print(f"   ✅ Done on retry & Checkpointed: {track_filename}")
             except Exception as e:
                 print(f"   ❌ Retry failed for chapter {i}: {e}")
                 still_failed.append((i, chap, track_filename, track_path))
@@ -754,7 +878,7 @@ async def process_audiobook(args):
     completed_scope_tracks = [output_dir / f for f in scope_entries if (output_dir / f).exists() and (output_dir / f).stat().st_size > 1000]
     all_completed = [output_dir / f for f in playlist_entries if (output_dir / f).exists() and (output_dir / f).stat().st_size > 1000]
 
-    # 5. Create M3U playlist file
+    # 6. Create M3U playlist file
     playlist_path = output_dir / "audiobook.m3u"
     with open(playlist_path, "w", encoding="utf-8") as f:
         f.write("#EXTM3U\n")
@@ -771,11 +895,23 @@ async def process_audiobook(args):
         print("="*60 + "\n")
         sys.exit(1)
 
+    # 7. Checkpoint Stage 4: Mark pipeline complete
+    pipeline_complete_ckpt = checkpoint_dir / "04_pipeline_complete.json"
+    with open(pipeline_complete_ckpt, "w", encoding="utf-8") as f:
+        json.dump({
+            "status": "completed",
+            "book_title": book_title,
+            "book_author": book_author,
+            "total_tracks": total_tracks,
+            "completed_at": time.time()
+        }, f, indent=2, ensure_ascii=False)
+
     print("\n" + "="*60)
     print(f"🎉 AUDIOBOOK GENERATION COMPLETE! ({len(all_completed)}/{total_tracks} total tracks on disk, {len(completed_scope_tracks)} in this range)")
     print(f"📁 Location: {output_dir}")
     print(f"🎵 Playlist: {playlist_path.name}")
     print(f"🖼️ Cover: {cover_path.name}")
+    print(f"📦 Checkpoints: {checkpoint_dir}")
     print("="*60 + "\n")
 
 def list_voices():

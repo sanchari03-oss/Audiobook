@@ -1,0 +1,284 @@
+{
+  "id": "the-appeal",
+  "title": "THE APPEAL",
+  "author": "Audiobook",
+  "cover_url": "THE%20APPEAL/cover.jpg",
+  "cover_version": "1791121984",
+  "total_tracks": 39,
+  "total_duration": 36451.8,
+  "chapters": [
+    {
+      "index": 0,
+      "name": "Chapter 1",
+      "file_size": 10923081,
+      "duration": 1813.9,
+      "stream_url": "THE%20APPEAL/01%20-%20Chapter%201.mp3"
+    },
+    {
+      "index": 1,
+      "name": "Chapter 2",
+      "file_size": 8834579,
+      "duration": 1466.2,
+      "stream_url": "THE%20APPEAL/02%20-%20Chapter%202.mp3"
+    },
+    {
+      "index": 2,
+      "name": "Chapter 3",
+      "file_size": 8227877,
+      "duration": 1365.2,
+      "stream_url": "THE%20APPEAL/03%20-%20Chapter%203.mp3"
+    },
+    {
+      "index": 3,
+      "name": "Chapter 4",
+      "file_size": 4607268,
+      "duration": 762.3,
+      "stream_url": "THE%20APPEAL/04%20-%20Chapter%204.mp3"
+    },
+    {
+      "index": 4,
+      "name": "Chapter 5",
+      "file_size": 7617138,
+      "duration": 1263.5,
+      "stream_url": "THE%20APPEAL/05%20-%20Chapter%205.mp3"
+    },
+    {
+      "index": 5,
+      "name": "Chapter 6",
+      "file_size": 4620385,
+      "duration": 764.5,
+      "stream_url": "THE%20APPEAL/06%20-%20Chapter%206.mp3"
+    },
+    {
+      "index": 6,
+      "name": "Chapter 7",
+      "file_size": 4647051,
+      "duration": 769.0,
+      "stream_url": "THE%20APPEAL/07%20-%20Chapter%207.mp3"
+    },
+    {
+      "index": 7,
+      "name": "Chapter 8",
+      "file_size": 4408925,
+      "duration": 729.3,
+      "stream_url": "THE%20APPEAL/08%20-%20Chapter%208.mp3"
+    },
+    {
+      "index": 8,
+      "name": "Chapter 9",
+      "file_size": 7030905,
+      "duration": 1165.9,
+      "stream_url": "THE%20APPEAL/09%20-%20Chapter%209.mp3"
+    },
+    {
+      "index": 9,
+      "name": "Chapter 10",
+      "file_size": 4351992,
+      "duration": 719.8,
+      "stream_url": "THE%20APPEAL/10%20-%20Chapter%2010.mp3"
+    },
+    {
+      "index": 10,
+      "name": "Chapter 11",
+      "file_size": 6695197,
+      "duration": 1110.0,
+      "stream_url": "THE%20APPEAL/11%20-%20Chapter%2011.mp3"
+    },
+    {
+      "index": 11,
+      "name": "Chapter 12",
+      "file_size": 5506730,
+      "duration": 912.1,
+      "stream_url": "THE%20APPEAL/12%20-%20Chapter%2012.mp3"
+    },
+    {
+      "index": 12,
+      "name": "Chapter 13",
+      "file_size": 8211304,
+      "duration": 1362.4,
+      "stream_url": "THE%20APPEAL/13%20-%20Chapter%2013.mp3"
+    },
+    {
+      "index": 13,
+      "name": "Chapter 14",
+      "file_size": 4121362,
+      "duration": 681.4,
+      "stream_url": "THE%20APPEAL/14%20-%20Chapter%2014.mp3"
+    },
+    {
+      "index": 14,
+      "name": "Chapter 15",
+      "file_size": 6097576,
+      "duration": 1010.5,
+      "stream_url": "THE%20APPEAL/15%20-%20Chapter%2015.mp3"
+    },
+    {
+      "index": 15,
+      "name": "Chapter 16",
+      "file_size": 5850802,
+      "duration": 969.4,
+      "stream_url": "THE%20APPEAL/16%20-%20Chapter%2016.mp3"
+    },
+    {
+      "index": 16,
+      "name": "Chapter 17",
+      "file_size": 8290439,
+      "duration": 1375.6,
+      "stream_url": "THE%20APPEAL/17%20-%20Chapter%2017.mp3"
+    },
+    {
+      "index": 17,
+      "name": "Chapter 18",
+      "file_size": 5559343,
+      "duration": 920.9,
+      "stream_url": "THE%20APPEAL/18%20-%20Chapter%2018.mp3"
+    },
+    {
+      "index": 18,
+      "name": "Chapter 19",
+      "file_size": 5472712,
+      "duration": 906.4,
+      "stream_url": "THE%20APPEAL/19%20-%20Chapter%2019.mp3"
+    },
+    {
+      "index": 19,
+      "name": "Chapter 20",
+      "file_size": 7463197,
+      "duration": 1237.8,
+      "stream_url": "THE%20APPEAL/20%20-%20Chapter%2020.mp3"
+    },
+    {
+      "index": 20,
+      "name": "Chapter 21",
+      "file_size": 5070694,
+      "duration": 839.5,
+      "stream_url": "THE%20APPEAL/21%20-%20Chapter%2021.mp3"
+    },
+    {
+      "index": 21,
+      "name": "Chapter 22",
+      "file_size": 4460389,
+      "duration": 737.9,
+      "stream_url": "THE%20APPEAL/22%20-%20Chapter%2022.mp3"
+    },
+    {
+      "index": 22,
+      "name": "Chapter 23",
+      "file_size": 4942839,
+      "duration": 818.2,
+      "stream_url": "THE%20APPEAL/23%20-%20Chapter%2023.mp3"
+    },
+    {
+      "index": 23,
+      "name": "Chapter 24",
+      "file_size": 5715162,
+      "duration": 946.8,
+      "stream_url": "THE%20APPEAL/24%20-%20Chapter%2024.mp3"
+    },
+    {
+      "index": 24,
+      "name": "Chapter 25",
+      "file_size": 3793146,
+      "duration": 626.8,
+      "stream_url": "THE%20APPEAL/25%20-%20Chapter%2025.mp3"
+    },
+    {
+      "index": 25,
+      "name": "Chapter 26",
+      "file_size": 3239777,
+      "duration": 534.6,
+      "stream_url": "THE%20APPEAL/26%20-%20Chapter%2026.mp3"
+    },
+    {
+      "index": 26,
+      "name": "Chapter 27",
+      "file_size": 5996099,
+      "duration": 993.6,
+      "stream_url": "THE%20APPEAL/27%20-%20Chapter%2027.mp3"
+    },
+    {
+      "index": 27,
+      "name": "Chapter 28",
+      "file_size": 6028676,
+      "duration": 999.0,
+      "stream_url": "THE%20APPEAL/28%20-%20Chapter%2028.mp3"
+    },
+    {
+      "index": 28,
+      "name": "Chapter 29",
+      "file_size": 5303487,
+      "duration": 878.3,
+      "stream_url": "THE%20APPEAL/29%20-%20Chapter%2029.mp3"
+    },
+    {
+      "index": 29,
+      "name": "Chapter 30",
+      "file_size": 7270188,
+      "duration": 1205.7,
+      "stream_url": "THE%20APPEAL/30%20-%20Chapter%2030.mp3"
+    },
+    {
+      "index": 30,
+      "name": "Chapter 31",
+      "file_size": 3974912,
+      "duration": 657.0,
+      "stream_url": "THE%20APPEAL/31%20-%20Chapter%2031.mp3"
+    },
+    {
+      "index": 31,
+      "name": "Chapter 32",
+      "file_size": 4490515,
+      "duration": 742.9,
+      "stream_url": "THE%20APPEAL/32%20-%20Chapter%2032.mp3"
+    },
+    {
+      "index": 32,
+      "name": "Chapter 33",
+      "file_size": 5971450,
+      "duration": 989.5,
+      "stream_url": "THE%20APPEAL/33%20-%20Chapter%2033.mp3"
+    },
+    {
+      "index": 33,
+      "name": "Chapter 34",
+      "file_size": 4150335,
+      "duration": 686.3,
+      "stream_url": "THE%20APPEAL/34%20-%20Chapter%2034.mp3"
+    },
+    {
+      "index": 34,
+      "name": "Chapter 35",
+      "file_size": 5148388,
+      "duration": 852.4,
+      "stream_url": "THE%20APPEAL/35%20-%20Chapter%2035.mp3"
+    },
+    {
+      "index": 35,
+      "name": "Chapter 36",
+      "file_size": 5957036,
+      "duration": 987.1,
+      "stream_url": "THE%20APPEAL/36%20-%20Chapter%2036.mp3"
+    },
+    {
+      "index": 36,
+      "name": "Chapter 37",
+      "file_size": 3451813,
+      "duration": 570.0,
+      "stream_url": "THE%20APPEAL/37%20-%20Chapter%2037.mp3"
+    },
+    {
+      "index": 37,
+      "name": "Chapter 38",
+      "file_size": 3240354,
+      "duration": 534.7,
+      "stream_url": "THE%20APPEAL/38%20-%20Chapter%2038.mp3"
+    },
+    {
+      "index": 38,
+      "name": "Chapter 39",
+      "file_size": 3304498,
+      "duration": 545.4,
+      "stream_url": "THE%20APPEAL/39%20-%20Chapter%2039.mp3"
+    }
+  ]
+}

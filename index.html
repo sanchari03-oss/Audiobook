@@ -1688,6 +1688,14 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           <span id="sheetDownloadLabel">Download for Offline Listening</span>
         </div>
+        <div class="sheet-action-row" id="actionSmartCache">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          <span id="sheetSmartCacheLabel">Smart Cache (Next 3 Chapters)</span>
+        </div>
+        <div class="sheet-action-row" id="actionSleepTimer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span id="sheetSleepTimerLabel">Sleep Timer: Off</span>
+        </div>
         <div class="sheet-action-row danger" id="actionRemoveOffline" style="display:none;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
           <span id="sheetRemoveOfflineLabel">Remove Offline Audio</span>
@@ -1746,6 +1754,7 @@
   <!-- Audio Element with explicit inline playback flags for iOS -->
   <audio id="coreAudio" preload="auto" playsinline webkit-playsinline></audio>
 
+  <script src="engine.js"></script>
   <script>
     /* State */
     const DB_NAME = "SSK_Player_DB";
@@ -1832,6 +1841,10 @@
     const actionRemoveOffline = document.getElementById("actionRemoveOffline");
     const sheetRemoveOfflineLabel = document.getElementById("sheetRemoveOfflineLabel");
     const actionDeleteBook = document.getElementById("actionDeleteBook");
+    const actionSleepTimer = document.getElementById("actionSleepTimer");
+    const sheetSleepTimerLabel = document.getElementById("sheetSleepTimerLabel");
+    const actionSmartCache = document.getElementById("actionSmartCache");
+    const sheetSmartCacheLabel = document.getElementById("sheetSmartCacheLabel");
 
     // Add Book Modal
     const addBookModal = document.getElementById("addBookModal");
@@ -1852,15 +1865,27 @@
     /* IndexedDB Helper */
     function openDB() {
       return new Promise((resolve, reject) => {
-        const req = indexedDB.open(DB_NAME, 2);
+        const req = indexedDB.open(DB_NAME, 3);
         req.onupgradeneeded = (e) => {
           const d = e.target.result;
           if (!d.objectStoreNames.contains("books")) d.createObjectStore("books", { keyPath: "id" });
           if (!d.objectStoreNames.contains("audioblobs")) d.createObjectStore("audioblobs");
+          if (!d.objectStoreNames.contains("audio_slices")) {
+            const sliceStore = d.createObjectStore("audio_slices", { keyPath: "key" });
+            sliceStore.createIndex("blobKey", "blobKey", { unique: false });
+          }
+          if (!d.objectStoreNames.contains("playback_events")) {
+            const eventStore = d.createObjectStore("playback_events", { keyPath: "id", autoIncrement: true });
+            eventStore.createIndex("bookId", "bookId", { unique: false });
+            eventStore.createIndex("timestamp", "timestamp", { unique: false });
+          }
         };
         req.onsuccess = () => {
           db = req.result;
           db.onversionchange = () => { db.close(); };
+          if (window.AudioEngine) {
+            window.AudioEngine.init(db);
+          }
           resolve();
         };
         req.onerror = () => reject(req.error);
@@ -2096,6 +2121,19 @@
       });
     }
 
+    function dbDeleteBlob(key) {
+      return new Promise(res => {
+        try {
+          downloadedBlobKeys.delete(key);
+          if (!db) { res(); return; }
+          const tx = db.transaction("audioblobs", "readwrite");
+          tx.objectStore("audioblobs").delete(key);
+          tx.oncomplete = () => res();
+          tx.onerror = () => res();
+        } catch(e) { res(); }
+      });
+    }
+
     /* Helper: Format Clock MM:SS or H:MM:SS */
     function formatClock(sec) {
       if (isNaN(sec) || sec < 0) return "00:00";
@@ -2310,28 +2348,82 @@
       updateMediaPositionState();
     }
 
-    /* Toast */
+    /* Toast & Undo Jump Pill */
     let toastTimer = null;
-    function showToast(msg, duration = 2800) {
+    let lastPauseTimestamp = parseInt(localStorage.getItem("ssk_last_pause_ts") || "0", 10) || 0;
+
+    function showToast(msg, duration = 2800, onClick = null) {
       if (!toastPill || !toastMsg) return;
       toastMsg.textContent = msg;
       toastPill.title = msg;
       toastPill.classList.add("show");
+
+      if (onClick) {
+        toastPill.style.cursor = "pointer";
+        toastPill.onclick = (e) => {
+          e.stopPropagation();
+          toastPill.classList.remove("show");
+          toastPill.onclick = null;
+          toastPill.style.cursor = "";
+          onClick();
+        };
+      } else {
+        toastPill.style.cursor = "";
+        toastPill.onclick = null;
+      }
+
       if (toastTimer) clearTimeout(toastTimer);
       if (duration > 0) {
-        toastTimer = setTimeout(() => toastPill.classList.remove("show"), duration);
+        toastTimer = setTimeout(() => {
+          toastPill.classList.remove("show");
+          toastPill.onclick = null;
+          toastPill.style.cursor = "";
+        }, duration);
       }
+    }
+
+    /* Undo Jump for Pocket Scrubber Protection */
+    function undoJump() {
+      if (!window._lastPlaybackPos) return;
+      const pos = window._lastPlaybackPos;
+      window._lastPlaybackPos = null;
+      const targetBook = books.find(b => b.id === pos.bookId) || activeBook;
+      if (!targetBook) return;
+
+      if (!activeBook || activeBook.id !== targetBook.id || activeChapIdx !== pos.chapIdx) {
+        loadBook(targetBook, pos.chapIdx, pos.time, true);
+      } else {
+        audio.currentTime = pos.time;
+        updateTimes();
+        saveSession();
+        updateMediaPositionState();
+      }
+      showToast(`Restored to ${formatClock(pos.time)}`);
+    }
+
+    /* Last Played Timestamp Helper (LRU Shelf Sorting) */
+    function stampBookPlayed(book) {
+      if (!book) return;
+      const ts = Date.now();
+      book.lastPlayedTimestamp = ts;
+      try {
+        localStorage.setItem(`ssk_last_played_${book.id}`, String(ts));
+      } catch (e) {}
+      dbSave(book);
     }
 
     /* Tab Counters */
     function updateCounts() {
-      countListening.textContent = books.filter(b => b.status === "listening" || (!b.status && b.chapters?.length > 0)).length;
-      countWishlist.textContent = books.filter(b => b.status === "wishlist" || (!b.chapters || b.chapters.length === 0)).length;
+      countListening.textContent = books.filter(b => b.status === "listening" || (!b.status && (b.has_manifest || b.chapters?.length > 0))).length;
+      countWishlist.textContent = books.filter(b => b.status === "wishlist" || (!b.has_manifest && (!b.chapters || b.chapters.length === 0))).length;
       countFinished.textContent = books.filter(b => b.status === "finished").length;
     }
 
     /* Render Books Grid */
     function renderBooks() {
+      // LRU Shelf Sorting: Most recently played book is always at the top of the shelf
+      books.sort((a, b) => (b.lastPlayedTimestamp || 0) - (a.lastPlayedTimestamp || 0));
+
       booksGrid.innerHTML = "";
 
       // Add Book Card (Strictly identical in structure & dimensions to Book Cards)
@@ -2358,9 +2450,9 @@
 
       // Filtered Books
       const filtered = books.filter(b => {
-        if (currentTab === "wishlist") return b.status === "wishlist" || (!b.chapters || b.chapters.length === 0);
+        if (currentTab === "wishlist") return b.status === "wishlist" || (!b.has_manifest && (!b.chapters || b.chapters.length === 0));
         if (currentTab === "finished") return b.status === "finished";
-        return b.status === "listening" || (!b.status && b.chapters?.length > 0);
+        return b.status === "listening" || (!b.status && (b.has_manifest || b.chapters?.length > 0));
       });
 
       filtered.forEach(book => {
@@ -2370,8 +2462,9 @@
 
         const progress = getBookProgress(book);
         const isFinished = (book.status === "finished");
-        const isWishlist = (book.status === "wishlist" || !book.chapters || book.chapters.length === 0);
+        const isWishlist = (book.status === "wishlist" || (!book.has_manifest && (!book.chapters || book.chapters.length === 0)));
         const coverSrc = getCoverUrl(book);
+        const totalTracksNum = book.chapters?.length || book.total_tracks || 0;
 
         let badgeHtml = "";
         let leftOffText = "";
@@ -2380,12 +2473,12 @@
           badgeHtml = `<span class="card-duration-badge">Wishlist</span>`;
         } else if (isFinished) {
           badgeHtml = `<span class="card-duration-badge finished"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Finished</span>`;
-          leftOffText = `${book.chapters?.length || 0} tracks completed`;
+          leftOffText = `${totalTracksNum} tracks completed`;
         } else if (progress.isStarted) {
           badgeHtml = `<span class="card-duration-badge in-progress">${progress.percent}%</span>`;
-          leftOffText = `Ch. ${progress.curChapIdx + 1}/${book.chapters?.length || 0} • ${formatBookRemaining(progress.timeToFinish, currentSpeed)} left`;
+          leftOffText = `Ch. ${progress.curChapIdx + 1}/${totalTracksNum} • ${formatBookRemaining(progress.timeToFinish, currentSpeed)} left`;
         } else {
-          badgeHtml = `<span class="card-duration-badge">${book.chapters?.length || 0} chaps</span>`;
+          badgeHtml = `<span class="card-duration-badge">${totalTracksNum} chaps</span>`;
           leftOffText = `${formatBookRemaining(progress.totalSecs, currentSpeed)}`;
         }
 
@@ -2451,15 +2544,28 @@
         };
 
         // Tap Card to Open Full Player & Play
-        card.onclick = () => {
-          if (book.status === "wishlist" || !book.chapters || book.chapters.length === 0) {
+        card.onclick = async () => {
+          const isWish = (book.status === "wishlist" || (!book.has_manifest && (!book.chapters || book.chapters.length === 0)));
+          if (isWish) {
             showToast("Wishlist book: attach audio files to listen.");
           } else {
+            if (window.AudioEngine?.manifestManager && (!book.chapters || book.chapters.length === 0)) {
+              await window.AudioEngine.manifestManager.ensureManifest(book);
+            }
             let targetChap = (typeof book.lastChapIdx === "number") ? book.lastChapIdx : 0;
             let targetTime = (typeof book.lastTime === "number") ? book.lastTime : 0;
+            if (window.AudioEngine?.playbackJournal) {
+              try {
+                const journalState = await window.AudioEngine.playbackJournal.reducePlaybackState(book.id);
+                if (journalState && journalState.eventsCount > 0) {
+                  targetChap = journalState.chapIdx;
+                  targetTime = journalState.time;
+                }
+              } catch (e) {}
+            }
             try {
               const savedProg = localStorage.getItem(`ssk_progress_${book.id}`);
-              if (savedProg) {
+              if (savedProg && (!targetChap && !targetTime)) {
                 const parsed = JSON.parse(savedProg);
                 if (parsed && typeof parsed.chapIdx === "number") {
                   targetChap = parsed.chapIdx;
@@ -2482,14 +2588,34 @@
     }
 
     /* Action Sheet (Options Menu) */
-    function openActionSheet(book) {
+    async function openActionSheet(book) {
       sheetTargetBook = book;
+      if (window.AudioEngine?.manifestManager && (!book.chapters || book.chapters.length === 0)) {
+        await window.AudioEngine.manifestManager.ensureManifest(book);
+      }
       sheetBookTitle.textContent = book.title;
       sheetBookAuthor.textContent = book.author || "Audiobook";
 
       const isFinished = (book.status === "finished");
       if (sheetFinishedLabel) {
         sheetFinishedLabel.textContent = isFinished ? "Mark as In Progress (Re-listen)" : "Mark as Finished";
+      }
+
+      if (sheetSleepTimerLabel) {
+        if (sleepEndTime > Date.now()) {
+          const remMins = Math.max(1, Math.ceil((sleepEndTime - Date.now()) / 60000));
+          sheetSleepTimerLabel.textContent = `Sleep Timer: ${remMins}m remaining`;
+        } else {
+          sheetSleepTimerLabel.textContent = "Sleep Timer: Off";
+        }
+      }
+
+      if (sheetSmartCacheLabel) {
+        if (book.isSmartCached) {
+          sheetSmartCacheLabel.textContent = "Smart Cache: Active (Tap to re-sync)";
+        } else {
+          sheetSmartCacheLabel.textContent = "Smart Cache (Next 3 Chapters)";
+        }
       }
 
       const total = book.chapters?.length || 0;
@@ -2522,6 +2648,285 @@
     function closeActionSheet() {
       sheetBackdrop.classList.remove("open");
       sheetTargetBook = null;
+    }
+
+    /* Bedtime Sleep Timer with 30s Gentle Audio Fade & Shake-to-Extend */
+    let sleepTimerTimeout = null;
+    let sleepFadeInterval = null;
+    let sleepFadeTimerId = null;
+    let sleepExpireTimerId = null;
+    let sleepEndTime = 0;
+    let sleepDurationMins = 0;
+    let isFadingOut = false;
+    let canShakeExtend = false;
+    let sleepPausedTime = 0;
+
+    function updateSleepTimerUI() {
+      if (sheetSleepTimerLabel) {
+        if (sleepEndTime > Date.now()) {
+          const remMins = Math.max(1, Math.ceil((sleepEndTime - Date.now()) / 60000));
+          sheetSleepTimerLabel.textContent = `Sleep Timer: ${remMins}m remaining`;
+        } else {
+          sheetSleepTimerLabel.textContent = "Sleep Timer: Off";
+        }
+      }
+    }
+
+    function clearSleepTimer() {
+      if (sleepFadeInterval) { clearInterval(sleepFadeInterval); sleepFadeInterval = null; }
+      if (sleepTimerTimeout) { clearTimeout(sleepTimerTimeout); sleepTimerTimeout = null; }
+      if (sleepFadeTimerId) { clearTimeout(sleepFadeTimerId); sleepFadeTimerId = null; }
+      if (sleepExpireTimerId) { clearTimeout(sleepExpireTimerId); sleepExpireTimerId = null; }
+      isFadingOut = false;
+      canShakeExtend = false;
+      sleepPausedTime = 0;
+      sleepEndTime = 0;
+      sleepDurationMins = 0;
+      if (audio.volume < 1.0) audio.volume = 1.0;
+      updateSleepTimerUI();
+    }
+
+    function startSleepTimer(minutes) {
+      clearSleepTimer();
+      if (!minutes || minutes <= 0) return;
+
+      sleepDurationMins = minutes;
+      let totalSecs = 0;
+
+      if (minutes === "chapter") {
+        const cur = audio.currentTime || 0;
+        const dur = (activeBook?.chapters?.[activeChapIdx]?.duration) || audio.duration || 0;
+        totalSecs = Math.max(5, (dur - cur) / (currentSpeed || 1.0));
+      } else {
+        totalSecs = minutes * 60;
+      }
+
+      sleepEndTime = Date.now() + (totalSecs * 1000);
+      const fadeStartDelay = Math.max(0, (totalSecs - 30)) * 1000;
+
+      // 30 seconds before timer expires, smoothly fade audio.volume from 1.0 to 0.0 in 1-second intervals
+      sleepFadeTimerId = setTimeout(() => {
+        isFadingOut = true;
+        canShakeExtend = true;
+        const fadeStartTime = Date.now();
+        const fadeDuration = 30000; // 30 seconds
+        const startVol = audio.volume || 1.0;
+
+        sleepFadeInterval = setInterval(() => {
+          const elapsed = Date.now() - fadeStartTime;
+          const progress = Math.min(1, elapsed / fadeDuration);
+          audio.volume = Math.max(0, startVol * (1 - progress));
+
+          if (progress >= 1) {
+            clearInterval(sleepFadeInterval);
+            sleepFadeInterval = null;
+            isFadingOut = false;
+            audio.pause();
+            setPlayIcon(false);
+            audio.volume = 1.0;
+            sleepPausedTime = Date.now();
+            canShakeExtend = true;
+
+            // Allow shake to extend for 30s after sleep timer pause
+            sleepExpireTimerId = setTimeout(() => {
+              canShakeExtend = false;
+              sleepPausedTime = 0;
+              clearSleepTimer();
+            }, 30000);
+          }
+        }, 1000);
+      }, fadeStartDelay);
+
+      updateSleepTimerUI();
+      if (minutes === "chapter") {
+        showToast("Sleep timer set: End of Chapter");
+      } else {
+        showToast(`Sleep timer set: ${minutes} min`);
+      }
+    }
+
+    function extendSleepTimer15m() {
+      if (!canShakeExtend) return;
+      if (sleepFadeInterval) {
+        clearInterval(sleepFadeInterval);
+        sleepFadeInterval = null;
+      }
+      isFadingOut = false;
+      canShakeExtend = false;
+      sleepPausedTime = 0;
+
+      // Restore volume & resume
+      audio.volume = 1.0;
+      if (audio.paused) {
+        audio.play().catch(() => {});
+        setPlayIcon(true);
+      }
+
+      // Haptic feedback
+      if (navigator.vibrate) {
+        try { navigator.vibrate([40, 60, 40]); } catch(e) {}
+      }
+
+      showToast("Sleep timer extended +15m");
+      startSleepTimer(15);
+    }
+
+    function cycleSleepTimer() {
+      if (!sleepDurationMins) {
+        startSleepTimer(15);
+      } else if (sleepDurationMins === 15) {
+        startSleepTimer(30);
+      } else if (sleepDurationMins === 30) {
+        startSleepTimer(45);
+      } else if (sleepDurationMins === 45) {
+        startSleepTimer(60);
+      } else if (sleepDurationMins === 60) {
+        startSleepTimer("chapter");
+      } else {
+        clearSleepTimer();
+        showToast("Sleep timer turned off");
+      }
+      updateSleepTimerUI();
+    }
+
+    // Shake-to-Extend devicemotion listener
+    let lastMotion = { x: 0, y: 0, z: 0, time: 0 };
+    let lastShakeTimestamp = 0;
+    function setupShakeDetection() {
+      try {
+        window.addEventListener('devicemotion', (e) => {
+          if (!canShakeExtend) return;
+          const now = Date.now();
+          if (now - lastShakeTimestamp < 3000) return; // debounce 3s
+
+          const acc = e.acceleration || e.accelerationIncludingGravity;
+          if (!acc) return;
+
+          const x = acc.x || 0;
+          const y = acc.y || 0;
+          const z = acc.z || 0;
+
+          const dt = now - lastMotion.time;
+          if (dt > 80 && dt < 1200) {
+            const delta = Math.abs(x - lastMotion.x) + Math.abs(y - lastMotion.y) + Math.abs(z - lastMotion.z);
+            if (delta > 12) {
+              lastShakeTimestamp = now;
+              extendSleepTimer15m();
+            }
+          }
+          lastMotion = { x, y, z, time: now };
+        }, { passive: true });
+      } catch (err) {
+        console.warn("devicemotion setup:", err);
+      }
+    }
+
+    // Expose helpers globally for testing and programmatic control
+    window.setSleepTimer = startSleepTimer;
+    window.clearSleepTimer = clearSleepTimer;
+    window.extendSleepTimer15m = extendSleepTimer15m;
+    window.undoJump = undoJump;
+
+    /* Smart Rolling Offline Cache ("Keep Next 3 Chapters") */
+    async function runSmartRollingCache(book) {
+      if (!book || !book.chapters || book.chapters.length === 0) {
+        showToast("No audio chapters to cache.");
+        return;
+      }
+      const currentIdx = (activeBook && activeBook.id === book.id)
+        ? activeChapIdx
+        : ((typeof book.lastChapIdx === "number") ? book.lastChapIdx : 0);
+
+      const keepStart = currentIdx;
+      const keepEnd = Math.min(book.chapters.length - 1, currentIdx + 3);
+
+      book.isSmartCached = true;
+      try { localStorage.setItem(`ssk_smart_cache_${book.id}`, "true"); } catch(e) {}
+      await dbSave(book);
+
+      showToast(`Smart Caching Ch. ${keepStart + 1} to ${keepEnd + 1}...`, 3000);
+
+      // Clean up older finished chapters (< keepStart or > keepEnd + 3)
+      for (let i = 0; i < book.chapters.length; i++) {
+        if (i < keepStart || i > keepEnd + 3) {
+          const blobKey = `${book.id}_${i}`;
+          if (downloadedBlobKeys.has(blobKey)) {
+            await dbDeleteBlob(blobKey);
+          }
+        }
+      }
+
+      // Download active chapter + next 3 chapters
+      let downloaded = 0;
+      for (let i = keepStart; i <= keepEnd; i++) {
+        const blobKey = `${book.id}_${i}`;
+        if (!downloadedBlobKeys.has(blobKey)) {
+          const ch = book.chapters[i];
+          if (ch && ch.stream_url) {
+            try {
+              const res = await fetch(ch.stream_url);
+              if (res.ok) {
+                const blob = await res.blob();
+                if (blob && blob.size > 1000) {
+                  await dbSaveBlob(blobKey, blob);
+                  downloaded++;
+                }
+              }
+            } catch (e) {
+              console.warn("Smart cache download error:", e);
+            }
+          }
+        }
+      }
+
+      // Download cover if not stored
+      if (book.cover_url && (!book.cover || book.cover.startsWith('/'))) {
+        try {
+          const cr = await fetch(book.cover_url);
+          if (cr.ok) {
+            const cb = await cr.blob();
+            book.cover = await readDataUrl(cb);
+            await dbSave(book);
+          }
+        } catch(e) {}
+      }
+
+      renderBooks();
+      renderDrawer();
+      showToast(`Smart Cache active: Ch. ${keepStart + 1}–${keepEnd + 1} ready offline!`);
+    }
+
+    async function checkRollingSmartCache() {
+      if (!activeBook || !activeBook.isSmartCached || !activeBook.chapters) return;
+      const keepStart = activeChapIdx;
+      const keepEnd = Math.min(activeBook.chapters.length - 1, activeChapIdx + 3);
+
+      // Clean older finished chapters before activeChapIdx - 1
+      for (let i = 0; i < activeChapIdx - 1; i++) {
+        const key = `${activeBook.id}_${i}`;
+        if (downloadedBlobKeys.has(key)) {
+          await dbDeleteBlob(key);
+        }
+      }
+
+      // Download missing chapters in range
+      for (let i = keepStart; i <= keepEnd; i++) {
+        const key = `${activeBook.id}_${i}`;
+        if (!downloadedBlobKeys.has(key)) {
+          const ch = activeBook.chapters[i];
+          if (ch && ch.stream_url) {
+            try {
+              const res = await fetch(ch.stream_url);
+              if (res.ok) {
+                const blob = await res.blob();
+                if (blob && blob.size > 1000) {
+                  await dbSaveBlob(key, blob);
+                }
+              }
+            } catch (e) {}
+          }
+        }
+      }
     }
 
     /* Open / Close Full Player */
@@ -2587,8 +2992,38 @@
     /* Load & Play Audiobook (Supports 100% offline playback from IndexedDB) */
     async function loadBook(book, chapIdx = 0, startTime = 0, autoPlay = true) {
       if (!book) return;
+      if (window.AudioEngine?.manifestManager && (!book.chapters || book.chapters.length === 0)) {
+        await window.AudioEngine.manifestManager.ensureManifest(book);
+      }
       activeBook = book;
       activeChapIdx = Math.max(0, Math.min(chapIdx, (book.chapters?.length || 1) - 1));
+
+      // Task 1: Stamp last played timestamp
+      stampBookPlayed(book);
+
+      // Task 3: Per-Book Playback Speed Memory
+      const bookSpeed = book.preferredSpeed || parseFloat(localStorage.getItem(`ssk_speed_${book.id}`));
+      if (bookSpeed && isFinite(bookSpeed) && bookSpeed > 0) {
+        book.preferredSpeed = bookSpeed;
+        setSpeed(bookSpeed);
+      }
+
+      // Task 2: Adaptive Backtrack on resume if resuming from a previous pause
+      if (lastPauseTimestamp > 0 && startTime > 0 && autoPlay) {
+        const elapsed = (Date.now() - lastPauseTimestamp) / 1000;
+        let rewound = 0;
+        if (elapsed >= 1800) {
+          rewound = 15;
+        } else if (elapsed >= 60) {
+          rewound = 5;
+        }
+        if (rewound > 0) {
+          startTime = Math.max(0, startTime - rewound);
+          showToast(`Rewound ${rewound}s for context`);
+        }
+        lastPauseTimestamp = 0;
+        try { localStorage.removeItem("ssk_last_pause_ts"); } catch(e) {}
+      }
 
       // Synchronously unlock audio element during user gesture for iOS Safari
       if (autoPlay) {
@@ -2737,6 +3172,8 @@
           p.then(() => {
             setPlayIcon(true);
             updateMediaSession();
+            stampBookPlayed(activeBook);
+            checkRollingSmartCache();
           }).catch(err => {
             console.warn("Autoplay notice:", err);
             setPlayIcon(false);
@@ -2785,20 +3222,43 @@
       }
 
       if (audio.paused) {
+        // Task 2: Smart Contextual Rewind on Resume (Adaptive Backtrack)
+        if (lastPauseTimestamp > 0) {
+          const elapsed = (Date.now() - lastPauseTimestamp) / 1000;
+          if (elapsed >= 1800) { // > 30 minutes
+            audio.currentTime = Math.max(0, audio.currentTime - 15);
+            showToast("Rewound 15s for context");
+          } else if (elapsed >= 60) { // between 1 min and 30 min
+            audio.currentTime = Math.max(0, audio.currentTime - 5);
+            showToast("Rewound 5s for context");
+          }
+          // < 60s: 0s backtrack (instant resume)
+          lastPauseTimestamp = 0;
+          try { localStorage.removeItem("ssk_last_pause_ts"); } catch(e) {}
+        }
+
+        // Restore volume if faded by sleep timer
+        if (audio.volume < 1.0) audio.volume = 1.0;
+
         audio.playbackRate = currentSpeed;
         const p = audio.play();
         if (p !== undefined) {
           p.then(() => {
             setPlayIcon(true);
             updateMediaSession();
+            stampBookPlayed(activeBook);
+            checkRollingSmartCache();
           }).catch(e => {
             console.warn("Play error:", e);
             showToast("Playback error: tap to retry");
           });
         }
       } else {
+        lastPauseTimestamp = Date.now();
+        try { localStorage.setItem("ssk_last_pause_ts", String(lastPauseTimestamp)); } catch(e) {}
         audio.pause();
         setPlayIcon(false);
+        stampBookPlayed(activeBook);
       }
       saveSession();
       updateMediaPositionState();
@@ -2832,7 +3292,14 @@
       if (!activeBook || !activeBook.chapters) return;
       const target = activeChapIdx + delta;
       if (target >= 0 && target < activeBook.chapters.length) {
+        // Task 4: Pocket Scrubber Protection & Undo Jump Pill
+        window._lastPlaybackPos = {
+          bookId: activeBook.id,
+          chapIdx: activeChapIdx,
+          time: audio.currentTime || 0
+        };
         loadBook(activeBook, target, 0, true);
+        showToast(`Jumped to Ch. ${target + 1} • Tap to Undo`, 5000, () => undoJump());
       } else {
         showToast(delta > 0 ? "You are at the last chapter." : "You are at the first chapter.");
       }
@@ -2849,11 +3316,24 @@
       updateMediaPositionState();
     }
 
+    function setSpeed(speed) {
+      applySpeed(speed);
+    }
+
     function cycleSpeed() {
       const idx = SPEEDS.indexOf(currentSpeed);
       const nextIdx = (idx + 1) % SPEEDS.length;
-      applySpeed(SPEEDS[nextIdx]);
-      showToast(`Playback speed: ${SPEEDS[nextIdx]}×`);
+      const nextSpeed = SPEEDS[nextIdx];
+      applySpeed(nextSpeed);
+      // Task 3: Per-book playback speed memory
+      if (activeBook) {
+        activeBook.preferredSpeed = nextSpeed;
+        try {
+          localStorage.setItem(`ssk_speed_${activeBook.id}`, String(nextSpeed));
+        } catch (e) {}
+        dbSave(activeBook);
+      }
+      showToast(`Playback speed: ${nextSpeed}×`);
     }
 
     function saveSession() {
@@ -2875,7 +3355,7 @@
       }
       activeBook.lastChapIdx = activeChapIdx;
       activeBook.lastTime = curTime;
-      dbSave(activeBook);
+      stampBookPlayed(activeBook);
     }
 
     /* Offline Download with Screen Wake Lock, Retries, Cover Blur & Instant Pause/Resume */
@@ -2991,7 +3471,14 @@
         return;
       }
 
-      if (!book || !book.chapters || book.chapters.length === 0) return;
+      if (window.AudioEngine?.manifestManager && (!book.chapters || book.chapters.length === 0)) {
+        await window.AudioEngine.manifestManager.ensureManifest(book);
+      }
+
+      if (!book || !book.chapters || book.chapters.length === 0) {
+        showToast("Cannot download: chapters not found.");
+        return;
+      }
 
       isDownloading = true;
       isDownloadPaused = false;
@@ -3075,12 +3562,20 @@
           const timer = setTimeout(() => chapterController.abort(), 90000);
 
           try {
-            const res = await fetch(ch.stream_url, { signal: chapterController.signal });
+            let blob;
+            if (window.AudioEngine?.rangeSliceDownloader) {
+              blob = await window.AudioEngine.rangeSliceDownloader.downloadTrack(ch.stream_url, blobKey, {
+                signal: chapterController.signal,
+                fileSize: ch.file_size
+              });
+            } else {
+              const res = await fetch(ch.stream_url, { signal: chapterController.signal });
+              if (!res.ok) throw new Error(`HTTP ${res.status}`);
+              blob = await res.blob();
+            }
             clearTimeout(timer);
             localAbortController.signal.removeEventListener('abort', onParentAbort);
 
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
-            const blob = await res.blob();
             if (!blob || blob.size < 1000) throw new Error("Empty audio file");
 
             if (!isDownloading || localAbortController.signal.aborted || fatalQuotaError) return;
@@ -3250,8 +3745,18 @@
           <div class="drawer-item-time">${ch.duration ? formatClock(ch.duration) : '--:--'}</div>
         `;
         li.onclick = () => {
-          loadBook(activeBook, idx, 0, true);
-          drawerBackdrop.classList.remove("open");
+          if (idx !== activeChapIdx) {
+            window._lastPlaybackPos = {
+              bookId: activeBook.id,
+              chapIdx: activeChapIdx,
+              time: audio.currentTime || 0
+            };
+            loadBook(activeBook, idx, 0, true);
+            drawerBackdrop.classList.remove("open");
+            showToast(`Jumped to Track ${idx + 1} • Tap to Undo`, 5000, () => undoJump());
+          } else {
+            drawerBackdrop.classList.remove("open");
+          }
         };
         drawerList.appendChild(li);
       });
@@ -3302,7 +3807,7 @@
           }
 
           const existing = books.find(b => b.id === sBook.id);
-          const isServerWishlist = sBook.status === 'wishlist' || !sBook.chapters || sBook.chapters.length === 0;
+          const isServerWishlist = sBook.status === 'wishlist' || (!sBook.has_manifest && (!sBook.chapters || sBook.chapters.length === 0));
           const sCover = sBook.cover || sBook.cover_url || null;
 
           if (!existing) {
@@ -3310,18 +3815,28 @@
             sBook.cover = sCover;
             sBook.cover_url = sBook.cover_url || sCover;
             sBook.cover_version = sBook.cover_version || null;
+            sBook.has_manifest = Boolean(sBook.has_manifest);
+            sBook.manifest_url = sBook.manifest_url || null;
+            sBook.total_tracks = sBook.total_tracks || (sBook.chapters ? sBook.chapters.length : 0);
+            sBook.total_duration = sBook.total_duration || 0;
             sBook.chapters = sBook.chapters || [];
             books.push(sBook);
             await dbSave(sBook);
             changed = true;
           } else {
+            if (sBook.has_manifest) {
+              existing.has_manifest = true;
+              existing.manifest_url = sBook.manifest_url || existing.manifest_url;
+              existing.total_tracks = sBook.total_tracks || existing.total_tracks;
+              existing.total_duration = sBook.total_duration || existing.total_duration;
+            }
             // Handle wishlist status changes
             if (isServerWishlist) {
               if (existing.status !== 'wishlist') {
                 existing.status = 'wishlist';
                 changed = true;
               }
-            } else if (existing.status === 'wishlist' && sBook.chapters && sBook.chapters.length > 0) {
+            } else if (existing.status === 'wishlist' && (sBook.has_manifest || (sBook.chapters && sBook.chapters.length > 0))) {
               // Audio files have been added! Graduate from wishlist to listening
               existing.status = 'listening';
               changed = true;
@@ -3371,6 +3886,9 @@
           syncWishlistBackup();
           updateCounts();
           renderBooks();
+        }
+        if (window.AudioEngine?.searchIndex) {
+          window.AudioEngine.searchIndex.buildIndex(books);
         }
       } catch (e) {
         console.warn("syncServerBooks error:", e);
@@ -3429,8 +3947,29 @@
 
       await syncServerBooks();
 
+      // Populate per-book memory (lastPlayedTimestamp, preferredSpeed, smartCache)
+      books.forEach(b => {
+        if (!b.lastPlayedTimestamp) {
+          const lp = localStorage.getItem(`ssk_last_played_${b.id}`);
+          if (lp) b.lastPlayedTimestamp = parseInt(lp, 10) || 0;
+        }
+        if (!b.preferredSpeed) {
+          const spd = localStorage.getItem(`ssk_speed_${b.id}`);
+          if (spd) b.preferredSpeed = parseFloat(spd) || 1.0;
+        }
+        if (!b.isSmartCached) {
+          if (localStorage.getItem(`ssk_smart_cache_${b.id}`) === "true") {
+            b.isSmartCached = true;
+          }
+        }
+      });
+
       updateCounts();
       renderBooks();
+
+      if (window.AudioEngine?.searchIndex) {
+        window.AudioEngine.searchIndex.buildIndex(books);
+      }
 
       // Restore session
       const saved = localStorage.getItem("ssk_session");
@@ -3438,12 +3977,21 @@
         try {
           const sess = JSON.parse(saved);
           const b = books.find(x => x.id === sess.bookId);
-          if (b && b.chapters && b.chapters.length > 0) {
+          if (b && (b.has_manifest || (b.chapters && b.chapters.length > 0))) {
             let resumeChap = (typeof sess.chapIdx === "number") ? sess.chapIdx : (b.lastChapIdx || 0);
             let resumeTime = (typeof sess.time === "number") ? sess.time : (b.lastTime || 0);
+            if (window.AudioEngine?.playbackJournal) {
+              try {
+                const journalState = await window.AudioEngine.playbackJournal.reducePlaybackState(b.id);
+                if (journalState && journalState.eventsCount > 0) {
+                  resumeChap = journalState.chapIdx;
+                  resumeTime = journalState.time;
+                }
+              } catch(e) {}
+            }
             try {
               const bookProg = localStorage.getItem(`ssk_progress_${b.id}`);
-              if (bookProg) {
+              if (bookProg && (!resumeChap && !resumeTime)) {
                 const bp = JSON.parse(bookProg);
                 if (bp && typeof bp.chapIdx === "number") {
                   resumeChap = bp.chapIdx;
@@ -3473,6 +4021,7 @@
           const curTime = audio.currentTime || 0;
           activeBook.lastChapIdx = activeChapIdx;
           activeBook.lastTime = curTime;
+          stampBookPlayed(activeBook);
           try {
             const sess = {
               bookId: activeBook.id,
@@ -3495,20 +4044,62 @@
         setPlayIcon(true);
         updateMediaSession();
         checkAutoPrefetch();
+        checkRollingSmartCache();
+        stampBookPlayed(activeBook);
       });
       audio.addEventListener("play", () => {
         setPlayIcon(true);
         updateMediaSession();
+        stampBookPlayed(activeBook);
+        if (activeBook && window.AudioEngine?.playbackJournal) {
+          window.AudioEngine.playbackJournal.recordEvent({
+            bookId: activeBook.id,
+            chapIdx: activeChapIdx,
+            time: audio.currentTime,
+            speed: audio.playbackRate,
+            eventType: "play"
+          });
+        }
       });
       audio.addEventListener("pause", () => {
         setPlayIcon(false);
+        lastPauseTimestamp = Date.now();
+        try { localStorage.setItem("ssk_last_pause_ts", String(lastPauseTimestamp)); } catch(e) {}
         updateMediaPositionState();
         saveSession();
+        stampBookPlayed(activeBook);
+        if (activeBook && window.AudioEngine?.playbackJournal) {
+          window.AudioEngine.playbackJournal.recordEvent({
+            bookId: activeBook.id,
+            chapIdx: activeChapIdx,
+            time: audio.currentTime,
+            speed: audio.playbackRate,
+            eventType: "pause"
+          });
+        }
       });
       audio.addEventListener("seeked", () => {
         saveSession();
+        if (activeBook && window.AudioEngine?.playbackJournal) {
+          window.AudioEngine.playbackJournal.recordEvent({
+            bookId: activeBook.id,
+            chapIdx: activeChapIdx,
+            time: audio.currentTime,
+            speed: audio.playbackRate,
+            eventType: "seek"
+          });
+        }
       });
       audio.addEventListener("ended", () => {
+        if (activeBook && window.AudioEngine?.playbackJournal) {
+          window.AudioEngine.playbackJournal.recordEvent({
+            bookId: activeBook.id,
+            chapIdx: activeChapIdx,
+            time: audio.duration || audio.currentTime,
+            speed: audio.playbackRate,
+            eventType: "finish"
+          });
+        }
         if (activeBook && activeChapIdx < activeBook.chapters.length - 1) {
           jumpChap(1);
         } else {
@@ -3603,8 +4194,9 @@
         if (activeBook) openActionSheet(activeBook);
       };
 
-      // Full Player Scrubber Seek & Drag
+      // Full Player Scrubber Seek & Drag (With Pocket Scrubber Protection & Undo Jump)
       let isScrubbing = false;
+      let scrubStartPos = null;
       function handleScrubSeek(e) {
         if (!audio.duration || !isFinite(audio.duration) || audio.duration <= 0) return;
         const rect = fullScrubberTrack.getBoundingClientRect();
@@ -3617,6 +4209,11 @@
 
       fullScrubberTrack.addEventListener("pointerdown", (e) => {
         isScrubbing = true;
+        scrubStartPos = {
+          bookId: activeBook?.id,
+          chapIdx: activeChapIdx,
+          time: audio.currentTime || 0
+        };
         try { fullScrubberTrack.setPointerCapture(e.pointerId); } catch(err) {}
         handleScrubSeek(e);
       });
@@ -3628,10 +4225,16 @@
           isScrubbing = false;
           saveSession();
           try { fullScrubberTrack.releasePointerCapture(e.pointerId); } catch(err) {}
+          if (scrubStartPos && Math.abs((audio.currentTime || 0) - scrubStartPos.time) > 30) {
+            window._lastPlaybackPos = scrubStartPos;
+            showToast(`Jumped to ${formatClock(audio.currentTime)} • Tap to Undo`, 5000, () => undoJump());
+          }
+          scrubStartPos = null;
         }
       });
       fullScrubberTrack.addEventListener("pointercancel", () => {
         isScrubbing = false;
+        scrubStartPos = null;
       });
 
       // Full Player Scrubber Time toggle (Chapter duration, Countdown remaining)
@@ -3778,6 +4381,21 @@
         }
       };
 
+      if (actionSmartCache) {
+        actionSmartCache.onclick = () => {
+          if (!sheetTargetBook && !activeBook) return;
+          const target = sheetTargetBook || activeBook;
+          closeActionSheet();
+          runSmartRollingCache(target);
+        };
+      }
+
+      if (actionSleepTimer) {
+        actionSleepTimer.onclick = () => {
+          cycleSleepTimer();
+        };
+      }
+
       if (actionRemoveOffline) {
         actionRemoveOffline.onclick = async () => {
           if (!sheetTargetBook) return;
@@ -3868,6 +4486,8 @@
           openFullPlayer();
         }
       };
+
+      setupShakeDetection();
     }
 
     function readDataUrl(f) {

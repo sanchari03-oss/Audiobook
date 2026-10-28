@@ -1,0 +1,123 @@
+{
+  "id": "marcus-aurelius---meditations",
+  "title": "Marcus Aurelius - Meditations",
+  "author": "Audiobook",
+  "cover_url": "Marcus%20Aurelius%20-%20Meditations/cover.jpg",
+  "cover_version": "1790864460",
+  "total_tracks": 16,
+  "total_duration": 24858.7,
+  "chapters": [
+    {
+      "index": 0,
+      "name": "Introduction",
+      "file_size": 10893794,
+      "duration": 1808.3,
+      "stream_url": "Marcus%20Aurelius%20-%20Meditations/01%20-%20Introduction.mp3"
+    },
+    {
+      "index": 1,
+      "name": "THE FIRST BOOK",
+      "file_size": 8518882,
+      "duration": 1412.9,
+      "stream_url": "Marcus%20Aurelius%20-%20Meditations/02%20-%20THE%20FIRST%20BOOK.mp3"
+    },
+    {
+      "index": 2,
+      "name": "THE SECOND BOOK",
+      "file_size": 4638095,
+      "duration": 766.7,
+      "stream_url": "Marcus%20Aurelius%20-%20Meditations/03%20-%20THE%20SECOND%20BOOK.mp3"
+    },
+    {
+      "index": 3,
+      "name": "THE THIRD BOOK",
+      "file_size": 6702956,
+      "duration": 1110.5,
+      "stream_url": "Marcus%20Aurelius%20-%20Meditations/04%20-%20THE%20THIRD%20BOOK.mp3"
+    },
+    {
+      "index": 4,
+      "name": "THE FOURTH BOOK",
+      "file_size": 11302593,
+      "duration": 1876.3,
+      "stream_url": "Marcus%20Aurelius%20-%20Meditations/05%20-%20THE%20FOURTH%20BOOK.mp3"
+    },
+    {
+      "index": 5,
+      "name": "THE FIFTH BOOK",
+      "file_size": 11435059,
+      "duration": 1898.4,
+      "stream_url": "Marcus%20Aurelius%20-%20Meditations/06%20-%20THE%20FIFTH%20BOOK.mp3"
+    },
+    {
+      "index": 6,
+      "name": "THE SIXTH BOOK",
+      "file_size": 11617833,
+      "duration": 1928.8,
+      "stream_url": "Marcus%20Aurelius%20-%20Meditations/07%20-%20THE%20SIXTH%20BOOK.mp3"
+    },
+    {
+      "index": 7,
+      "name": "THE SEVENTH BOOK",
+      "file_size": 12775314,
+      "duration": 2121.6,
+      "stream_url": "Marcus%20Aurelius%20-%20Meditations/08%20-%20THE%20SEVENTH%20BOOK.mp3"
+    },
+    {
+      "index": 8,
+      "name": "THE EIGHTH BOOK",
+      "file_size": 12417114,
+      "duration": 2061.9,
+      "stream_url": "Marcus%20Aurelius%20-%20Meditations/09%20-%20THE%20EIGHTH%20BOOK.mp3"
+    },
+    {
+      "index": 9,
+      "name": "THE NINTH BOOK",
+      "file_size": 10850269,
+      "duration": 1801.0,
+      "stream_url": "Marcus%20Aurelius%20-%20Meditations/10%20-%20THE%20NINTH%20BOOK.mp3"
+    },
+    {
+      "index": 10,
+      "name": "THE TENTH BOOK",
+      "file_size": 12658555,
+      "duration": 2102.1,
+      "stream_url": "Marcus%20Aurelius%20-%20Meditations/11%20-%20THE%20TENTH%20BOOK.mp3"
+    },
+    {
+      "index": 11,
+      "name": "THE ELEVENTH BOOK",
+      "file_size": 9517519,
+      "duration": 1579.1,
+      "stream_url": "Marcus%20Aurelius%20-%20Meditations/12%20-%20THE%20ELEVENTH%20BOOK.mp3"
+    },
+    {
+      "index": 12,
+      "name": "THE TWELFTH BOOK",
+      "file_size": 7516510,
+      "duration": 1246.0,
+      "stream_url": "Marcus%20Aurelius%20-%20Meditations/13%20-%20THE%20TWELFTH%20BOOK.mp3"
+    },
+    {
+      "index": 13,
+      "name": "Appendix",
+      "file_size": 13171119,
+      "duration": 2187.5,
+      "stream_url": "Marcus%20Aurelius%20-%20Meditations/14%20-%20Appendix.mp3"
+    },
+    {
+      "index": 14,
+      "name": "Notes",
+      "file_size": 775312,
+      "duration": 123.6,
+      "stream_url": "Marcus%20Aurelius%20-%20Meditations/15%20-%20Notes.mp3"
+    },
+    {
+      "index": 15,
+      "name": "Glossary",
+      "file_size": 5041974,
+      "duration": 834.0,
+      "stream_url": "Marcus%20Aurelius%20-%20Meditations/16%20-%20Glossary.mp3"
+    }
+  ]
+}

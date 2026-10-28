@@ -1,0 +1,725 @@
+{
+  "id": "misery",
+  "title": "Misery",
+  "author": "Audiobook",
+  "cover_url": "Misery/cover.jpg",
+  "cover_version": "1791971922",
+  "total_tracks": 102,
+  "total_duration": 35537.7,
+  "chapters": [
+    {
+      "index": 0,
+      "name": "Acknowledgments",
+      "file_size": 473801,
+      "duration": 43.1,
+      "stream_url": "Misery/01%20-%20Acknowledgments.mp3"
+    },
+    {
+      "index": 1,
+      "name": "Chapter 1",
+      "file_size": 2272562,
+      "duration": 342.6,
+      "stream_url": "Misery/02%20-%20Chapter%201.mp3"
+    },
+    {
+      "index": 2,
+      "name": "Chapter 3",
+      "file_size": 895122,
+      "duration": 113.2,
+      "stream_url": "Misery/03%20-%20Chapter%203.mp3"
+    },
+    {
+      "index": 3,
+      "name": "Chapter 4",
+      "file_size": 1665283,
+      "duration": 241.5,
+      "stream_url": "Misery/04%20-%20Chapter%204.mp3"
+    },
+    {
+      "index": 4,
+      "name": "Chapter 5",
+      "file_size": 3413894,
+      "duration": 532.6,
+      "stream_url": "Misery/05%20-%20Chapter%205.mp3"
+    },
+    {
+      "index": 5,
+      "name": "Chapter 6",
+      "file_size": 2537931,
+      "duration": 386.8,
+      "stream_url": "Misery/06%20-%20Chapter%206.mp3"
+    },
+    {
+      "index": 6,
+      "name": "Chapter 7",
+      "file_size": 2485030,
+      "duration": 378.0,
+      "stream_url": "Misery/07%20-%20Chapter%207.mp3"
+    },
+    {
+      "index": 7,
+      "name": "Chapter 8",
+      "file_size": 1699013,
+      "duration": 247.1,
+      "stream_url": "Misery/08%20-%20Chapter%208.mp3"
+    },
+    {
+      "index": 8,
+      "name": "Chapter 10",
+      "file_size": 2411663,
+      "duration": 365.7,
+      "stream_url": "Misery/09%20-%20Chapter%2010.mp3"
+    },
+    {
+      "index": 9,
+      "name": "Chapter 11",
+      "file_size": 3950258,
+      "duration": 621.9,
+      "stream_url": "Misery/10%20-%20Chapter%2011.mp3"
+    },
+    {
+      "index": 10,
+      "name": "Chapter 12",
+      "file_size": 945865,
+      "duration": 121.7,
+      "stream_url": "Misery/11%20-%20Chapter%2012.mp3"
+    },
+    {
+      "index": 11,
+      "name": "Chapter 13",
+      "file_size": 3237610,
+      "duration": 503.3,
+      "stream_url": "Misery/12%20-%20Chapter%2013.mp3"
+    },
+    {
+      "index": 12,
+      "name": "Chapter 14",
+      "file_size": 2475232,
+      "duration": 376.3,
+      "stream_url": "Misery/13%20-%20Chapter%2014.mp3"
+    },
+    {
+      "index": 13,
+      "name": "Chapter 15",
+      "file_size": 1021540,
+      "duration": 134.3,
+      "stream_url": "Misery/14%20-%20Chapter%2015.mp3"
+    },
+    {
+      "index": 14,
+      "name": "Chapter 16",
+      "file_size": 2275305,
+      "duration": 343.0,
+      "stream_url": "Misery/15%20-%20Chapter%2016.mp3"
+    },
+    {
+      "index": 15,
+      "name": "Chapter 18",
+      "file_size": 951486,
+      "duration": 122.6,
+      "stream_url": "Misery/16%20-%20Chapter%2018.mp3"
+    },
+    {
+      "index": 16,
+      "name": "Chapter 19",
+      "file_size": 1611954,
+      "duration": 232.6,
+      "stream_url": "Misery/17%20-%20Chapter%2019.mp3"
+    },
+    {
+      "index": 17,
+      "name": "Chapter 20",
+      "file_size": 1695413,
+      "duration": 246.5,
+      "stream_url": "Misery/18%20-%20Chapter%2020.mp3"
+    },
+    {
+      "index": 18,
+      "name": "Chapter 21",
+      "file_size": 5431770,
+      "duration": 868.6,
+      "stream_url": "Misery/19%20-%20Chapter%2021.mp3"
+    },
+    {
+      "index": 19,
+      "name": "Chapter 23",
+      "file_size": 2399124,
+      "duration": 363.6,
+      "stream_url": "Misery/20%20-%20Chapter%2023.mp3"
+    },
+    {
+      "index": 20,
+      "name": "Chapter 24",
+      "file_size": 2375485,
+      "duration": 359.7,
+      "stream_url": "Misery/21%20-%20Chapter%2024.mp3"
+    },
+    {
+      "index": 21,
+      "name": "Chapter 25",
+      "file_size": 892387,
+      "duration": 112.8,
+      "stream_url": "Misery/22%20-%20Chapter%2025.mp3"
+    },
+    {
+      "index": 22,
+      "name": "Chapter 26",
+      "file_size": 769721,
+      "duration": 92.4,
+      "stream_url": "Misery/23%20-%20Chapter%2026.mp3"
+    },
+    {
+      "index": 23,
+      "name": "Chapter 28",
+      "file_size": 2538367,
+      "duration": 386.8,
+      "stream_url": "Misery/24%20-%20Chapter%2028.mp3"
+    },
+    {
+      "index": 24,
+      "name": "Chapter 29",
+      "file_size": 4755591,
+      "duration": 756.0,
+      "stream_url": "Misery/25%20-%20Chapter%2029.mp3"
+    },
+    {
+      "index": 25,
+      "name": "Chapter 30",
+      "file_size": 4014546,
+      "duration": 632.6,
+      "stream_url": "Misery/26%20-%20Chapter%2030.mp3"
+    },
+    {
+      "index": 26,
+      "name": "Chapter 31",
+      "file_size": 6210868,
+      "duration": 998.3,
+      "stream_url": "Misery/27%20-%20Chapter%2031.mp3"
+    },
+    {
+      "index": 27,
+      "name": "Chapter 34",
+      "file_size": 2413539,
+      "duration": 366.0,
+      "stream_url": "Misery/28%20-%20Chapter%2034.mp3"
+    },
+    {
+      "index": 28,
+      "name": "Chapter 35",
+      "file_size": 891811,
+      "duration": 112.7,
+      "stream_url": "Misery/29%20-%20Chapter%2035.mp3"
+    },
+    {
+      "index": 29,
+      "name": "Chapter 36",
+      "file_size": 2053467,
+      "duration": 306.1,
+      "stream_url": "Misery/30%20-%20Chapter%2036.mp3"
+    },
+    {
+      "index": 30,
+      "name": "Chapter 1",
+      "file_size": 1906871,
+      "duration": 281.7,
+      "stream_url": "Misery/31%20-%20Chapter%201.mp3"
+    },
+    {
+      "index": 31,
+      "name": "Chapter 2",
+      "file_size": 4993138,
+      "duration": 795.6,
+      "stream_url": "Misery/32%20-%20Chapter%202.mp3"
+    },
+    {
+      "index": 32,
+      "name": "Chapter 3",
+      "file_size": 2391627,
+      "duration": 362.4,
+      "stream_url": "Misery/33%20-%20Chapter%203.mp3"
+    },
+    {
+      "index": 33,
+      "name": "Chapter 4",
+      "file_size": 1680132,
+      "duration": 243.9,
+      "stream_url": "Misery/34%20-%20Chapter%204.mp3"
+    },
+    {
+      "index": 34,
+      "name": "Chapter 5",
+      "file_size": 3497932,
+      "duration": 546.6,
+      "stream_url": "Misery/35%20-%20Chapter%205.mp3"
+    },
+    {
+      "index": 35,
+      "name": "Chapter 6",
+      "file_size": 11443294,
+      "duration": 1869.5,
+      "stream_url": "Misery/36%20-%20Chapter%206.mp3"
+    },
+    {
+      "index": 36,
+      "name": "Chapter 7",
+      "file_size": 2533176,
+      "duration": 386.0,
+      "stream_url": "Misery/37%20-%20Chapter%207.mp3"
+    },
+    {
+      "index": 37,
+      "name": "Chapter 8",
+      "file_size": 2570077,
+      "duration": 392.1,
+      "stream_url": "Misery/38%20-%20Chapter%208.mp3"
+    },
+    {
+      "index": 38,
+      "name": "Chapter 9",
+      "file_size": 3395302,
+      "duration": 529.5,
+      "stream_url": "Misery/39%20-%20Chapter%209.mp3"
+    },
+    {
+      "index": 39,
+      "name": "Chapter 10",
+      "file_size": 866585,
+      "duration": 108.5,
+      "stream_url": "Misery/40%20-%20Chapter%2010.mp3"
+    },
+    {
+      "index": 40,
+      "name": "Chapter 11",
+      "file_size": 2505791,
+      "duration": 381.4,
+      "stream_url": "Misery/41%20-%20Chapter%2011.mp3"
+    },
+    {
+      "index": 41,
+      "name": "Chapter 12",
+      "file_size": 3311268,
+      "duration": 515.5,
+      "stream_url": "Misery/42%20-%20Chapter%2012.mp3"
+    },
+    {
+      "index": 42,
+      "name": "Chapter 13",
+      "file_size": 1748026,
+      "duration": 255.2,
+      "stream_url": "Misery/43%20-%20Chapter%2013.mp3"
+    },
+    {
+      "index": 43,
+      "name": "Chapter 14",
+      "file_size": 1681143,
+      "duration": 244.1,
+      "stream_url": "Misery/44%20-%20Chapter%2014.mp3"
+    },
+    {
+      "index": 44,
+      "name": "Chapter 15",
+      "file_size": 3497358,
+      "duration": 546.5,
+      "stream_url": "Misery/45%20-%20Chapter%2015.mp3"
+    },
+    {
+      "index": 45,
+      "name": "Chapter 16",
+      "file_size": 5109608,
+      "duration": 814.9,
+      "stream_url": "Misery/46%20-%20Chapter%2016.mp3"
+    },
+    {
+      "index": 46,
+      "name": "Chapter 17",
+      "file_size": 918910,
+      "duration": 117.2,
+      "stream_url": "Misery/47%20-%20Chapter%2017.mp3"
+    },
+    {
+      "index": 47,
+      "name": "Chapter 18",
+      "file_size": 13045889,
+      "duration": 2136.3,
+      "stream_url": "Misery/48%20-%20Chapter%2018.mp3"
+    },
+    {
+      "index": 48,
+      "name": "Chapter 19",
+      "file_size": 3169574,
+      "duration": 491.9,
+      "stream_url": "Misery/49%20-%20Chapter%2019.mp3"
+    },
+    {
+      "index": 49,
+      "name": "Chapter 21",
+      "file_size": 8051443,
+      "duration": 1304.8,
+      "stream_url": "Misery/50%20-%20Chapter%2021.mp3"
+    },
+    {
+      "index": 50,
+      "name": "Chapter 22",
+      "file_size": 5461896,
+      "duration": 873.6,
+      "stream_url": "Misery/51%20-%20Chapter%2022.mp3"
+    },
+    {
+      "index": 51,
+      "name": "Chapter 23",
+      "file_size": 999630,
+      "duration": 130.6,
+      "stream_url": "Misery/52%20-%20Chapter%2023.mp3"
+    },
+    {
+      "index": 52,
+      "name": "Chapter 2",
+      "file_size": 822043,
+      "duration": 101.1,
+      "stream_url": "Misery/53%20-%20Chapter%202.mp3"
+    },
+    {
+      "index": 53,
+      "name": "Chapter 3",
+      "file_size": 2242438,
+      "duration": 337.6,
+      "stream_url": "Misery/54%20-%20Chapter%203.mp3"
+    },
+    {
+      "index": 54,
+      "name": "Chapter 4",
+      "file_size": 2421897,
+      "duration": 367.4,
+      "stream_url": "Misery/55%20-%20Chapter%204.mp3"
+    },
+    {
+      "index": 55,
+      "name": "Chapter 5",
+      "file_size": 917899,
+      "duration": 117.0,
+      "stream_url": "Misery/56%20-%20Chapter%205.mp3"
+    },
+    {
+      "index": 56,
+      "name": "Chapter 6",
+      "file_size": 833430,
+      "duration": 103.0,
+      "stream_url": "Misery/57%20-%20Chapter%206.mp3"
+    },
+    {
+      "index": 57,
+      "name": "Chapter 7",
+      "file_size": 1726835,
+      "duration": 251.7,
+      "stream_url": "Misery/58%20-%20Chapter%207.mp3"
+    },
+    {
+      "index": 58,
+      "name": "Chapter 8",
+      "file_size": 1690943,
+      "duration": 245.7,
+      "stream_url": "Misery/59%20-%20Chapter%208.mp3"
+    },
+    {
+      "index": 59,
+      "name": "Chapter 9",
+      "file_size": 5174039,
+      "duration": 825.7,
+      "stream_url": "Misery/60%20-%20Chapter%209.mp3"
+    },
+    {
+      "index": 60,
+      "name": "Chapter 10",
+      "file_size": 1825864,
+      "duration": 268.2,
+      "stream_url": "Misery/61%20-%20Chapter%2010.mp3"
+    },
+    {
+      "index": 61,
+      "name": "Chapter 11",
+      "file_size": 2440205,
+      "duration": 370.5,
+      "stream_url": "Misery/62%20-%20Chapter%2011.mp3"
+    },
+    {
+      "index": 62,
+      "name": "Chapter 12",
+      "file_size": 1693972,
+      "duration": 246.2,
+      "stream_url": "Misery/63%20-%20Chapter%2012.mp3"
+    },
+    {
+      "index": 63,
+      "name": "Chapter 13",
+      "file_size": 1760134,
+      "duration": 257.3,
+      "stream_url": "Misery/64%20-%20Chapter%2013.mp3"
+    },
+    {
+      "index": 64,
+      "name": "Chapter 14",
+      "file_size": 959270,
+      "duration": 123.9,
+      "stream_url": "Misery/65%20-%20Chapter%2014.mp3"
+    },
+    {
+      "index": 65,
+      "name": "Chapter 15",
+      "file_size": 4053898,
+      "duration": 639.2,
+      "stream_url": "Misery/66%20-%20Chapter%2015.mp3"
+    },
+    {
+      "index": 66,
+      "name": "Chapter 16",
+      "file_size": 1725251,
+      "duration": 251.4,
+      "stream_url": "Misery/67%20-%20Chapter%2016.mp3"
+    },
+    {
+      "index": 67,
+      "name": "Chapter 17",
+      "file_size": 863847,
+      "duration": 108.0,
+      "stream_url": "Misery/68%20-%20Chapter%2017.mp3"
+    },
+    {
+      "index": 68,
+      "name": "Chapter 18",
+      "file_size": 4139231,
+      "duration": 653.4,
+      "stream_url": "Misery/69%20-%20Chapter%2018.mp3"
+    },
+    {
+      "index": 69,
+      "name": "Chapter 19",
+      "file_size": 1656206,
+      "duration": 240.0,
+      "stream_url": "Misery/70%20-%20Chapter%2019.mp3"
+    },
+    {
+      "index": 70,
+      "name": "Chapter 20",
+      "file_size": 867306,
+      "duration": 108.6,
+      "stream_url": "Misery/71%20-%20Chapter%2020.mp3"
+    },
+    {
+      "index": 71,
+      "name": "Chapter 21",
+      "file_size": 1789828,
+      "duration": 262.2,
+      "stream_url": "Misery/72%20-%20Chapter%2021.mp3"
+    },
+    {
+      "index": 72,
+      "name": "Chapter 22",
+      "file_size": 911558,
+      "duration": 116.0,
+      "stream_url": "Misery/73%20-%20Chapter%2022.mp3"
+    },
+    {
+      "index": 73,
+      "name": "Chapter 23",
+      "file_size": 1555161,
+      "duration": 223.1,
+      "stream_url": "Misery/74%20-%20Chapter%2023.mp3"
+    },
+    {
+      "index": 74,
+      "name": "Chapter 25",
+      "file_size": 958405,
+      "duration": 123.8,
+      "stream_url": "Misery/75%20-%20Chapter%2025.mp3"
+    },
+    {
+      "index": 75,
+      "name": "Chapter 26",
+      "file_size": 1558909,
+      "duration": 223.8,
+      "stream_url": "Misery/76%20-%20Chapter%2026.mp3"
+    },
+    {
+      "index": 76,
+      "name": "Chapter 27",
+      "file_size": 857793,
+      "duration": 107.0,
+      "stream_url": "Misery/77%20-%20Chapter%2027.mp3"
+    },
+    {
+      "index": 77,
+      "name": "Chapter 29",
+      "file_size": 1428747,
+      "duration": 202.1,
+      "stream_url": "Misery/78%20-%20Chapter%2029.mp3"
+    },
+    {
+      "index": 78,
+      "name": "Chapter 30",
+      "file_size": 3296277,
+      "duration": 513.0,
+      "stream_url": "Misery/79%20-%20Chapter%2030.mp3"
+    },
+    {
+      "index": 79,
+      "name": "Chapter 31",
+      "file_size": 866009,
+      "duration": 108.4,
+      "stream_url": "Misery/80%20-%20Chapter%2031.mp3"
+    },
+    {
+      "index": 80,
+      "name": "Chapter 32",
+      "file_size": 1659522,
+      "duration": 240.5,
+      "stream_url": "Misery/81%20-%20Chapter%2032.mp3"
+    },
+    {
+      "index": 81,
+      "name": "Chapter 33",
+      "file_size": 882585,
+      "duration": 111.1,
+      "stream_url": "Misery/82%20-%20Chapter%2033.mp3"
+    },
+    {
+      "index": 82,
+      "name": "Chapter 34",
+      "file_size": 851883,
+      "duration": 106.0,
+      "stream_url": "Misery/83%20-%20Chapter%2034.mp3"
+    },
+    {
+      "index": 83,
+      "name": "Chapter 35",
+      "file_size": 914153,
+      "duration": 116.4,
+      "stream_url": "Misery/84%20-%20Chapter%2035.mp3"
+    },
+    {
+      "index": 84,
+      "name": "Chapter 36",
+      "file_size": 854189,
+      "duration": 106.4,
+      "stream_url": "Misery/85%20-%20Chapter%2036.mp3"
+    },
+    {
+      "index": 85,
+      "name": "Chapter 37",
+      "file_size": 1783485,
+      "duration": 261.1,
+      "stream_url": "Misery/86%20-%20Chapter%2037.mp3"
+    },
+    {
+      "index": 86,
+      "name": "Chapter 38",
+      "file_size": 929288,
+      "duration": 118.9,
+      "stream_url": "Misery/87%20-%20Chapter%2038.mp3"
+    },
+    {
+      "index": 87,
+      "name": "Chapter 39",
+      "file_size": 1469828,
+      "duration": 208.9,
+      "stream_url": "Misery/88%20-%20Chapter%2039.mp3"
+    },
+    {
+      "index": 88,
+      "name": "Chapter 40",
+      "file_size": 910117,
+      "duration": 115.7,
+      "stream_url": "Misery/89%20-%20Chapter%2040.mp3"
+    },
+    {
+      "index": 89,
+      "name": "Chapter 41",
+      "file_size": 878549,
+      "duration": 110.5,
+      "stream_url": "Misery/90%20-%20Chapter%2041.mp3"
+    },
+    {
+      "index": 90,
+      "name": "Chapter 42",
+      "file_size": 2677755,
+      "duration": 410.0,
+      "stream_url": "Misery/91%20-%20Chapter%2042.mp3"
+    },
+    {
+      "index": 91,
+      "name": "Chapter 43",
+      "file_size": 941540,
+      "duration": 121.0,
+      "stream_url": "Misery/92%20-%20Chapter%2043.mp3"
+    },
+    {
+      "index": 92,
+      "name": "Chapter 44",
+      "file_size": 936639,
+      "duration": 120.1,
+      "stream_url": "Misery/93%20-%20Chapter%2044.mp3"
+    },
+    {
+      "index": 93,
+      "name": "Chapter 45",
+      "file_size": 855630,
+      "duration": 106.7,
+      "stream_url": "Misery/94%20-%20Chapter%2045.mp3"
+    },
+    {
+      "index": 94,
+      "name": "Chapter 46",
+      "file_size": 2438187,
+      "duration": 370.2,
+      "stream_url": "Misery/95%20-%20Chapter%2046.mp3"
+    },
+    {
+      "index": 95,
+      "name": "Chapter 47",
+      "file_size": 955378,
+      "duration": 123.3,
+      "stream_url": "Misery/96%20-%20Chapter%2047.mp3"
+    },
+    {
+      "index": 96,
+      "name": "Chapter 48",
+      "file_size": 1488855,
+      "duration": 212.1,
+      "stream_url": "Misery/97%20-%20Chapter%2048.mp3"
+    },
+    {
+      "index": 97,
+      "name": "Chapter 1",
+      "file_size": 2304420,
+      "duration": 347.9,
+      "stream_url": "Misery/98%20-%20Chapter%201.mp3"
+    },
+    {
+      "index": 98,
+      "name": "Chapter 4",
+      "file_size": 575989,
+      "duration": 60.1,
+      "stream_url": "Misery/99%20-%20Chapter%204.mp3"
+    },
+    {
+      "index": 99,
+      "name": "Chapter 7",
+      "file_size": 798694,
+      "duration": 97.2,
+      "stream_url": "Misery/100%20-%20Chapter%207.mp3"
+    },
+    {
+      "index": 100,
+      "name": "Chapter 8",
+      "file_size": 725757,
+      "duration": 85.0,
+      "stream_url": "Misery/101%20-%20Chapter%208.mp3"
+    },
+    {
+      "index": 101,
+      "name": "Chapter 10",
+      "file_size": 2960279,
+      "duration": 457.1,
+      "stream_url": "Misery/102%20-%20Chapter%2010.mp3"
+    }
+  ]
+}

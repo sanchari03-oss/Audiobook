@@ -1,0 +1,25 @@
+{
+  "id": "how-to-talk-to-anyone",
+  "title": "How to Talk to Anyone",
+  "author": "Audiobook",
+  "cover_url": "How%20to%20Talk%20to%20Anyone/cover.jpg",
+  "cover_version": "1791123726",
+  "total_tracks": 2,
+  "total_duration": 17312.2,
+  "chapters": [
+    {
+      "index": 0,
+      "name": "Part 1",
+      "file_size": 51936631,
+      "duration": 8656.0,
+      "stream_url": "How%20to%20Talk%20to%20Anyone/01%20-%20Part%201.mp3"
+    },
+    {
+      "index": 1,
+      "name": "Part 2",
+      "file_size": 51937495,
+      "duration": 8656.2,
+      "stream_url": "How%20to%20Talk%20to%20Anyone/02%20-%20Part%202.mp3"
+    }
+  ]
+}
