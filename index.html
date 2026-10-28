@@ -2997,14 +2997,34 @@
       isDownloadPaused = false;
       activeDownloadingBookId = book.id;
       downloadAbortController = new AbortController();
+      const localAbortController = downloadAbortController;
 
       // Keep phone screen awake during download
       let wakeLock = null;
-      try {
-        if ('wakeLock' in navigator) {
-          wakeLock = await navigator.wakeLock.request('screen');
+      const requestWakeLock = async () => {
+        try {
+          if ('wakeLock' in navigator && !wakeLock) {
+            wakeLock = await navigator.wakeLock.request('screen');
+            wakeLock.addEventListener('release', () => { wakeLock = null; });
+          }
+        } catch(e) {}
+      };
+      await requestWakeLock();
+
+      const onVisibilityChange = async () => {
+        if (isDownloading && document.visibilityState === 'visible') {
+          await requestWakeLock();
         }
-      } catch(e) {}
+      };
+      document.addEventListener('visibilitychange', onVisibilityChange);
+
+      const releaseWakeLock = async () => {
+        document.removeEventListener('visibilitychange', onVisibilityChange);
+        if (wakeLock) {
+          try { await wakeLock.release(); } catch(e) {}
+          wakeLock = null;
+        }
+      };
 
       const total = book.chapters.length;
       let alreadySaved = 0;
@@ -3018,7 +3038,7 @@
         activeDownloadingBookId = null;
         updateDownloadProgressUI(book.id, 100, true);
         renderBooks();
-        if (wakeLock) try { await wakeLock.release(); } catch(e) {}
+        await releaseWakeLock();
         showToast("All chapters already saved offline.");
         return;
       }
@@ -3027,30 +3047,43 @@
       let currentPct = Math.round((savedCount / total) * 100);
       updateDownloadProgressUI(book.id, currentPct, false, false);
 
-      // Sequential download: 1 chapter at a time for 100% stability over Cloudflare tunnel
+      // Build task queue for missing chapters
+      const tasks = [];
       for (let i = 0; i < total; i++) {
-        if (!isDownloading) break;
-
         const blobKey = `${book.id}_${i}`;
-        if (downloadedBlobKeys.has(blobKey)) continue;
+        if (!downloadedBlobKeys.has(blobKey)) {
+          const ch = book.chapters[i];
+          if (ch && ch.stream_url) {
+            tasks.push({ index: i, chapter: ch, blobKey });
+          }
+        }
+      }
 
-        const ch = book.chapters[i];
-        if (!ch || !ch.stream_url) continue;
+      let taskIdx = 0;
+      let fatalQuotaError = false;
+
+      async function downloadChapterTask(task) {
+        const { index: i, chapter: ch, blobKey } = task;
 
         for (let attempt = 1; attempt <= 3; attempt++) {
-          if (!isDownloading) break;
-          try {
-            const controller = new AbortController();
-            const onAbort = () => controller.abort();
-            if (downloadAbortController) downloadAbortController.signal.addEventListener('abort', onAbort);
+          if (!isDownloading || localAbortController.signal.aborted || fatalQuotaError) return;
 
-            const timer = setTimeout(() => controller.abort(), 90000);
-            const res = await fetch(ch.stream_url, { signal: controller.signal });
+          const chapterController = new AbortController();
+          const onParentAbort = () => chapterController.abort();
+          localAbortController.signal.addEventListener('abort', onParentAbort);
+
+          const timer = setTimeout(() => chapterController.abort(), 90000);
+
+          try {
+            const res = await fetch(ch.stream_url, { signal: chapterController.signal });
             clearTimeout(timer);
+            localAbortController.signal.removeEventListener('abort', onParentAbort);
 
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
             const blob = await res.blob();
             if (!blob || blob.size < 1000) throw new Error("Empty audio file");
+
+            if (!isDownloading || localAbortController.signal.aborted || fatalQuotaError) return;
 
             await dbSaveBlob(blobKey, blob);
             downloadedBlobKeys.add(blobKey);
@@ -3058,28 +3091,49 @@
 
             currentPct = Math.round((savedCount / total) * 100);
             updateDownloadProgressUI(book.id, currentPct, false, false);
-            break;
+            return; // Success
           } catch(err) {
-            if (!isDownloading || (downloadAbortController && downloadAbortController.signal.aborted)) {
-              break;
+            clearTimeout(timer);
+            localAbortController.signal.removeEventListener('abort', onParentAbort);
+
+            if (!isDownloading || localAbortController.signal.aborted) {
+              return;
             }
+
             if (err && (err.name === 'QuotaExceededError' || String(err).toLowerCase().includes('quota'))) {
               showToast("Storage full: Device out of storage space.");
+              fatalQuotaError = true;
               isDownloading = false;
-              break;
+              localAbortController.abort();
+              return;
             }
-            if (attempt < 3) {
-              await new Promise(r => setTimeout(r, 1200));
+
+            if (attempt < 3 && isDownloading && !localAbortController.signal.aborted && !fatalQuotaError) {
+              await new Promise(r => setTimeout(r, 1200 * attempt));
             }
           }
         }
-
-        if (!isDownloading) break;
       }
 
-      // If user paused
-      if (!isDownloading) {
-        if (wakeLock) try { await wakeLock.release(); } catch(e) {}
+      // Concurrency worker pool: 3-4 parallel requests for optimal speed and reliability
+      const CONCURRENCY = 4;
+      const workerCount = Math.min(CONCURRENCY, tasks.length);
+      const workers = [];
+
+      for (let w = 0; w < workerCount; w++) {
+        workers.push((async () => {
+          while (taskIdx < tasks.length && isDownloading && !localAbortController.signal.aborted && !fatalQuotaError) {
+            const currentTask = tasks[taskIdx++];
+            await downloadChapterTask(currentTask);
+          }
+        })());
+      }
+
+      await Promise.all(workers);
+
+      // If user paused or quota error
+      if (!isDownloading || localAbortController.signal.aborted) {
+        await releaseWakeLock();
         updateDownloadProgressUI(book.id, currentPct, false, true);
         return;
       }
@@ -3087,7 +3141,7 @@
       // Download cover image if needed
       if (book.cover_url && (!book.cover || book.cover.startsWith('/'))) {
         try {
-          const cr = await fetch(book.cover_url);
+          const cr = await fetch(book.cover_url, { signal: localAbortController.signal });
           if (cr.ok) {
             const cb = await cr.blob();
             book.cover = await readDataUrl(cb);
@@ -3101,7 +3155,7 @@
       isDownloading = false;
       isDownloadPaused = false;
       activeDownloadingBookId = null;
-      if (wakeLock) try { await wakeLock.release(); } catch(e) {}
+      await releaseWakeLock();
 
       updateDownloadProgressUI(book.id, 100, true);
       renderBooks();
@@ -3215,20 +3269,23 @@
         }
         if (!resp || !resp.ok) return;
         const data = await resp.json();
-        if (!data.books || !Array.isArray(data.books)) return;
+        if (!data.books || !Array.isArray(data.books) || data.books.length === 0) return;
 
         const deletedIds = getDeletedBookIds();
-        const serverBookIds = new Set(data.books.map(b => b.id));
         let changed = false;
 
-        // 1. Prune server books that were deleted from server or explicitly deleted by user
+        // 1. Only prune books that were explicitly deleted by the user (tracked in deletedIds).
+        // Never delete a book from IndexedDB if it has downloaded audio blobs or is marked as downloaded.
+        // A user's offline audio must NEVER be pruned by a background server sync.
         const remaining = [];
         for (const b of books) {
-          const isLocalCustomBook = b.id && (b.id.startsWith("book_") || b.source === "local");
           const isExplicitlyDeleted = deletedIds.has(b.id);
-          const isMissingFromServer = !isLocalCustomBook && !serverBookIds.has(b.id);
+          const hasDownloadedAudio = Boolean(
+            b.isDownloaded ||
+            (downloadedBlobKeys && (downloadedBlobKeys.has(`${b.id}_0`) || (b.chapters && b.chapters.some((_, i) => downloadedBlobKeys.has(`${b.id}_${i}`)))))
+          );
 
-          if (isExplicitlyDeleted || isMissingFromServer) {
+          if (isExplicitlyDeleted && !hasDownloadedAudio) {
             await dbDelete(b.id);
             changed = true;
           } else {
@@ -3322,6 +3379,13 @@
 
     /* App Initialization */
     async function init() {
+      // Request persistent storage to prevent browser eviction of IndexedDB audio blobs
+      if (navigator.storage && navigator.storage.persist) {
+        navigator.storage.persist().then(persistent => {
+          console.log("IndexedDB persistent storage granted:", persistent);
+        }).catch(e => console.warn("Storage persist request error:", e));
+      }
+
       await openDB();
       downloadedBlobKeys = await dbGetAllBlobKeys();
       const allDbBooks = await dbGetAll();

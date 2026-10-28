@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ssk-player-gh-v5';
+const CACHE_NAME = 'ssk-player-gh-v6';
 
 const STATIC_ASSETS = [
   './',
@@ -64,9 +64,16 @@ self.addEventListener('fetch', (e) => {
           return res;
         })
         .catch(async () => {
-          return (await caches.match(e.request)) ||
-                 (await caches.match('./books.json')) ||
-                 new Response('{"books":[]}', { headers: { 'Content-Type': 'application/json' } });
+          const cached = (await caches.match(e.request)) ||
+                         (await caches.match(e.request, { ignoreSearch: true })) ||
+                         (await caches.match('./books.json', { ignoreSearch: true })) ||
+                         (await caches.match('./manifest.json', { ignoreSearch: true }));
+          if (cached) return cached;
+          return new Response('Offline - catalog unavailable', {
+            status: 503,
+            statusText: 'Service Unavailable',
+            headers: { 'Content-Type': 'text/plain' }
+          });
         })
     );
     return;
