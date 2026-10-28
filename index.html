@@ -2411,8 +2411,8 @@
 
     /* Tab Counters */
     function updateCounts() {
-      countListening.textContent = books.filter(b => b.status === "listening" || (!b.status && (b.has_manifest || b.chapters?.length > 0))).length;
-      countWishlist.textContent = books.filter(b => b.status === "wishlist" || (!b.has_manifest && (!b.chapters || b.chapters.length === 0))).length;
+      countListening.textContent = books.filter(b => b.status !== "wishlist" && b.status !== "finished" && (b.has_manifest || b.chapters?.length > 0 || b.total_tracks > 0)).length;
+      countWishlist.textContent = books.filter(b => b.status === "wishlist" || (!b.has_manifest && (!b.chapters || b.chapters.length === 0) && (!b.total_tracks || b.total_tracks === 0))).length;
       countFinished.textContent = books.filter(b => b.status === "finished").length;
     }
 
@@ -2447,9 +2447,9 @@
 
       // Filtered Books
       const filtered = books.filter(b => {
-        if (currentTab === "wishlist") return b.status === "wishlist" || (!b.has_manifest && (!b.chapters || b.chapters.length === 0));
+        if (currentTab === "wishlist") return b.status === "wishlist" || (!b.has_manifest && (!b.chapters || b.chapters.length === 0) && (!b.total_tracks || b.total_tracks === 0));
         if (currentTab === "finished") return b.status === "finished";
-        return b.status === "listening" || (!b.status && (b.has_manifest || b.chapters?.length > 0));
+        return b.status !== "wishlist" && b.status !== "finished";
       });
 
       filtered.forEach(book => {
@@ -3802,7 +3802,7 @@
           const sCover = sBook.cover || sBook.cover_url || null;
 
           if (!existing) {
-            sBook.status = isServerWishlist ? 'wishlist' : (sBook.status || 'listening');
+            sBook.status = isServerWishlist ? 'wishlist' : ((sBook.status && sBook.status !== 'ready') ? sBook.status : 'listening');
             sBook.cover = sCover;
             sBook.cover_url = sBook.cover_url || sCover;
             sBook.cover_version = sBook.cover_version || null;
@@ -3902,6 +3902,12 @@
 
       // Filter out any explicitly deleted books that might still be in DB
       books = allDbBooks.filter(b => !deletedIds.has(b.id));
+      for (const b of books) {
+        if (b.status === 'ready' || (!b.status && (b.has_manifest || (b.chapters && b.chapters.length > 0) || b.total_tracks > 0))) {
+          b.status = 'listening';
+          await dbSave(b);
+        }
+      }
 
       // Dual storage persistence: restore wishlist books from localStorage backup
       try {
