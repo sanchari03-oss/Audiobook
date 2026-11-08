@@ -1,6 +1,18 @@
 {
   "books": [
     {
+      "id": "a-short-history-of-nearly-everything",
+      "title": "A Short History of Nearly Everything",
+      "author": "Audiobook",
+      "cover_url": "A%20Short%20History%20of%20Nearly%20Everything/cover.jpg",
+      "cover_version": "1794140520",
+      "total_tracks": 31,
+      "total_duration": 58457.4,
+      "lastPlayedTimestamp": 0,
+      "has_manifest": true,
+      "manifest_url": "A%20Short%20History%20of%20Nearly%20Everything/manifest.json"
+    },
+    {
       "id": "a-thousand-splendid-suns",
       "title": "A Thousand Splendid Suns",
       "author": "Audiobook",
@@ -155,6 +167,18 @@
       "lastPlayedTimestamp": 0,
       "has_manifest": true,
       "manifest_url": "The%20Invisible%20Man/manifest.json"
+    },
+    {
+      "id": "the-pearl",
+      "title": "The Pearl",
+      "author": "Audiobook",
+      "cover_url": "The%20Pearl/cover.jpg",
+      "cover_version": "1794139990",
+      "total_tracks": 6,
+      "total_duration": 8563.4,
+      "lastPlayedTimestamp": 0,
+      "has_manifest": true,
+      "manifest_url": "The%20Pearl/manifest.json"
     },
     {
       "id": "the-power-of-your-subconscious-mind",

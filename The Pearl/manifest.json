@@ -1,0 +1,53 @@
+{
+  "id": "the-pearl",
+  "title": "The Pearl",
+  "author": "Audiobook",
+  "cover_url": "The%20Pearl/cover.jpg",
+  "cover_version": "1794139990",
+  "total_tracks": 6,
+  "total_duration": 8563.4,
+  "chapters": [
+    {
+      "index": 0,
+      "name": "Chapter 1",
+      "file_size": 6976029,
+      "duration": 1162.6,
+      "stream_url": "The%20Pearl/01%20-%20Chapter%201.mp3"
+    },
+    {
+      "index": 1,
+      "name": "Chapter 2",
+      "file_size": 4459773,
+      "duration": 743.3,
+      "stream_url": "The%20Pearl/02%20-%20Chapter%202.mp3"
+    },
+    {
+      "index": 2,
+      "name": "Chapter 3",
+      "file_size": 11316333,
+      "duration": 1886.0,
+      "stream_url": "The%20Pearl/03%20-%20Chapter%203.mp3"
+    },
+    {
+      "index": 3,
+      "name": "Chapter 4",
+      "file_size": 9843789,
+      "duration": 1640.6,
+      "stream_url": "The%20Pearl/04%20-%20Chapter%204.mp3"
+    },
+    {
+      "index": 4,
+      "name": "Chapter 5",
+      "file_size": 5549565,
+      "duration": 924.9,
+      "stream_url": "The%20Pearl/05%20-%20Chapter%205.mp3"
+    },
+    {
+      "index": 5,
+      "name": "Chapter 6",
+      "file_size": 13236285,
+      "duration": 2206.0,
+      "stream_url": "The%20Pearl/06%20-%20Chapter%206.mp3"
+    }
+  ]
+}

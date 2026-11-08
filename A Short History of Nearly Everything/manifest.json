@@ -1,0 +1,228 @@
+{
+  "id": "a-short-history-of-nearly-everything",
+  "title": "A Short History of Nearly Everything",
+  "author": "Audiobook",
+  "cover_url": "A%20Short%20History%20of%20Nearly%20Everything/cover.jpg",
+  "cover_version": "1794140520",
+  "total_tracks": 31,
+  "total_duration": 58457.4,
+  "chapters": [
+    {
+      "index": 0,
+      "name": "Introduction",
+      "file_size": 4478832,
+      "duration": 746.5,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/00%20-%20Introduction.mp3"
+    },
+    {
+      "index": 1,
+      "name": "Chapter 1: How to Build a Universe",
+      "file_size": 7246368,
+      "duration": 1207.7,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/01%20-%20Chapter%201%20-%20How%20to%20Build%20a%20Universe.mp3"
+    },
+    {
+      "index": 2,
+      "name": "Chapter 2: Welcome to the Solar System",
+      "file_size": 7458912,
+      "duration": 1243.2,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/02%20-%20Chapter%202%20-%20Welcome%20to%20the%20Solar%20System.mp3"
+    },
+    {
+      "index": 3,
+      "name": "Chapter 3: The Reverend Evans's Universe",
+      "file_size": 8520768,
+      "duration": 1420.1,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/03%20-%20Chapter%203%20-%20The%20Reverend%20Evans%27s%20Universe.mp3"
+    },
+    {
+      "index": 4,
+      "name": "Chapter 4: The Measure of Things",
+      "file_size": 14352624,
+      "duration": 2392.1,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/04%20-%20Chapter%204%20-%20The%20Measure%20of%20Things.mp3"
+    },
+    {
+      "index": 5,
+      "name": "Chapter 5: The Stone: Breakers",
+      "file_size": 11820960,
+      "duration": 1970.2,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/05%20-%20Chapter%205%20-%20The%20Stone-Breakers.mp3"
+    },
+    {
+      "index": 6,
+      "name": "Chapter 6: Science Red in Tooth and Claw",
+      "file_size": 14043600,
+      "duration": 2340.6,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/06%20-%20Chapter%206%20-%20Science%20Red%20in%20Tooth%20and%20Claw.mp3"
+    },
+    {
+      "index": 7,
+      "name": "Chapter 7: Elemental Matters",
+      "file_size": 11995344,
+      "duration": 1999.2,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/07%20-%20Chapter%207%20-%20Elemental%20Matters.mp3"
+    },
+    {
+      "index": 8,
+      "name": "Chapter 8: Einstein's Universe",
+      "file_size": 13517712,
+      "duration": 2253.0,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/08%20-%20Chapter%208%20-%20Einstein%27s%20Universe.mp3"
+    },
+    {
+      "index": 9,
+      "name": "Chapter 9: The Mighty Atom",
+      "file_size": 11883744,
+      "duration": 1980.6,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/09%20-%20Chapter%209%20-%20The%20Mighty%20Atom.mp3"
+    },
+    {
+      "index": 10,
+      "name": "Chapter 10: Getting the Lead Out",
+      "file_size": 8722368,
+      "duration": 1453.7,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/10%20-%20Chapter%2010%20-%20Getting%20the%20Lead%20Out.mp3"
+    },
+    {
+      "index": 11,
+      "name": "Chapter 11: Muster Mark's Quarks",
+      "file_size": 9009648,
+      "duration": 1501.6,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/11%20-%20Chapter%2011%20-%20Muster%20Mark%27s%20Quarks.mp3"
+    },
+    {
+      "index": 12,
+      "name": "Chapter 12: The Earth Moves",
+      "file_size": 9522144,
+      "duration": 1587.0,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/12%20-%20Chapter%2012%20-%20The%20Earth%20Moves.mp3"
+    },
+    {
+      "index": 13,
+      "name": "Chapter 13: Bang!",
+      "file_size": 13568112,
+      "duration": 2261.4,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/13%20-%20Chapter%2013%20-%20Bang%21.mp3"
+    },
+    {
+      "index": 14,
+      "name": "Chapter 14: The Fire Below",
+      "file_size": 12751776,
+      "duration": 2125.3,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/14%20-%20Chapter%2014%20-%20The%20Fire%20Below.mp3"
+    },
+    {
+      "index": 15,
+      "name": "Chapter 15: Dangerous Beauty",
+      "file_size": 9203184,
+      "duration": 1533.9,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/15%20-%20Chapter%2015%20-%20Dangerous%20Beauty.mp3"
+    },
+    {
+      "index": 16,
+      "name": "Chapter 16: Lonely Planet",
+      "file_size": 11816928,
+      "duration": 1969.5,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/16%20-%20Chapter%2016%20-%20Lonely%20Planet.mp3"
+    },
+    {
+      "index": 17,
+      "name": "Chapter 17: Into the Troposphere",
+      "file_size": 11090016,
+      "duration": 1848.3,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/17%20-%20Chapter%2017%20-%20Into%20the%20Troposphere.mp3"
+    },
+    {
+      "index": 18,
+      "name": "Chapter 18: The Bounding Main",
+      "file_size": 13340160,
+      "duration": 2223.4,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/18%20-%20Chapter%2018%20-%20The%20Bounding%20Main.mp3"
+    },
+    {
+      "index": 19,
+      "name": "Chapter 19: The Rise of Life",
+      "file_size": 11946672,
+      "duration": 1991.1,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/19%20-%20Chapter%2019%20-%20The%20Rise%20of%20Life.mp3"
+    },
+    {
+      "index": 20,
+      "name": "Chapter 20: Small World",
+      "file_size": 14541933,
+      "duration": 2423.6,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/20%20-%20Chapter%2020%20-%20Small%20World.mp3"
+    },
+    {
+      "index": 21,
+      "name": "Chapter 21: Life Goes On",
+      "file_size": 11529597,
+      "duration": 1921.6,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/21%20-%20Chapter%2021%20-%20Life%20Goes%20On.mp3"
+    },
+    {
+      "index": 22,
+      "name": "Chapter 22: Good: bye to All That",
+      "file_size": 11878941,
+      "duration": 1979.8,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/22%20-%20Chapter%2022%20-%20Good-bye%20to%20All%20That.mp3"
+    },
+    {
+      "index": 23,
+      "name": "Chapter 23: The Richness of Being",
+      "file_size": 16854141,
+      "duration": 2809.0,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/23%20-%20Chapter%2023%20-%20The%20Richness%20of%20Being.mp3"
+    },
+    {
+      "index": 24,
+      "name": "Chapter 24: Cells",
+      "file_size": 7790205,
+      "duration": 1298.3,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/24%20-%20Chapter%2024%20-%20Cells.mp3"
+    },
+    {
+      "index": 25,
+      "name": "Chapter 25: Darwin's Singular Notion",
+      "file_size": 11562861,
+      "duration": 1927.1,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/25%20-%20Chapter%2025%20-%20Darwin%27s%20Singular%20Notion.mp3"
+    },
+    {
+      "index": 26,
+      "name": "Chapter 26: The Stuff of Life",
+      "file_size": 14693997,
+      "duration": 2449.0,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/26%20-%20Chapter%2026%20-%20The%20Stuff%20of%20Life.mp3"
+    },
+    {
+      "index": 27,
+      "name": "Chapter 27: Ice Time",
+      "file_size": 11228349,
+      "duration": 1871.4,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/27%20-%20Chapter%2027%20-%20Ice%20Time.mp3"
+    },
+    {
+      "index": 28,
+      "name": "Chapter 28: The Mysterious Biped",
+      "file_size": 15819933,
+      "duration": 2636.6,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/28%20-%20Chapter%2028%20-%20The%20Mysterious%20Biped.mp3"
+    },
+    {
+      "index": 29,
+      "name": "Chapter 29: The Restless Ape",
+      "file_size": 11690445,
+      "duration": 1948.4,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/29%20-%20Chapter%2029%20-%20The%20Restless%20Ape.mp3"
+    },
+    {
+      "index": 30,
+      "name": "Chapter 30: Good: bye",
+      "file_size": 6865437,
+      "duration": 1144.2,
+      "stream_url": "A%20Short%20History%20of%20Nearly%20Everything/30%20-%20Chapter%2030%20-%20Good-bye.mp3"
+    }
+  ]
+}

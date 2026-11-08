@@ -1920,8 +1920,38 @@
       }
     }
 
+    function getFinishedBookIds() {
+      try {
+        const raw = localStorage.getItem("ssk_finished_book_ids");
+        return new Set(raw ? JSON.parse(raw) : []);
+      } catch (e) {
+        return new Set();
+      }
+    }
+
+    function markBookAsFinished(id) {
+      if (!id) return;
+      try {
+        const fin = getFinishedBookIds();
+        fin.add(id);
+        localStorage.setItem("ssk_finished_book_ids", JSON.stringify(Array.from(fin)));
+      } catch (e) {}
+    }
+
+    function unmarkBookAsFinished(id) {
+      if (!id) return;
+      try {
+        const fin = getFinishedBookIds();
+        if (fin.has(id)) {
+          fin.delete(id);
+          localStorage.setItem("ssk_finished_book_ids", JSON.stringify(Array.from(fin)));
+        }
+      } catch (e) {}
+    }
+
     function markBookAsDeleted(id) {
       try {
+        unmarkBookAsFinished(id);
         const deleted = getDeletedBookIds();
         deleted.add(id);
         localStorage.setItem("ssk_deleted_book_ids", JSON.stringify(Array.from(deleted)));
@@ -3464,6 +3494,13 @@
 
       if (window.AudioEngine?.manifestManager && (!book.chapters || book.chapters.length === 0)) {
         await window.AudioEngine.manifestManager.ensureManifest(book);
+        // Ensure in-memory books array also reflects loaded chapters
+        const bIdx = books.findIndex(b => b.id === book.id);
+        if (bIdx >= 0 && (!books[bIdx].chapters || books[bIdx].chapters.length === 0)) {
+          books[bIdx].chapters = book.chapters;
+          books[bIdx].total_tracks = book.total_tracks || book.chapters.length;
+          books[bIdx].total_duration = book.total_duration || 0;
+        }
       }
 
       if (!book || !book.chapters || book.chapters.length === 0) {
@@ -3567,7 +3604,16 @@
             clearTimeout(timer);
             localAbortController.signal.removeEventListener('abort', onParentAbort);
 
-            if (!blob || blob.size < 1000) throw new Error("Empty audio file");
+            // If rangeSliceDownloader already assembled and stored in IndexedDB, blob might be verified
+            if (!blob || blob.size < 1000) {
+              // Check if blob was already saved directly by rangeSliceDownloader
+              const directBlob = await dbGetBlob(blobKey);
+              if (directBlob && directBlob.size >= 1000) {
+                blob = directBlob;
+              } else {
+                throw new Error("Empty audio file");
+              }
+            }
 
             if (!isDownloading || localAbortController.signal.aborted || fatalQuotaError) return;
 
@@ -3802,7 +3848,8 @@
           const sCover = sBook.cover || sBook.cover_url || null;
 
           if (!existing) {
-            sBook.status = isServerWishlist ? 'wishlist' : ((sBook.status && sBook.status !== 'ready') ? sBook.status : 'listening');
+            const isFin = getFinishedBookIds().has(sBook.id);
+            sBook.status = isFin ? 'finished' : (isServerWishlist ? 'wishlist' : ((sBook.status && sBook.status !== 'ready') ? sBook.status : 'listening'));
             sBook.cover = sCover;
             sBook.cover_url = sBook.cover_url || sCover;
             sBook.cover_version = sBook.cover_version || null;
@@ -3821,8 +3868,14 @@
               existing.total_tracks = sBook.total_tracks || existing.total_tracks;
               existing.total_duration = sBook.total_duration || existing.total_duration;
             }
-            // Handle wishlist status changes
-            if (isServerWishlist) {
+            // Handle status changes (Preserve 'finished' status across server sync)
+            const isFin = getFinishedBookIds().has(existing.id) || existing.status === 'finished';
+            if (isFin) {
+              if (existing.status !== 'finished') {
+                existing.status = 'finished';
+                changed = true;
+              }
+            } else if (isServerWishlist) {
               if (existing.status !== 'wishlist') {
                 existing.status = 'wishlist';
                 changed = true;
@@ -3902,8 +3955,17 @@
 
       // Filter out any explicitly deleted books that might still be in DB
       books = allDbBooks.filter(b => !deletedIds.has(b.id));
+      const finishedIds = getFinishedBookIds();
       for (const b of books) {
-        if (b.status === 'ready' || (!b.status && (b.has_manifest || (b.chapters && b.chapters.length > 0) || b.total_tracks > 0))) {
+        if (finishedIds.has(b.id)) {
+          if (b.status !== 'finished') {
+            b.status = 'finished';
+            await dbSave(b);
+          }
+        } else if (b.status === 'finished') {
+          // If status in IndexedDB was finished, ensure persistent backup in localStorage
+          markBookAsFinished(b.id);
+        } else if (b.status === 'ready' || (!b.status && (b.has_manifest || (b.chapters && b.chapters.length > 0) || b.total_tracks > 0))) {
           b.status = 'listening';
           await dbSave(b);
         }
@@ -4103,7 +4165,9 @@
           setPlayIcon(false);
           if (activeBook) {
             activeBook.status = "finished";
+            markBookAsFinished(activeBook.id);
             dbSave(activeBook);
+            updateFullPlayerFinishState();
             updateCounts();
             renderBooks();
           }
@@ -4275,6 +4339,11 @@
           if (!activeBook) return;
           const willBeFin = (activeBook.status !== "finished");
           activeBook.status = willBeFin ? "finished" : "listening";
+          if (willBeFin) {
+            markBookAsFinished(activeBook.id);
+          } else {
+            unmarkBookAsFinished(activeBook.id);
+          }
           await dbSave(activeBook);
           updateFullPlayerFinishState();
           updateCounts();
@@ -4297,6 +4366,11 @@
           closeActionSheet();
           const willBeFin = (target.status !== "finished");
           target.status = willBeFin ? "finished" : "listening";
+          if (willBeFin) {
+            markBookAsFinished(target.id);
+          } else {
+            unmarkBookAsFinished(target.id);
+          }
           await dbSave(target);
           if (activeBook && activeBook.id === target.id) {
             activeBook.status = target.status;

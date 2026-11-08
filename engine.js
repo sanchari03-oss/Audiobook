@@ -431,8 +431,7 @@
               break;
             } else if (sliceRes.status === 200) {
               // Server doesn't support Range; fallback to full download
-              const fullBuffer = await sliceRes.arrayBuffer();
-              const fullBlob = new Blob([fullBuffer], { type: "audio/mpeg" });
+              const fullBlob = await sliceRes.blob();
               if (this.db) {
                 const tx = this.db.transaction("audioblobs", "readwrite");
                 tx.objectStore("audioblobs").put(fullBlob, blobKey);
@@ -451,6 +450,20 @@
         }
 
         if (!sliceSuccess) {
+          // If range slices repeatedly fail on this server, gracefully fallback to single full fetch
+          try {
+            const fallbackRes = await fetch(url, { signal });
+            if (fallbackRes.ok) {
+              const fullBlob = await fallbackRes.blob();
+              if (this.db) {
+                const tx = this.db.transaction("audioblobs", "readwrite");
+                tx.objectStore("audioblobs").put(fullBlob, blobKey);
+              }
+              return fullBlob;
+            }
+          } catch (fallbackErr) {
+            // Re-throw original or fallback error
+          }
           throw lastError || new Error(`Failed to download slice ${sliceIdx}`);
         }
       }
